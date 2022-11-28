@@ -1,15 +1,14 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Home = () => {
+const Platforms = () => {
   const [data, setData] = useState({});
   const [isLoading, setisLoading] = useState(true);
 
   const fetchData = async () => {
     const response = await axios.get(
-      `https://api.rawg.io/api/games?key=d63135d20b08493989713a8f5f2586e3`
+      `https://api.rawg.io/api/platforms?key=d63135d20b08493989713a8f5f2586e3`
     );
 
     setData(response.data);
@@ -50,9 +49,6 @@ const Home = () => {
           <div className="side-section">
             <div className="side-title">New Releases</div>
             <p>Last 30 days</p>
-            <div>
-              <FontAwesomeIcon icon="fa-solid fa-phone" />
-            </div>
             <p>This week</p>
             <p>Next week</p>
             <p>Release calendar</p>
@@ -67,9 +63,7 @@ const Home = () => {
 
           <div className="side-section">
             <div className="side-title">Browse</div>
-            <Link to="/platforms">
-              <p>Platforms</p>
-            </Link>
+            <p>Platforms</p>
             <p>stores</p>
             <p>Genres</p>
             <p>Developers</p>
@@ -80,23 +74,25 @@ const Home = () => {
       {/* SIDE BANNER A VIRER */}
       <div className="navigation-home">
         <div className="title-home">
-          <p>ALL GAMES</p>
+          <p>Platforms</p>
         </div>
         <div>
-          <div className="listing-elem">
+          <div className="listing-platform">
             {data.results.map((elem, index) => {
               return (
-                <div key={index} className="card-game">
-                  <div className="elem-title">{elem.name}</div>
-                  <div className="caroussel-screenshots">
-                    {elem.short_screenshots.map((screenshot) => {
+                <div key={index} className="card-platform">
+                  <div className="title-platform">{elem.name}</div>
+                  <div className="trending-platforms">
+                    {elem.games.slice(0, 3).map((games, index) => {
                       return (
-                        <div className="screenshots">
-                          <img src={screenshot.image} alt="" />
+                        <div key={index} className="platform-infos">
+                          <div className="game-name">{games.name}</div>
+                          <div className="game-num">{games.added}</div>
                         </div>
                       );
                     })}
                   </div>
+                  <img src={elem.image_background} alt="illustration"></img>
                 </div>
               );
             })}
@@ -107,4 +103,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Platforms;

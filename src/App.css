@@ -1,6 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Vazirmatn:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&display=swap");
+
 * {
-  background-color: #151515;
   margin: 0;
+}
+
+body {
+  background-color: #151515;
+  margin-left: 16px;
+  margin-right: 16px;
 }
 
 header {
@@ -8,6 +16,7 @@ header {
   margin-top: 10px;
   margin-left: 10px;
   margin-right: 20px;
+  background-color: #151515;
 }
 
 a,
@@ -71,18 +80,18 @@ p {
   box-sizing: border-box;
 }
 
-/* STYLE A CHANGER */
 .home-flex {
   display: flex;
   gap: 10px;
   margin-top: 50px;
   background-color: #151515;
 }
-/* STYLE A CHANGER */
+
+/* -------------------- SIDE BANNER SECTION -------------------- */
 
 .side-banner {
   width: 220px;
-  border: 1px solid greenyellow;
+  margin-left: 10px;
 }
 
 .side-banner p {
@@ -90,11 +99,11 @@ p {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 15px;
+  padding: 3px;
   letter-spacing: 1px;
 }
 
 .side-section {
-  margin-left: 5px;
   margin-bottom: 20px;
 }
 
@@ -107,8 +116,31 @@ p {
   margin-bottom: 10px;
 }
 
+/* -------------------- HOME SECTION -------------------- */
+
+.card-game {
+  border: 2px solid plum;
+  margin-left: 15px;
+  margin-bottom: 20px;
+  height: 300px;
+  width: 260px;
+  text-align: center;
+}
+
+.caroussel-screenshots {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50px;
+}
+
+.screenshots {
+  display: flex;
+  border: 1px solid red;
+}
+
+/* -------------------- PLATFORMS SECTION -------------------- */
+
 .navigation-home {
-  border: 2px solid rgb(7, 255, 114);
   width: 88vw;
 }
 
@@ -128,42 +160,101 @@ h1 {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.listing-elem {
+.listing-platform {
   display: flex;
   flex-wrap: wrap;
-  border: 2px solid red;
 }
 
-.elem-pc {
-  border: 2px solid plum;
+.card-platform {
   margin-left: 15px;
   margin-bottom: 20px;
-  height: 300px;
-  width: 260px;
   position: relative;
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
-.elem-pc img {
-  width: 100%;
-  height: 100%;
+.title-platform:hover {
+  cursor: pointer;
+  opacity: 40%;
+}
+
+.card-platform img {
+  width: 280px;
+  height: 280px;
+  border-radius: 6px;
   object-fit: cover;
+  object-position: center;
 }
 
-.elem-title {
+.title-platform {
+  margin-top: 80px;
+  text-decoration: underline;
   color: white;
-  font-size: 22px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-weight: bold;
+  font-size: 26px;
+  font-family: "Vazirmatn", sans-serif;
   position: absolute;
   text-shadow: rgb(67, 67, 67) 1px 0 10px;
-  top: 18px;
-  right: 10px;
-  left: 10px;
   background-color: rgba(0, 255, 255, 0);
+  z-index: 1;
 }
 
-/* -------------------- JOIN US SECTION -------------------- */
+.card-platform {
+  position: relative;
+}
+.card-platform:after {
+  width: 100%;
+  content: "";
+  display: block;
+  position: absolute;
+  border-radius: 6px;
+
+  top: 0;
+  left: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.26516544117647056) 10%,
+    rgba(45, 45, 45, 0.8954175420168067) 53%,
+    rgb(34, 34, 34) 70%
+  );
+
+  height: 100%;
+  z-index: 0;
+}
+
+.trending-platforms {
+  bottom: 0;
+  margin-bottom: 10px;
+  position: absolute;
+  font-size: 13px;
+  font-family: "Noto Sans Thai", sans-serif;
+  width: 240px;
+  background-color: none;
+  color: rgb(180, 180, 180);
+  z-index: 2;
+  border-top: 1px solid rgba(128, 128, 128, 0.339);
+  padding-top: 14px;
+}
+
+.platform-infos {
+  display: flex;
+  justify-content: space-between;
+}
+
+.game-name {
+  border: 1px solid gold;
+  text-decoration: underline;
+}
+
+.game-name:hover {
+  cursor: pointer;
+  opacity: 60%;
+}
+
+.game-num {
+  color: #5b5a5a;
+}
+
+/* -------------------- JOIN & LOGIN SECTION -------------------- */
 
 .join-us-section {
   height: 100vh;
@@ -358,6 +449,160 @@ h1 {
 
 .button-steam,
 .button-facebook,
-.button-twitter {
+.button-twitter,
+.side-title,
+.side-section > p {
   cursor: pointer;
+}
+
+/* -------------------- LOADING SECTION -------------------- */
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.loader {
+  width: 60px;
+  height: 40px;
+  position: relative;
+  display: inline-block;
+  --base-color: #263238; /*use your base color*/
+}
+.loader::before {
+  content: "";
+  left: 0;
+  top: 0;
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #fff;
+  background-image: radial-gradient(
+      circle 8px at 18px 18px,
+      var(--base-color) 100%,
+      transparent 0
+    ),
+    radial-gradient(
+      circle 4px at 18px 0px,
+      var(--base-color) 100%,
+      transparent 0
+    ),
+    radial-gradient(
+      circle 4px at 0px 18px,
+      var(--base-color) 100%,
+      transparent 0
+    ),
+    radial-gradient(
+      circle 4px at 36px 18px,
+      var(--base-color) 100%,
+      transparent 0
+    ),
+    radial-gradient(
+      circle 4px at 18px 36px,
+      var(--base-color) 100%,
+      transparent 0
+    ),
+    radial-gradient(
+      circle 4px at 30px 5px,
+      var(--base-color) 100%,
+      transparent 0
+    ),
+    radial-gradient(
+      circle 4px at 30px 5px,
+      var(--base-color) 100%,
+      transparent 0
+    ),
+    radial-gradient(
+      circle 4px at 30px 30px,
+      var(--base-color) 100%,
+      transparent 0
+    ),
+    radial-gradient(
+      circle 4px at 5px 30px,
+      var(--base-color) 100%,
+      transparent 0
+    ),
+    radial-gradient(
+      circle 4px at 5px 5px,
+      var(--base-color) 100%,
+      transparent 0
+    );
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  animation: rotationBack 3s linear infinite;
+}
+.loader::after {
+  content: "";
+  left: 35px;
+  top: 15px;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #fff;
+  background-image: radial-gradient(
+      circle 5px at 12px 12px,
+      var(--base-color) 100%,
+      transparent 0
+    ),
+    radial-gradient(
+      circle 2.5px at 12px 0px,
+      var(--base-color) 100%,
+      transparent 0
+    ),
+    radial-gradient(
+      circle 2.5px at 0px 12px,
+      var(--base-color) 100%,
+      transparent 0
+    ),
+    radial-gradient(
+      circle 2.5px at 24px 12px,
+      var(--base-color) 100%,
+      transparent 0
+    ),
+    radial-gradient(
+      circle 2.5px at 12px 24px,
+      var(--base-color) 100%,
+      transparent 0
+    ),
+    radial-gradient(
+      circle 2.5px at 20px 3px,
+      var(--base-color) 100%,
+      transparent 0
+    ),
+    radial-gradient(
+      circle 2.5px at 20px 3px,
+      var(--base-color) 100%,
+      transparent 0
+    ),
+    radial-gradient(
+      circle 2.5px at 20px 20px,
+      var(--base-color) 100%,
+      transparent 0
+    ),
+    radial-gradient(
+      circle 2.5px at 3px 20px,
+      var(--base-color) 100%,
+      transparent 0
+    ),
+    radial-gradient(
+      circle 2.5px at 3px 3px,
+      var(--base-color) 100%,
+      transparent 0
+    );
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  animation: rotationBack 4s linear infinite reverse;
+}
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
 }
