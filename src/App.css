@@ -72,17 +72,17 @@ p {
 }
 
 /* STYLE A CHANGER */
-.temporary-flex {
+.home-flex {
   display: flex;
-  gap: 30px;
+  gap: 10px;
   margin-top: 50px;
   background-color: #151515;
 }
 /* STYLE A CHANGER */
 
 .side-banner {
-  max-width: 200px;
-  border: 3px solid greenyellow;
+  width: 220px;
+  border: 1px solid greenyellow;
 }
 
 .side-banner p {
@@ -94,6 +94,7 @@ p {
 }
 
 .side-section {
+  margin-left: 5px;
   margin-bottom: 20px;
 }
 
@@ -103,12 +104,22 @@ p {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: bold;
   font-size: 25px;
+  margin-bottom: 10px;
 }
 
 .navigation-home {
   border: 2px solid rgb(7, 255, 114);
-  width: 100vw;
-  display: flex;
+  width: 88vw;
+}
+
+.title-home {
+  color: white;
+  font-size: 65px;
+  letter-spacing: 2px;
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 
 h1 {
@@ -125,7 +136,7 @@ h1 {
 
 .elem-pc {
   border: 2px solid plum;
-  margin-left: 18px;
+  margin-left: 15px;
   margin-bottom: 20px;
   height: 300px;
   width: 260px;
@@ -141,12 +152,15 @@ h1 {
 
 .elem-title {
   color: white;
-  font-size: 19px;
+  font-size: 22px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
   position: absolute;
-  top: 15px;
+  text-shadow: rgb(67, 67, 67) 1px 0 10px;
+  top: 18px;
   right: 10px;
   left: 10px;
+  background-color: rgba(0, 255, 255, 0);
 }
 
 /* -------------------- JOIN US SECTION -------------------- */

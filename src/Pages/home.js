@@ -21,7 +21,7 @@ const Home = () => {
   return isLoading ? (
     <>LOADING</>
   ) : (
-    <div className="temporary-flex">
+    <div className="home-flex">
       {/* SIDE BANNER A VIRER */}
 
       <div className="side-banner">
@@ -35,7 +35,7 @@ const Home = () => {
           <div className="side-section">
             <div className="side-title">Username</div>
             <p>Wishlist</p>
-            <p>My library</p>
+            <p>Favorites</p>
             <p>People you follow</p>
           </div>
 
@@ -53,22 +53,34 @@ const Home = () => {
             <p>Popular in 2021</p>
             <p>All time top 250</p>
           </div>
+
+          <div className="side-section">
+            <div className="side-title">Browse</div>
+            <p>Platforms</p>
+            <p>stores</p>
+            <p>Genres</p>
+            <p>Developers</p>
+          </div>
         </div>
       </div>
 
       {/* SIDE BANNER A VIRER */}
-
       <div className="navigation-home">
-        <div className="listing-elem">
-          {data.results.map((elem, index) => {
-            return (
-              <div key={index} className="elem-pc">
-                <div className="elem-title">{elem.name}</div>
+        <div className="title-home">
+          <p>Platforms</p>
+        </div>
+        <div>
+          <div className="listing-elem">
+            {data.results.map((elem, index) => {
+              return (
+                <div key={index} className="elem-pc">
+                  <div className="elem-title">{elem.name}</div>
 
-                <img src={elem.image_background} alt="illustration"></img>
-              </div>
-            );
-          })}
+                  <img src={elem.image_background} alt="illustration"></img>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
