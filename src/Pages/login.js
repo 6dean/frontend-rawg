@@ -16,7 +16,7 @@ const Login = () => {
         <div className="forgot-member">Forgot your password ?</div>
       </div>
       <div className="RIGHT-join">
-        <div className="signup">You can use social accounts to log in</div>
+        <div className="signup">You can use social account to log in</div>
         <div className="button-facebook">Continue with Facebook</div>
         <div className="button-twitter">Continue with Twitter</div>
         <div className="button-steam">Continue with Steam</div>
