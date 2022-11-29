@@ -18,8 +18,33 @@ import {
   faGift,
   faHeartCircleCheck,
   faUsers,
+  faStar,
+  faFire,
+  faForwardFast,
+  faCalendarDays,
+  faTrophy,
+  faRankingStar,
+  faCrown,
+  faShop,
+  faGhost,
+  faCode,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faGamepad, faGift, faHeartCircleCheck, faUsers);
+library.add(
+  faGamepad,
+  faGift,
+  faHeartCircleCheck,
+  faUsers,
+  faStar,
+  faFire,
+  faForwardFast,
+  faCalendarDays,
+  faTrophy,
+  faRankingStar,
+  faCrown,
+  faShop,
+  faGhost,
+  faCode
+);
 
 function App() {
   return (
