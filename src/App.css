@@ -95,6 +95,15 @@ p {
   margin-left: 30px;
 }
 
+.nav {
+  display: flex;
+  border: 1px solid red;
+}
+
+.nav-icon {
+  border: 1px solid rgb(0, 255, 204);
+}
+
 .side-banner p {
   color: white;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -105,6 +114,7 @@ p {
 }
 
 .side-section {
+  margin-top: 40px;
   margin-bottom: 20px;
 }
 
@@ -119,7 +129,13 @@ p {
 
 /* -------------------- HOME SECTION -------------------- */
 
+.listing-games {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .card-game {
+  position: relative;
   border: 2px solid plum;
   margin-left: 15px;
   margin-bottom: 20px;
@@ -128,15 +144,40 @@ p {
   text-align: center;
 }
 
-.caroussel-screenshots {
+.card-more {
+  position: relative;
+  margin-left: 15px;
+  margin-bottom: 20px;
+  height: 300px;
+  width: 260px;
   display: flex;
-  flex-wrap: wrap;
-  width: 50px;
+  justify-content: center;
+  align-items: center;
 }
 
-.screenshots {
-  display: flex;
-  border: 1px solid red;
+.load-more {
+  background-color: #3e3d3d;
+  padding: 10px;
+  width: 120px;
+  text-align: center;
+  font-family: "Noto Sans Thai", sans-serif;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.load-more:hover {
+  cursor: pointer;
+  opacity: 80%;
+}
+
+.game-title {
+  color: white;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 24px;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 20px;
 }
 
 /* -------------------- PLATFORMS SECTION -------------------- */
@@ -151,7 +192,7 @@ p {
   letter-spacing: 2px;
   font-family: sans-serif;
   font-weight: bold;
-  margin-left: 10px;
+  margin-left: 30px;
   margin-bottom: 10px;
 }
 
@@ -180,7 +221,7 @@ h1 {
 }
 
 .card-platform img {
-  width: 280px;
+  width: 260px;
   height: 280px;
   border-radius: 6px;
   object-fit: cover;
@@ -242,7 +283,6 @@ h1 {
 }
 
 .game-name {
-  border: 1px solid gold;
   text-decoration: underline;
 }
 
