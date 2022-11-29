@@ -19,7 +19,7 @@ const NextWeek = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [number]);
 
   return isLoading ? (
     <div className="loading">

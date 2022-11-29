@@ -19,7 +19,7 @@ const PopularTwentyOne = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [number]);
 
   return isLoading ? (
     <div className="loading">

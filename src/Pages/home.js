@@ -20,7 +20,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [number]);
 
   return isLoading ? (
     <div className="loading">

@@ -19,7 +19,7 @@ const AllTimeTop = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [number]);
 
   return isLoading ? (
     <div className="loading">
