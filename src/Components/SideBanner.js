@@ -120,18 +120,22 @@ const SideBanner = () => {
               <p>stores</p>
             </div>
           </Link>
-          <div className="nav-icon">
-            <p className="icon-class">
-              <FontAwesomeIcon icon="fa-solid fa-ghost" />{" "}
-            </p>
-            <p>Genres</p>
-          </div>
-          <div className="nav-icon">
-            <p className="icon-class">
-              <FontAwesomeIcon icon="fa-solid fa-code" />
-            </p>
-            <p>Developers</p>
-          </div>
+          <Link to="/genres">
+            <div className="nav-icon">
+              <p className="icon-class">
+                <FontAwesomeIcon icon="fa-solid fa-ghost" />{" "}
+              </p>
+              <p>Genres</p>
+            </div>
+          </Link>
+          <Link to="/developers">
+            <div className="nav-icon">
+              <p className="icon-class">
+                <FontAwesomeIcon icon="fa-solid fa-code" />
+              </p>
+              <p>Developers</p>
+            </div>
+          </Link>
         </div>
       </div>
     </div>

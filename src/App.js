@@ -14,6 +14,8 @@ import BestoftheYear from "./Pages/BestoftheYear";
 import PopularTwentyOne from "./Pages/PopularTwentyOne";
 import AllTimeTop from "./Pages/AllTimeTop";
 import Stores from "./Pages/Stores";
+import Genres from "./Pages/Genres";
+import Developers from "./Pages/Developers";
 
 // MES COMPONENTS
 import Header from "./Components/Header";
@@ -73,6 +75,8 @@ function App() {
           <Route path="/popular2021" element={<PopularTwentyOne />}></Route>
           <Route path="/alltimetop250" element={<AllTimeTop />}></Route>
           <Route path="/stores" element={<Stores />}></Route>
+          <Route path="/genres" element={<Genres />}></Route>
+          <Route path="/developers" element={<Developers />}></Route>
         </Routes>
       </div>
     </Router>
