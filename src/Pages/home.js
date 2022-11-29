@@ -5,11 +5,12 @@ import { Carousel } from "react-responsive-carousel";
 
 const Home = () => {
   const [data, setData] = useState({});
+  const [number, setNumber] = useState(1);
   const [isLoading, setisLoading] = useState(true);
 
   const fetchData = async () => {
     const response = await axios.get(
-      `https://api.rawg.io/api/games?key=d63135d20b08493989713a8f5f2586e3`
+      `https://api.rawg.io/api/games?key=d63135d20b08493989713a8f5f2586e3&page=${number}`
     );
 
     setData(response.data);
@@ -51,7 +52,14 @@ const Home = () => {
               );
             })}
             <div className="card-more">
-              <p className="load-more">LOAD MORE</p>
+              <p
+                className="load-more"
+                onClick={() => {
+                  setNumber(number + 1);
+                }}
+              >
+                LOAD MORE
+              </p>
             </div>
           </div>
         </div>
