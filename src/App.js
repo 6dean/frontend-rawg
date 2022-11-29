@@ -6,6 +6,14 @@ import Home from "./Pages/Home";
 import Platforms from "./Pages/Platforms";
 import JoinUs from "./Pages/JoinUs";
 import Login from "./Pages/Login";
+import Favorites from "./Pages/Favorites";
+import LastThirstyDays from "./Pages/LastThirstyDays";
+import ThisWeek from "./Pages/ThisWeek";
+import NextWeek from "./Pages/NextWeek";
+import BestoftheYear from "./Pages/BestoftheYear";
+import PopularTwentyOne from "./Pages/PopularTwentyOne";
+import AllTimeTop from "./Pages/AllTimeTop";
+import Stores from "./Pages/Stores";
 
 // MES COMPONENTS
 import Header from "./Components/Header";
@@ -57,6 +65,14 @@ function App() {
           <Route path="/platforms" element={<Platforms />}></Route>
           <Route path="/signin" element={<JoinUs />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/favorites" element={<Favorites />}></Route>
+          <Route path="/last30days" element={<LastThirstyDays />}></Route>
+          <Route path="/thisweek" element={<ThisWeek />}></Route>
+          <Route path="/nextweek" element={<NextWeek />}></Route>
+          <Route path="/bestoftheyear" element={<BestoftheYear />}></Route>
+          <Route path="/popular2021" element={<PopularTwentyOne />}></Route>
+          <Route path="/alltimetop250" element={<AllTimeTop />}></Route>
+          <Route path="/stores" element={<Stores />}></Route>
         </Routes>
       </div>
     </Router>

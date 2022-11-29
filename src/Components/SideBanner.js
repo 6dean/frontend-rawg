@@ -21,15 +21,17 @@ const SideBanner = () => {
             </p>
             <p>Wishlist</p>
           </div>
-          <div className="nav-icon">
-            <p className="icon-class">
-              <FontAwesomeIcon
-                icon="fa-solid fa-heart-circle-check"
-                fontSize={18}
-              />
-            </p>
-            <p>Favorites</p>
-          </div>
+          <Link to="/favorites">
+            <div className="nav-icon">
+              <p className="icon-class">
+                <FontAwesomeIcon
+                  icon="fa-solid fa-heart-circle-check"
+                  fontSize={18}
+                />
+              </p>
+              <p>Favorites</p>
+            </div>
+          </Link>
           <div className="nav-icon">
             <p className="icon-class">
               <FontAwesomeIcon icon="fa-solid fa-users" fontSize={18} />
@@ -40,24 +42,30 @@ const SideBanner = () => {
 
         <div className="side-section">
           <div className="side-title">New Releases</div>
-          <div className="nav-icon">
-            <p className="icon-class">
-              <FontAwesomeIcon icon="fa-solid fa-star" />
-            </p>
-            <p>Last 30 days</p>
-          </div>
-          <div className="nav-icon">
-            <p className="icon-class">
-              <FontAwesomeIcon icon="fa-solid fa-fire" />
-            </p>
-            <p>This week</p>
-          </div>
-          <div className="nav-icon">
-            <p className="icon-class">
-              <FontAwesomeIcon icon="fa-solid fa-forward-fast" />
-            </p>
-            <p>Next week</p>
-          </div>
+          <Link to="/last30days">
+            <div className="nav-icon">
+              <p className="icon-class">
+                <FontAwesomeIcon icon="fa-solid fa-star" />
+              </p>
+              <p>Last 30 days</p>
+            </div>
+          </Link>
+          <Link to="/thisweek">
+            <div className="nav-icon">
+              <p className="icon-class">
+                <FontAwesomeIcon icon="fa-solid fa-fire" />
+              </p>
+              <p>This week</p>
+            </div>
+          </Link>
+          <Link to="/nextweek">
+            <div className="nav-icon">
+              <p className="icon-class">
+                <FontAwesomeIcon icon="fa-solid fa-forward-fast" />
+              </p>
+              <p>Next week</p>
+            </div>
+          </Link>
           <div className="nav-icon">
             <p className="icon-class">
               <FontAwesomeIcon icon="fa-solid fa-calendar-days" />
@@ -68,24 +76,30 @@ const SideBanner = () => {
 
         <div className="side-section">
           <div className="side-title">Top</div>
-          <div className="nav-icon">
-            <p className="icon-class">
-              <FontAwesomeIcon icon="fa-solid fa-trophy" />
-            </p>
-            <p>Best of the year</p>
-          </div>
-          <div className="nav-icon">
-            <p className="icon-class">
-              <FontAwesomeIcon icon="fa-solid fa-ranking-star" />
-            </p>
-            <p>Popular in 2021</p>
-          </div>
-          <div className="nav-icon">
-            <p className="icon-class">
-              <FontAwesomeIcon icon="fa-solid fa-crown" />
-            </p>
-            <p>All time top 250</p>
-          </div>
+          <Link to="/bestoftheyear">
+            <div className="nav-icon">
+              <p className="icon-class">
+                <FontAwesomeIcon icon="fa-solid fa-trophy" />
+              </p>
+              <p>Best of the year</p>
+            </div>
+          </Link>
+          <Link to="/popular2021">
+            <div className="nav-icon">
+              <p className="icon-class">
+                <FontAwesomeIcon icon="fa-solid fa-ranking-star" />
+              </p>
+              <p>Popular in 2021</p>
+            </div>
+          </Link>
+          <Link to="/alltimetop250">
+            <div className="nav-icon">
+              <p className="icon-class">
+                <FontAwesomeIcon icon="fa-solid fa-crown" />
+              </p>
+              <p>All time top 250</p>
+            </div>
+          </Link>
         </div>
 
         <div className="side-section">
@@ -98,12 +112,14 @@ const SideBanner = () => {
               <p>Platforms</p>
             </div>
           </Link>
-          <div className="nav-icon">
-            <p className="icon-class">
-              <FontAwesomeIcon icon="fa-solid fa-shop" />
-            </p>
-            <p>stores</p>
-          </div>
+          <Link to="/stores">
+            <div className="nav-icon">
+              <p className="icon-class">
+                <FontAwesomeIcon icon="fa-solid fa-shop" />
+              </p>
+              <p>stores</p>
+            </div>
+          </Link>
           <div className="nav-icon">
             <p className="icon-class">
               <FontAwesomeIcon icon="fa-solid fa-ghost" />{" "}

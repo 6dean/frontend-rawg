@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
-const Home = () => {
+const ThisWeek = () => {
   const [data, setData] = useState({});
   const [number, setNumber] = useState(21);
   const [isLoading, setisLoading] = useState(true);
 
   const fetchData = async () => {
     const response = await axios.get(
-      `https://api.rawg.io/api/games?key=19f566421f19451c81f113f84a69f091&page_size=${number}`
+      `https://api.rawg.io/api/games?key=19f566421f19451c81f113f84a69f091&dates=2022-11-15,2022-12-01`
     );
 
     setData(response.data);
@@ -31,7 +31,7 @@ const Home = () => {
     <div className="home-flex">
       <div className="navigation-home">
         <div className="title-home">
-          <p>ALL GAMES</p>
+          <p>THIS WEEK</p>
         </div>
         <div>
           <div className="listing-games">
@@ -73,4 +73,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default ThisWeek;

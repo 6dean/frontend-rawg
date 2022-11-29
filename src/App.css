@@ -525,8 +525,8 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .loader {

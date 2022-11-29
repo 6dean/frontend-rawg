@@ -1,14 +1,13 @@
 import axios from "axios";
-// import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const Platforms = () => {
+const Stores = () => {
   const [data, setData] = useState({});
   const [isLoading, setisLoading] = useState(true);
 
   const fetchData = async () => {
     const response = await axios.get(
-      `https://api.rawg.io/api/platforms?key=19f566421f19451c81f113f84a69f091`
+      `https://api.rawg.io/api/stores?key=19f566421f19451c81f113f84a69f091`
     );
 
     setData(response.data);
@@ -27,10 +26,9 @@ const Platforms = () => {
     </div>
   ) : (
     <div className="home-flex">
-      {/* SIDE BANNER A VIRER */}
       <div className="navigation-home">
         <div className="title-home">
-          <p>Platforms</p>
+          <p>Stores</p>
         </div>
         <div>
           <div className="listing-platform">
@@ -63,4 +61,4 @@ const Platforms = () => {
   );
 };
 
-export default Platforms;
+export default Stores;
