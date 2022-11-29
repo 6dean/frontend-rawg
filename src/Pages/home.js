@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
@@ -19,7 +20,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchData();
-  }, [data]);
+  }, []);
 
   return isLoading ? (
     <div className="loading">
@@ -38,7 +39,9 @@ const Home = () => {
             {data.results.map((elem, index) => {
               return (
                 <div key={index} className="card-game">
-                  <div className="game-title">{elem.name}</div>
+                  <Link to={`/game-details/${elem.id}`}>
+                    <div className="game-title">{elem.name}</div>
+                  </Link>
                   <Carousel showThumbs={false} showStatus={false}>
                     {elem.short_screenshots.map((screenshot, key) => {
                       return (

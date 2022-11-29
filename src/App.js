@@ -16,6 +16,7 @@ import AllTimeTop from "./Pages/AllTimeTop";
 import Stores from "./Pages/Stores";
 import Genres from "./Pages/Genres";
 import Developers from "./Pages/Developers";
+import GameDetails from "./Pages/GameDetails.js";
 
 // MES COMPONENTS
 import Header from "./Components/Header";
@@ -64,6 +65,7 @@ function App() {
         <SideBanner />
         <Routes>
           <Route path="/" element={<Home />}></Route>
+          <Route path="/game-details/:id" element={<GameDetails />}></Route>
           <Route path="/platforms" element={<Platforms />}></Route>
           <Route path="/signin" element={<JoinUs />}></Route>
           <Route path="/login" element={<Login />}></Route>
