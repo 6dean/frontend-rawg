@@ -1,6 +1,11 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import { useEffect, useState } from "react";
 
 // MES PAGES
 import Home from "./Pages/Home";
@@ -71,8 +76,14 @@ function App() {
   const [search, setSearch] = useState("");
   const [platform, setPlatform] = useState("");
   const [platformName, setPlatformName] = useState("");
-
+  const [showLeft, setShowLeft] = useState(true);
+  const location = useLocation();
+  // console.log(location);
   const { pathname } = window.location;
+  // useEffect(() => {
+  //   console.log("tom");
+  // }, [pathname]);
+
   console.log(pathname);
   const HideSideBanner =
     pathname === "/signin" || pathname === "/login" ? null : <SideBanner />;
@@ -81,7 +92,8 @@ function App() {
     <Router>
       <Header search={search} setSearch={setSearch} setPlatform={setPlatform} />
       <div style={{ display: "flex" }}>
-        {HideSideBanner}
+        {/* {HideSideBanner} */}
+        {showLeft ? <SideBanner /> : null}
         <Routes>
           <Route
             path="/"
@@ -104,7 +116,10 @@ function App() {
               />
             }
           ></Route>
-          <Route path="/signin" element={<JoinUs />}></Route>
+          <Route
+            path="/signin"
+            element={<JoinUs setShowLeft={setShowLeft} />}
+          ></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/favorites" element={<Favorites />}></Route>
           <Route
