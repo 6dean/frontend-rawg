@@ -72,16 +72,16 @@ function App() {
   const [platform, setPlatform] = useState("");
   const [platformName, setPlatformName] = useState("");
 
+  const { pathname } = window.location;
+  console.log(pathname);
+  const HideSideBanner =
+    pathname === "/signin" || pathname === "/login" ? null : <SideBanner />;
+
   return (
     <Router>
       <Header search={search} setSearch={setSearch} setPlatform={setPlatform} />
       <div style={{ display: "flex" }}>
-        {window.location.pathname === "/signin" ||
-        window.location.pathname === "/login" ? (
-          <NoBanner />
-        ) : (
-          <SideBanner setPlatform={setPlatform} />
-        )}
+        {HideSideBanner}
         <Routes>
           <Route
             path="/"
