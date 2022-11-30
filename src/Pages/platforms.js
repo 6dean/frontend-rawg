@@ -57,9 +57,17 @@ const Platforms = ({ setPlatform, setPlatformName }) => {
                       return (
                         <div key={index} className="platform-infos">
                           <div className="game-name">
-                            {games.name.length < 27
-                              ? games.name
-                              : games.name.slice(0, 24) + "..."}
+                            <Link
+                              className="alink"
+                              to={`/game-details/${games.id}`}
+                              onClick={() => {
+                                window.scrollTo(0, 0);
+                              }}
+                            >
+                              {games.name.length < 27
+                                ? games.name
+                                : games.name.slice(0, 24) + "..."}
+                            </Link>
                           </div>
                           <div className="game-num">
                             {games.added}

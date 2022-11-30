@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const Stores = () => {
@@ -41,9 +42,17 @@ const Stores = () => {
                       return (
                         <div key={index} className="platform-infos">
                           <div className="game-name">
-                            {games.name.length < 27
-                              ? games.name
-                              : games.name.slice(0, 24) + "..."}
+                            <Link
+                              className="alink"
+                              to={`/game-details/${games.id}`}
+                              onClick={() => {
+                                window.scrollTo(0, 0);
+                              }}
+                            >
+                              {games.name.length < 27
+                                ? games.name
+                                : games.name.slice(0, 24) + "..."}
+                            </Link>
                           </div>
                           <div className="game-num">{games.added}</div>
                         </div>

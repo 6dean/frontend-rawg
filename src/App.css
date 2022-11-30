@@ -37,6 +37,10 @@ u {
   color: white;
 }
 
+.alink {
+  color: #909090;
+}
+
 p {
   margin: 0;
 }
@@ -135,6 +139,16 @@ p {
   display: flex;
   padding: 4px;
   align-items: center;
+}
+
+.nav-icon:hover {
+  text-shadow: rgb(255, 255, 255) 1px 0 5px;
+}
+
+.nav-icon:hover .icon-class {
+  background-color: #fff;
+  cursor: pointer;
+  color: #151515;
 }
 
 .icon-class:hover {
@@ -303,6 +317,7 @@ h1 {
   text-shadow: rgb(67, 67, 67) 1px 0 10px;
   background-color: rgba(0, 255, 255, 0);
   z-index: 1;
+  text-align: center;
 }
 
 .card-platform {
@@ -933,6 +948,8 @@ h1 {
 /* -------------------- LOADING SECTION -------------------- */
 
 .loading {
+  height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -945,7 +962,7 @@ h1 {
   height: 40px;
   position: relative;
   display: inline-block;
-  --base-color: #263238; /*use your base color*/
+  --base-color: #263238;
 }
 .loader::before {
   content: "";
