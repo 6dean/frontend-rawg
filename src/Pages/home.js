@@ -4,14 +4,16 @@ import { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
-const Home = () => {
+const Home = ({ search }) => {
   const [data, setData] = useState({});
   const [number, setNumber] = useState(21);
   const [isLoading, setisLoading] = useState(true);
 
+  console.log(search);
+
   const fetchData = async () => {
     const response = await axios.get(
-      `https://api.rawg.io/api/games?key=19f566421f19451c81f113f84a69f091&page_size=${number}`
+      `https://api.rawg.io/api/games?key=19f566421f19451c81f113f84a69f091&page_size=${number}&search=${search}`
     );
 
     setData(response.data);
@@ -20,7 +22,7 @@ const Home = () => {
 
   useEffect(() => {
     fetchData();
-  }, [number]);
+  }, [number, search]);
 
   return isLoading ? (
     <div className="loading">

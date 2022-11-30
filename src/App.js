@@ -1,5 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 
 // MES PAGES
 import Home from "./Pages/Home";
@@ -42,6 +43,7 @@ import {
   faHeart,
   faKeyboard,
   faBookmark,
+  faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
   faGamepad,
@@ -60,28 +62,49 @@ library.add(
   faCode,
   faHeart,
   faKeyboard,
-  faBookmark
+  faBookmark,
+  faMagnifyingGlass
 );
 
 function App() {
+  const [search, setSearch] = useState("");
+
   return (
     <Router>
-      <Header />
+      <Header search={search} setSearch={setSearch} />
       <div style={{ display: "flex" }}>
         <SideBanner />
         <Routes>
-          <Route path="/" element={<Home />}></Route>
+          <Route path="/" element={<Home search={search} />}></Route>
           <Route path="/game-details/:id" element={<GameDetails />}></Route>
           <Route path="/platforms" element={<Platforms />}></Route>
           <Route path="/signin" element={<JoinUs />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/favorites" element={<Favorites />}></Route>
-          <Route path="/last30days" element={<LastThirstyDays />}></Route>
-          <Route path="/thisweek" element={<ThisWeek />}></Route>
-          <Route path="/nextweek" element={<NextWeek />}></Route>
-          <Route path="/bestoftheyear" element={<BestoftheYear />}></Route>
-          <Route path="/popular2021" element={<PopularTwentyOne />}></Route>
-          <Route path="/alltimetop250" element={<AllTimeTop />}></Route>
+          <Route
+            path="/last30days"
+            element={<LastThirstyDays search={search} />}
+          ></Route>
+          <Route
+            path="/thisweek"
+            element={<ThisWeek search={search} />}
+          ></Route>
+          <Route
+            path="/nextweek"
+            element={<NextWeek search={search} />}
+          ></Route>
+          <Route
+            path="/bestoftheyear"
+            element={<BestoftheYear search={search} />}
+          ></Route>
+          <Route
+            path="/popular2021"
+            element={<PopularTwentyOne search={search} />}
+          ></Route>
+          <Route
+            path="/alltimetop250"
+            element={<AllTimeTop search={search} />}
+          ></Route>
           <Route path="/stores" element={<Stores />}></Route>
           <Route path="/genres" element={<Genres />}></Route>
           <Route path="/developers" element={<Developers />}></Route>

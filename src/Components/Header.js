@@ -1,31 +1,38 @@
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Header = () => {
+const Header = ({ search, setSearch }) => {
   return (
     <header>
       <div className="top-header">
         <div className="header-style">
-          <div>
+          <div className="flex1">
             <Link to="/">
               <div className="logo">RAWG</div>
             </Link>
           </div>
-          <div>
+          <div className="flex2">
             <input
               type="search"
               className="search-header"
-              placeholder="Search 831,779 games"
+              placeholder="🔍 Search 831,779 games"
+              onChange={(event) => {
+                setSearch(event.target.value);
+              }}
+              value={search}
             ></input>
           </div>
-          <div className="list-option-header">
-            <Link to="/signin">
-              <div className="options-header">JOIN US</div>
-            </Link>
-            <Link to="/login">
-              <div className="options-header">LOGIN</div>
-            </Link>
-            <div className="options-header">FAVORITES</div>
-            <div className="options-header">REVIEWS</div>
+          <div className="flex1-bis">
+            <div className="list-option-header">
+              <Link to="/signin">
+                <div className="options-header">JOIN US</div>
+              </Link>
+              <Link to="/login">
+                <div className="options-header">LOGIN</div>
+              </Link>
+              <div className="options-header">FAVORITES</div>
+              <div className="options-header">REVIEWS</div>
+            </div>
           </div>
         </div>
       </div>
