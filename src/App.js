@@ -22,6 +22,7 @@ import GameDetails from "./Pages/GameDetails.js";
 // MES COMPONENTS
 import Header from "./Components/Header";
 import SideBanner from "./Components/SideBanner";
+import NoBanner from "./Components/NoBanner";
 
 // MES ICONES
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -75,7 +76,12 @@ function App() {
     <Router>
       <Header search={search} setSearch={setSearch} setPlatform={setPlatform} />
       <div style={{ display: "flex" }}>
-        <SideBanner setPlatform={setPlatform} />
+        {window.location.pathname === "/signin" ||
+        window.location.pathname === "/login" ? (
+          <NoBanner />
+        ) : (
+          <SideBanner setPlatform={setPlatform} />
+        )}
         <Routes>
           <Route
             path="/"

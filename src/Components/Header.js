@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = ({ search, setSearch, setPlatform }) => {
   return (
