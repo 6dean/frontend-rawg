@@ -9,8 +9,6 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
   const [number, setNumber] = useState(21);
   const [isLoading, setisLoading] = useState(true);
 
-  !platform && setPlatformName(null);
-
   const fetchData = async () => {
     if (platform) {
       const response = await axios.get(
@@ -20,6 +18,7 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
       setData(response.data);
       setisLoading(false);
     } else {
+      setPlatformName(null);
       const response = await axios.get(
         `https://api.rawg.io/api/games?key=19f566421f19451c81f113f84a69f091&page_size=${number}&search=${search}`
       );
@@ -65,17 +64,19 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
                     </div>
                   </Link>
                   <Carousel showThumbs={false} showStatus={false}>
-                    {elem.short_screenshots.map((screenshot, key) => {
-                      return (
-                        <div key={key}>
-                          <img
-                            className="carousel-img"
-                            src={screenshot.image}
-                            alt=""
-                          />
-                        </div>
-                      );
-                    })}
+                    {elem.short_screenshots
+                      ? elem.short_screenshots.map((screenshot, key) => {
+                          return (
+                            <div key={key}>
+                              <img
+                                className="carousel-img"
+                                src={screenshot.image}
+                                alt=""
+                              />
+                            </div>
+                          );
+                        })
+                      : null}
                   </Carousel>
                 </div>
               );

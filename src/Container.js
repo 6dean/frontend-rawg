@@ -43,10 +43,9 @@ function Container() {
 
   return (
     <>
-      <Header search={search} setSearch={setSearch} setPlatform={setPlatform} />
+      <Header search={search} setSearch={setSearch} />
       <div style={{ display: "flex" }}>
-        {/* {HideSideBanner} */}
-        {showLeft ? <SideBanner /> : null}
+        {showLeft ? <SideBanner setPlatform={setPlatform} /> : null}
         <Routes>
           <Route
             path="/"
