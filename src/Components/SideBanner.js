@@ -1,13 +1,20 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const SideBanner = () => {
+const SideBanner = ({ setPlatform }) => {
   return (
     <div className="side-banner">
       <div className="side-banner-style">
         <div className="side-section">
           <Link to="/">
-            <div className="side-title">Home</div>
+            <div
+              className="side-title"
+              onClick={() => {
+                setPlatform(null);
+              }}
+            >
+              Home
+            </div>
           </Link>
         </div>
         <div className="side-section">

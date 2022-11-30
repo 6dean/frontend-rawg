@@ -4,25 +4,34 @@ import { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
-const Home = ({ search }) => {
+const Home = ({ search, platform, platformName, setPlatformName }) => {
   const [data, setData] = useState({});
   const [number, setNumber] = useState(21);
   const [isLoading, setisLoading] = useState(true);
 
-  console.log(search);
+  !platform && setPlatformName(null);
 
   const fetchData = async () => {
-    const response = await axios.get(
-      `https://api.rawg.io/api/games?key=19f566421f19451c81f113f84a69f091&page_size=${number}&search=${search}`
-    );
+    if (platform) {
+      const response = await axios.get(
+        `https://api.rawg.io/api/games?key=19f566421f19451c81f113f84a69f091&page_size=${number}&search=${search}&platforms=${platform}`
+      );
 
-    setData(response.data);
-    setisLoading(false);
+      setData(response.data);
+      setisLoading(false);
+    } else {
+      const response = await axios.get(
+        `https://api.rawg.io/api/games?key=19f566421f19451c81f113f84a69f091&page_size=${number}&search=${search}`
+      );
+
+      setData(response.data);
+      setisLoading(false);
+    }
   };
 
   useEffect(() => {
     fetchData();
-  }, [number, search]);
+  }, [number, search, platform, platformName]);
 
   return isLoading ? (
     <div className="loading">
@@ -34,7 +43,7 @@ const Home = ({ search }) => {
     <div className="home-flex">
       <div className="navigation-home">
         <div className="title-home">
-          <p>ALL GAMES</p>
+          <p>ALL GAMES {platformName && " - " + platformName}</p>
         </div>
         <div>
           <div className="listing-games">
@@ -47,7 +56,13 @@ const Home = ({ search }) => {
                       window.scrollTo(0, 0);
                     }}
                   >
-                    <div className="game-title">{elem.name}</div>
+                    <div className="card-info-box">
+                      <div className="game-title">
+                        {elem.name.length < 30
+                          ? elem.name
+                          : elem.name.slice(0, 30) + "..."}
+                      </div>
+                    </div>
                   </Link>
                   <Carousel showThumbs={false} showStatus={false}>
                     {elem.short_screenshots.map((screenshot, key) => {
@@ -65,7 +80,7 @@ const Home = ({ search }) => {
                 </div>
               );
             })}
-            <div className="card-more">
+            <div className={data.count < 20 ? "display" : "card-more"}>
               <p
                 className="load-more"
                 onClick={() => {

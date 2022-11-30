@@ -1,9 +1,9 @@
 import axios from "axios";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Platforms = () => {
+const Platforms = ({ setPlatform, setPlatformName }) => {
   const [data, setData] = useState({});
   const [isLoading, setisLoading] = useState(true);
 
@@ -23,7 +23,7 @@ const Platforms = () => {
   return isLoading ? (
     <div className="loading">
       <div>
-        <span class="loader"></span>
+        <span className="loader"></span>
       </div>
     </div>
   ) : (
@@ -36,9 +36,22 @@ const Platforms = () => {
         <div>
           <div className="listing-platform">
             {data.results.map((elem, index) => {
+              console.log(elem.name);
               return (
                 <div key={index} className="card-platform">
-                  <div className="title-platform">{elem.name}</div>
+                  <div className="title-platform">
+                    <Link
+                      to="/"
+                      onClick={() => {
+                        setPlatform(elem.id);
+                        setPlatformName(elem.name);
+                        window.scrollTo(0, 0);
+                      }}
+                    >
+                      {elem.name}
+                    </Link>
+                  </div>
+
                   <div className="trending-platforms">
                     {elem.games.slice(0, 3).map((games, index) => {
                       return (
@@ -50,11 +63,11 @@ const Platforms = () => {
                           </div>
                           <div className="game-num">
                             {games.added}
-                            <FontAwesomeIcon
+                            {/* <FontAwesomeIcon
                               icon="fa-regular fa-bookmark"
                               width={10}
                               color="white"
-                            />
+                            /> */}
                           </div>
                         </div>
                       );

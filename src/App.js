@@ -68,16 +68,36 @@ library.add(
 
 function App() {
   const [search, setSearch] = useState("");
+  const [platform, setPlatform] = useState("");
+  const [platformName, setPlatformName] = useState("");
 
   return (
     <Router>
-      <Header search={search} setSearch={setSearch} />
+      <Header search={search} setSearch={setSearch} setPlatform={setPlatform} />
       <div style={{ display: "flex" }}>
-        <SideBanner />
+        <SideBanner setPlatform={setPlatform} />
         <Routes>
-          <Route path="/" element={<Home search={search} />}></Route>
+          <Route
+            path="/"
+            element={
+              <Home
+                search={search}
+                platform={platform}
+                platformName={platformName}
+                setPlatformName={setPlatformName}
+              />
+            }
+          ></Route>
           <Route path="/game-details/:id" element={<GameDetails />}></Route>
-          <Route path="/platforms" element={<Platforms />}></Route>
+          <Route
+            path="/platforms"
+            element={
+              <Platforms
+                setPlatform={setPlatform}
+                setPlatformName={setPlatformName}
+              />
+            }
+          ></Route>
           <Route path="/signin" element={<JoinUs />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/favorites" element={<Favorites />}></Route>

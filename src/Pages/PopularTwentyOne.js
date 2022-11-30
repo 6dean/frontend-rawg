@@ -38,7 +38,13 @@ const PopularTwentyOne = ({ search }) => {
             {data.results.map((elem, index) => {
               return (
                 <div key={index} className="card-game">
-                  <div className="game-title">{elem.name}</div>
+                  <div className="card-info-box">
+                    <div className="game-title">
+                      {elem.name.length < 30
+                        ? elem.name
+                        : elem.name.slice(0, 30) + "..."}
+                    </div>
+                  </div>{" "}
                   <Carousel showThumbs={false} showStatus={false}>
                     {elem.short_screenshots.map((screenshot, key) => {
                       return (
@@ -55,7 +61,7 @@ const PopularTwentyOne = ({ search }) => {
                 </div>
               );
             })}
-            <div className="card-more">
+            <div className={data.count < 20 ? "display" : "card-more"}>
               <p
                 className="load-more"
                 onClick={() => {

@@ -1,13 +1,18 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Header = ({ search, setSearch }) => {
+const Header = ({ search, setSearch, setPlatform }) => {
   return (
     <header>
       <div className="top-header">
         <div className="header-style">
           <div className="flex1">
-            <Link to="/">
+            <Link
+              to="/"
+              onClick={() => {
+                setPlatform(null);
+              }}
+            >
               <div className="logo">RAWG</div>
             </Link>
           </div>
