@@ -1,6 +1,7 @@
 import axios from "axios";
 // import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Platforms = () => {
   const [data, setData] = useState({});
@@ -47,7 +48,14 @@ const Platforms = () => {
                               ? games.name
                               : games.name.slice(0, 24) + "..."}
                           </div>
-                          <div className="game-num">{games.added}</div>
+                          <div className="game-num">
+                            {games.added}
+                            <FontAwesomeIcon
+                              icon="fa-regular fa-bookmark"
+                              width={10}
+                              color="white"
+                            />
+                          </div>
                         </div>
                       );
                     })}

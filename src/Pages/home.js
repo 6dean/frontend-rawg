@@ -39,7 +39,12 @@ const Home = () => {
             {data.results.map((elem, index) => {
               return (
                 <div key={index} className="card-game">
-                  <Link to={`/game-details/${elem.id}`}>
+                  <Link
+                    to={`/game-details/${elem.id}`}
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                    }}
+                  >
                     <div className="game-title">{elem.name}</div>
                   </Link>
                   <Carousel showThumbs={false} showStatus={false}>

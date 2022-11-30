@@ -39,6 +39,9 @@ import {
   faShop,
   faGhost,
   faCode,
+  faHeart,
+  faKeyboard,
+  faBookmark,
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
   faGamepad,
@@ -54,7 +57,10 @@ library.add(
   faCrown,
   faShop,
   faGhost,
-  faCode
+  faCode,
+  faHeart,
+  faKeyboard,
+  faBookmark
 );
 
 function App() {

@@ -4,6 +4,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Khula:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Text+Me+One&display=swap");
 
 * {
   margin: 0;
@@ -11,6 +15,10 @@
 
 body {
   background-color: #151515;
+}
+
+textarea {
+  resize: none;
 }
 
 header {
@@ -24,6 +32,7 @@ header {
 a,
 u {
   text-decoration: none;
+  color: white;
 }
 
 p {
@@ -536,7 +545,6 @@ h1 {
 }
 
 .game-left-element {
-  border: 2px solid red;
   width: 450px;
 }
 
@@ -581,7 +589,7 @@ h1 {
 }
 
 .genre-metascore {
-  margin-top: 40px;
+  margin-top: 30px;
   display: flex;
   justify-content: space-between;
 }
@@ -593,16 +601,44 @@ h1 {
   font-size: 16px;
 }
 
+.genres-style-web {
+  color: #fff;
+  text-decoration: underline;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+}
+
 .genres-element {
   display: flex;
   gap: 3px;
 }
 .style-details {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: #5b5a5a;
+  font-family: "Bai Jamjuree", sans-serif;
+  color: #6e6e6e;
   font-size: 20px;
   margin-bottom: 5px;
+}
+
+.style-details-web {
+  margin-top: 20px;
+  font-family: "Bai Jamjuree", sans-serif;
+  color: #6e6e6e;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.style-details-date {
+  font-family: "Bai Jamjuree", sans-serif;
+  color: #6e6e6e;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.genres-style-date {
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  margin-bottom: 10px;
 }
 
 .category-about {
@@ -617,37 +653,250 @@ h1 {
 }
 
 .community-button {
-  margin-top: 70px;
+  margin-top: 50px;
   display: flex;
   justify-content: space-around;
   gap: 30px;
 }
 
+.scoring-box {
+  display: flex;
+  justify-content: flex-end;
+  width: 90px;
+}
+
+.style-metascore {
+  display: flex;
+  flex-direction: column;
+  max-width: 35px;
+}
+
 .data-score {
-  font-family: sans-serif;
-  font-size: 25px;
-  border: 1px solid green;
+  font-family: "Text Me One", sans-serif;
+  font-size: 22px;
+  border: 1px solid rgb(18, 219, 18);
   border-radius: 4px;
   text-align: center;
-  color: green;
+  color: rgb(18, 219, 18);
 }
 
 .data-score-mid {
-  font-family: sans-serif;
-  font-size: 25px;
-  border: 1px solid rgb(219, 124, 22);
+  font-family: "Text Me One", sans-serif;
+  font-size: 22px;
+  border: 1px solid rgb(255, 153, 0);
   border-radius: 4px;
   text-align: center;
-  color: rgb(219, 124, 22);
+  color: rgb(255, 153, 0);
 }
 
 .data-score-low {
-  font-family: sans-serif;
-  font-size: 25px;
+  font-family: "Text Me One", sans-serif;
+  font-size: 22px;
   border: 1px solid rgb(219, 48, 22);
   border-radius: 4px;
   text-align: center;
   color: rgb(219, 48, 22);
+}
+
+.button-fav {
+  background-color: white;
+  padding: 5px;
+  font-size: 12px;
+  font-family: "Epilogue", sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 4px;
+}
+
+.button-fav:hover,
+.button-wish:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 5px 1px rgb(255, 255, 255);
+}
+
+.button-wish {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: white;
+  padding: 5px;
+  font-family: "Epilogue", sans-serif;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+/* -------------------- SEPARATION -------------------- */
+
+.separation {
+  padding: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid rgb(81, 81, 81);
+}
+
+/* -------------------- SIMILAR SECTION -------------------- */
+
+.similar-element {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.similar-title {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.similar-elements {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-similar {
+  position: relative;
+  background-color: #272727;
+  border-radius: 10px;
+  margin-left: 15px;
+  margin-bottom: 20px;
+  height: 230px;
+  width: 255px;
+  display: flex;
+  justify-content: center;
+}
+.card-similar:hover {
+  opacity: 70%;
+  cursor: pointer;
+}
+
+.card-similar img {
+  width: 100%;
+  display: flex;
+  object-fit: cover;
+}
+
+.img-similar {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 160px;
+  object-fit: cover;
+  image-rendering: auto;
+}
+
+.similar-title-top {
+  color: white;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  margin-bottom: 20px;
+}
+
+.similar-title {
+  color: white;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 20px;
+}
+
+/* -------------------- COMMENTS SECTION -------------------- */
+
+.commentaries {
+  margin-top: 50px;
+}
+
+.reviews-style {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.comment-element {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.comment-zone {
+  width: 800px;
+  height: 90px;
+  border-radius: 10px;
+  padding: 10px;
+  outline-color: #323232;
+  background-color: #6e6e6e;
+  color: white;
+  font-size: 18px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.comment-zone::placeholder {
+  color: rgb(2, 2, 2);
+  padding-top: 8px;
+  font-size: 1.5em;
+  text-align: center;
+  opacity: 20%;
+  font-weight: 100;
+}
+
+.post-button {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  border: none;
+}
+
+.comments-users {
+  font-family: "Noto Sans Ethiopic", sans-serif;
+  color: rgb(88, 88, 88);
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.comment-zone-area {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #252525;
+  border-radius: 5px;
+  min-height: 400px;
+}
+
+.style-post-button {
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 15px;
+  height: 30px;
+  width: 120px;
+  border: none;
+}
+
+.style-post-button:hover {
+  cursor: pointer;
+  border: none;
+  box-shadow: 0px 0px 5px 1px rgb(255, 255, 255);
 }
 
 /* -------------------- LOADING SECTION -------------------- */
