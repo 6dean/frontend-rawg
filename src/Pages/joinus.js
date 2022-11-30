@@ -1,5 +1,4 @@
-const JoinUs = ({ setShowLeft }) => {
-  setShowLeft(false);
+const JoinUs = () => {
   return (
     <div className="join-us-section">
       <div className="LEFT-join">
