@@ -77,16 +77,6 @@ function App() {
   const [platform, setPlatform] = useState("");
   const [platformName, setPlatformName] = useState("");
   const [showLeft, setShowLeft] = useState(true);
-  const location = useLocation();
-  // console.log(location);
-  const { pathname } = window.location;
-  // useEffect(() => {
-  //   console.log("tom");
-  // }, [pathname]);
-
-  console.log(pathname);
-  const HideSideBanner =
-    pathname === "/signin" || pathname === "/login" ? null : <SideBanner />;
 
   return (
     <Router>
@@ -103,6 +93,7 @@ function App() {
                 platform={platform}
                 platformName={platformName}
                 setPlatformName={setPlatformName}
+                setShowLeft={setShowLeft}
               />
             }
           ></Route>
@@ -120,7 +111,10 @@ function App() {
             path="/signin"
             element={<JoinUs setShowLeft={setShowLeft} />}
           ></Route>
-          <Route path="/login" element={<Login />}></Route>
+          <Route
+            path="/login"
+            element={<Login setShowLeft={setShowLeft} />}
+          ></Route>
           <Route path="/favorites" element={<Favorites />}></Route>
           <Route
             path="/last30days"

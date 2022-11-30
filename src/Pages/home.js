@@ -4,7 +4,13 @@ import { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
-const Home = ({ search, platform, platformName, setPlatformName }) => {
+const Home = ({
+  search,
+  platform,
+  platformName,
+  setPlatformName,
+  setShowLeft,
+}) => {
   const [data, setData] = useState({});
   const [number, setNumber] = useState(21);
   const [isLoading, setisLoading] = useState(true);
@@ -32,6 +38,8 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
   useEffect(() => {
     fetchData();
   }, [number, search, platform, platformName]);
+
+  setShowLeft(true);
 
   return isLoading ? (
     <div className="loading">
