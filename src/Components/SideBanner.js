@@ -19,7 +19,7 @@ const SideBanner = ({ setPlatform, token }) => {
           </Link>
         </div>
         <div className="side-section">
-          <Link to="/reviews">
+          <Link to={token ? "/reviews" : "/signin"}>
             <div className="side-title">Reviews</div>
           </Link>
         </div>

@@ -4,12 +4,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useParams, useNavigate } from "react-router-dom";
 
-const GameDetails = ({
-  token,
-  tokenUser,
-  SaveDataToLocalStorage,
-  SaveWishListToLocalStorage,
-}) => {
+const GameDetails = ({ token, tokenUser }) => {
   const { id } = useParams();
   const [data, setData] = useState({});
   const [isLoading, setisLoading] = useState(true);
@@ -31,7 +26,7 @@ const GameDetails = ({
 
   const addGame = () => {
     if (token || tokenUser) {
-      SaveDataToLocalStorage(data);
+      // NULL
     } else {
       navigate("/signin");
     }
@@ -39,7 +34,7 @@ const GameDetails = ({
 
   const wishGame = () => {
     if (token || tokenUser) {
-      SaveWishListToLocalStorage(data);
+      // NULL
     } else {
       navigate("/signin");
     }

@@ -46,7 +46,9 @@ const Header = ({
                   <Link to="/favorites">
                     <div className="options-header">FAVORITES</div>
                   </Link>
-                  <div className="options-header">REVIEWS</div>
+                  <Link to="/reviews">
+                    <div className="options-header">REVIEWS</div>
+                  </Link>
                   <Link to="/">
                     <div
                       className="options-header-log"
@@ -70,7 +72,9 @@ const Header = ({
                   <Link to="/favorites">
                     <div className="options-header">FAVORITES</div>
                   </Link>
-                  <div className="options-header">REVIEWS</div>
+                  <Link to="/reviews">
+                    <div className="options-header">REVIEWS</div>
+                  </Link>
                 </>
               )}
             </div>

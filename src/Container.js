@@ -50,8 +50,8 @@ function Container() {
 
   // MES COOKIES
 
-  const [token, setToken] = useState(null);
-  const [tokenUser, setTokenUser] = useState(null);
+  const [token, setToken] = useState(Cookies.get("RAWG-TOKEN") || null);
+  const [tokenUser, setTokenUser] = useState(Cookies.get("RAWG-USER") || null);
 
   const transferToken = (token) => {
     if (token) {
@@ -72,35 +72,6 @@ function Container() {
       Cookies.remove("RAWG-USER");
     }
   };
-
-  // LOCAL STORAGE
-
-  function SaveDataToLocalStorage(data) {
-    let favFromUser = [];
-    favFromUser = JSON.parse(localStorage.getItem("favorites")) || [];
-    if (favFromUser.find((elem) => elem.id === data.id)) {
-      return alert`This Game is already in your favorites !`;
-    } else {
-      favFromUser.push(data);
-      localStorage.setItem("favorites", JSON.stringify(favFromUser));
-      alert`Game added to fav !`;
-    }
-    setFavFromUser(favFromUser);
-  }
-
-  function SaveWishListToLocalStorage(data) {
-    let wishFromUser = [];
-    wishFromUser = JSON.parse(localStorage.getItem("wishlist")) || [];
-
-    if (wishFromUser.find((elem) => elem.id === data.id)) {
-      return alert`This Game is already in your Wishlist !`;
-    } else {
-      wishFromUser.push(data);
-      localStorage.setItem("Wishlist", JSON.stringify(wishFromUser));
-      alert`Game added to Wishlist !`;
-    }
-    setWishFromUser(wishFromUser);
-  }
 
   return (
     <>
@@ -130,14 +101,7 @@ function Container() {
           ></Route>
           <Route
             path="/game-details/:id"
-            element={
-              <GameDetails
-                token={token}
-                tokenUser={tokenUser}
-                SaveDataToLocalStorage={SaveDataToLocalStorage}
-                SaveWishListToLocalStorage={SaveWishListToLocalStorage}
-              />
-            }
+            element={<GameDetails token={token} tokenUser={tokenUser} />}
           ></Route>
           <Route
             path="/platforms"
@@ -166,14 +130,8 @@ function Container() {
               />
             }
           ></Route>
-          <Route
-            path="/favorites"
-            element={<Favorites favFromUser={favFromUser} />}
-          ></Route>
-          <Route
-            path="/wishlist"
-            element={<Wishlist wishFromUser={wishFromUser} />}
-          ></Route>
+          <Route path="/favorites" element={<Favorites />}></Route>
+          <Route path="/wishlist" element={<Wishlist />}></Route>
           <Route
             path="/last30days"
             element={<LastThirstyDays search={search} />}

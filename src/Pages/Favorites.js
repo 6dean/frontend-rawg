@@ -1,4 +1,6 @@
-const Favorites = ({ favFromUser }) => {
+import { Link } from "react-router-dom";
+
+const Favorites = () => {
   return (
     <div className="wishlist-page">
       <div className="navigation-home">
