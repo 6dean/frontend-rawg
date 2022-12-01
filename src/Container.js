@@ -111,7 +111,15 @@ function Container() {
               />
             }
           ></Route>
-          <Route path="/login" element={<Login />}></Route>
+          <Route
+            path="/login"
+            element={
+              <Login
+                transferToken={transferToken}
+                transferTokenUser={transferTokenUser}
+              />
+            }
+          ></Route>
           <Route path="/favorites" element={<Favorites />}></Route>
           <Route
             path="/last30days"

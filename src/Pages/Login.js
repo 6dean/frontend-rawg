@@ -7,7 +7,7 @@ import {
 import React, { useState } from "react";
 import axios from "axios";
 
-const Login = () => {
+const Login = ({ transferToken, transferTokenUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [alert, setAlert] = useState(false);
@@ -23,6 +23,10 @@ const Login = () => {
             email: email,
             password: password,
           });
+          const token = response.data.token;
+          const user = response.data.username;
+          transferToken(token);
+          transferTokenUser(user);
         } catch (error) {
           console.log(error.message);
         }

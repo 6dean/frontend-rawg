@@ -39,7 +39,9 @@ const Header = ({
               {token ? (
                 <>
                   <div className="options-header">
-                    <Link to="/yourprofile">{tokenUser.toUpperCase()}</Link>
+                    <Link to="/yourprofile">
+                      {tokenUser && tokenUser.toUpperCase()}
+                    </Link>
                   </div>
                   <div
                     className="options-header-log"
