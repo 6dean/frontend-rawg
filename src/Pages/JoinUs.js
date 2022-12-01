@@ -4,8 +4,35 @@ import {
   faTwitter,
   faSteam,
 } from "@fortawesome/free-brands-svg-icons";
+import React, { useState } from "react";
+import axios from "axios";
 
 const JoinUs = () => {
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [alert, setAlert] = useState(false);
+
+  const validJoin = () => {
+    if (!username || !email || !password) {
+      setAlert(true);
+    } else {
+      setAlert(false);
+      const data = async () => {
+        try {
+          const response = await axios.post("http://localhost:3000/joinus", {
+            username: username,
+            email: email,
+            password: password,
+          });
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
+      data();
+    }
+  };
+
   return (
     <>
       <div className="join-us-section">
@@ -16,22 +43,36 @@ const JoinUs = () => {
                 <div className="signup">Sign up</div>
                 <div className="signup-input">
                   <input
-                    className="input-join"
-                    type="text"
+                    className={alert ? "input-join-alert" : "input-join"}
+                    type="email"
                     placeholder="Email"
+                    onChange={(email) => setEmail(email.target.value)}
                   ></input>
                   <input
-                    className="input-join"
+                    className={alert ? "input-join-alert" : "input-join"}
                     type="text"
                     placeholder="Username"
+                    onChange={(username) => setUsername(username.target.value)}
                   ></input>
                   <input
-                    className="input-join"
+                    className={alert ? "input-join-alert" : "input-join"}
                     type="text"
                     placeholder="Create Password"
+                    onChange={(password) => setPassword(password.target.value)}
                   ></input>
+                  <div className={alert ? "alert-text" : "alert-none"}>
+                    <p>Fields need to be completed !</p>
+                  </div>
                 </div>
-                <button className="signup-button">Sign up</button>
+
+                <button
+                  className="signup-button"
+                  onClick={() => {
+                    validJoin();
+                  }}
+                >
+                  Sign up
+                </button>
                 <div className="already-member">
                   Already have an account? Log in.
                 </div>

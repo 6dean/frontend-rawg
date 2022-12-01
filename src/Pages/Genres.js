@@ -1,6 +1,8 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-regular-svg-icons";
 
 const Genres = () => {
   const [data, setData] = useState({});
@@ -22,7 +24,7 @@ const Genres = () => {
   return isLoading ? (
     <div className="loading">
       <div>
-        <span class="loader"></span>
+        <span className="loader"></span>
       </div>
     </div>
   ) : (
@@ -54,7 +56,20 @@ const Genres = () => {
                                 : games.name.slice(0, 24) + "..."}
                             </Link>
                           </div>
-                          <div className="game-num">{games.added}</div>
+                          <div className="game-num">
+                            <div>
+                              {games.added
+                                .toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                            </div>
+                            <div className="staring">
+                              <FontAwesomeIcon
+                                icon={faStar}
+                                width={10}
+                                color="grey"
+                              />
+                            </div>
+                          </div>{" "}
                         </div>
                       );
                     })}

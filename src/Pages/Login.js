@@ -4,8 +4,33 @@ import {
   faTwitter,
   faSteam,
 } from "@fortawesome/free-brands-svg-icons";
+import React, { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [alert, setAlert] = useState(false);
+
+  const validLog = () => {
+    if (!email || !password) {
+      setAlert(true);
+    } else {
+      setAlert(false);
+      const data = async () => {
+        try {
+          const response = await axios.post("http://localhost:3000/login", {
+            email: email,
+            password: password,
+          });
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
+      data();
+    }
+  };
+
   return (
     <>
       <div className="login-section">
@@ -16,17 +41,29 @@ const Login = () => {
                 <div className="signup">Login</div>
                 <div className="signup-input">
                   <input
-                    className="input-join"
+                    className={alert ? "input-join-alert" : "input-join"}
                     type="text"
                     placeholder="Email"
+                    onChange={(email) => setEmail(email.target.value)}
                   ></input>
                   <input
-                    className="input-join"
+                    className={alert ? "input-join-alert" : "input-join"}
                     type="text"
                     placeholder="Password"
+                    onChange={(password) => setPassword(password.target.value)}
                   ></input>
+                  <div className={alert ? "alert-text" : "alert-none"}>
+                    <p>Fields need to be completed !</p>
+                  </div>
                 </div>
-                <button className="login-button">Log in</button>
+                <button
+                  className="login-button"
+                  onClick={() => {
+                    validLog();
+                  }}
+                >
+                  Log in
+                </button>
                 <div className="not-member">
                   Don't have an account? Sign up.
                 </div>
