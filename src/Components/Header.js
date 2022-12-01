@@ -1,7 +1,14 @@
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 
-const Header = ({ search, setSearch, setPlatform }) => {
+const Header = ({
+  search,
+  setSearch,
+  setPlatform,
+  token,
+  tokenUser,
+  transferToken,
+  transferTokenUser,
+}) => {
   return (
     <header>
       <div className="top-header">
@@ -29,12 +36,31 @@ const Header = ({ search, setSearch, setPlatform }) => {
           </div>
           <div className="flex1-bis">
             <div className="list-option-header">
-              <Link to="/signin">
-                <div className="options-header">JOIN US</div>
-              </Link>
-              <Link to="/login">
-                <div className="options-header">LOGIN</div>
-              </Link>
+              {token ? (
+                <>
+                  <div className="options-header">
+                    <Link to="/yourprofile">{tokenUser.toUpperCase()}</Link>
+                  </div>
+                  <div
+                    className="options-header-log"
+                    onClick={() => {
+                      transferToken(null);
+                      transferTokenUser(null);
+                    }}
+                  >
+                    LOG OUT
+                  </div>
+                </>
+              ) : (
+                <>
+                  <Link to="/signin">
+                    <div className="options-header">JOIN US</div>
+                  </Link>
+                  <Link to="/login">
+                    <div className="options-header">LOGIN</div>
+                  </Link>
+                </>
+              )}
               <div className="options-header">FAVORITES</div>
               <div className="options-header">REVIEWS</div>
             </div>

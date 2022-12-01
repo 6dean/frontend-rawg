@@ -5,12 +5,20 @@ import {
   faSteam,
 } from "@fortawesome/free-brands-svg-icons";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const JoinUs = () => {
+const JoinUs = ({ transferToken, transferTokenUser }) => {
+  const navigate = useNavigate();
+  const reDirection = () => {
+    navigate("/");
+  };
+
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [token, setToken] = useState(null);
+  const [tokenUser, setTokenUser] = useState(null);
   const [alert, setAlert] = useState(false);
 
   const validJoin = () => {
@@ -25,6 +33,10 @@ const JoinUs = () => {
             email: email,
             password: password,
           });
+          const token = response.data.token;
+          const user = response.data.username;
+          setToken(token);
+          setTokenUser(user);
         } catch (error) {
           console.log(error.message);
         }
@@ -32,7 +44,8 @@ const JoinUs = () => {
       data();
     }
   };
-
+  transferToken(token);
+  transferTokenUser(tokenUser);
   return (
     <>
       <div className="join-us-section">
@@ -69,6 +82,7 @@ const JoinUs = () => {
                   className="signup-button"
                   onClick={() => {
                     validJoin();
+                    token && tokenUser && reDirection();
                   }}
                 >
                   Sign up

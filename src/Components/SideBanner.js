@@ -21,7 +21,9 @@ const SideBanner = ({ setPlatform }) => {
           <div className="side-title">Reviews</div>
         </div>
         <div className="side-section">
-          <div className="side-title">Username</div>
+          <Link to="/yourprofile">
+            <div className="side-title">Account</div>
+          </Link>
           <div className="nav-icon">
             <p className="icon-class">
               <FontAwesomeIcon icon="fa-solid fa-gift" fontSize={18} />

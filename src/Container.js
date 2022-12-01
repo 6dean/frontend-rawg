@@ -5,6 +5,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 
 // MES PAGES
 import Home from "./Pages/Home";
@@ -23,6 +24,7 @@ import Genres from "./Pages/Genres";
 import Developers from "./Pages/Developers";
 import GameDetails from "./Pages/GameDetails.js";
 import Listing from "./Pages/Listing";
+import MemberPage from "./Pages/MemberPage.js";
 
 // MES COMPONENTS
 import Header from "./Components/Header";
@@ -42,9 +44,40 @@ function Container() {
     } else setShowLeft(true);
   }, [location.pathname]);
 
+  const [token, setToken] = useState(Cookies.get("RAWG-TOKEN") || null);
+
+  const transferToken = (token) => {
+    if (token) {
+      setToken(token);
+      Cookies.set("RAWG-TOKEN", token, { expires: 7 });
+    } else {
+      setToken(null);
+      Cookies.remove("RAWG-TOKEN");
+    }
+  };
+
+  const [tokenUser, setTokenUser] = useState(Cookies.get("RAWG-USER") || null);
+
+  const transferTokenUser = (tokenUser) => {
+    if (tokenUser) {
+      setTokenUser(tokenUser);
+      Cookies.set("RAWG-USER", tokenUser, { expires: 7 });
+    } else {
+      setTokenUser(null);
+      Cookies.remove("RAWG-USER");
+    }
+  };
+
   return (
     <>
-      <Header search={search} setSearch={setSearch} />
+      <Header
+        search={search}
+        setSearch={setSearch}
+        token={token}
+        transferToken={transferToken}
+        transferTokenUser={transferTokenUser}
+        tokenUser={tokenUser}
+      />
       <div style={{ display: "flex" }}>
         {showLeft ? <SideBanner setPlatform={setPlatform} /> : null}
         <Routes>
@@ -69,7 +102,15 @@ function Container() {
               />
             }
           ></Route>
-          <Route path="/signin" element={<JoinUs />}></Route>
+          <Route
+            path="/signin"
+            element={
+              <JoinUs
+                transferToken={transferToken}
+                transferTokenUser={transferTokenUser}
+              />
+            }
+          ></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/favorites" element={<Favorites />}></Route>
           <Route
@@ -110,6 +151,7 @@ function Container() {
           <Route path="/stores" element={<Stores />}></Route>
           <Route path="/genres" element={<Genres />}></Route>
           <Route path="/developers" element={<Developers />}></Route>
+          <Route path="/yourprofile" element={<MemberPage />}></Route>
         </Routes>
       </div>
     </>
