@@ -1,4 +1,4 @@
-const Favorites = () => {
+const Favorites = ({ favFromUser }) => {
   return <>hello</>;
 };
 

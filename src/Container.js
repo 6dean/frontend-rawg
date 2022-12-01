@@ -36,6 +36,8 @@ function Container() {
   const [platform, setPlatform] = useState("");
   const [platformName, setPlatformName] = useState("");
   const [showLeft, setShowLeft] = useState(true);
+  const [favFromUser, setFavFromUser] = useState({});
+  const [wishFromUser, setWishFromUser] = useState({});
 
   const location = useLocation();
 
@@ -83,6 +85,7 @@ function Container() {
       localStorage.setItem("favorites", JSON.stringify(favFromUser));
       alert`Game added to fav !`;
     }
+    setFavFromUser(favFromUser);
   }
 
   function SaveWishListToLocalStorage(data) {
@@ -96,7 +99,10 @@ function Container() {
       localStorage.setItem("Wishlist", JSON.stringify(wishFromUser));
       alert`Game added to Wishlist !`;
     }
+    setWishFromUser(wishFromUser);
   }
+
+  console.log(wishFromUser);
 
   return (
     <>
@@ -160,7 +166,14 @@ function Container() {
               />
             }
           ></Route>
-          <Route path="/favorites" element={<Favorites />}></Route>
+          <Route
+            path="/favorites"
+            element={<Favorites favFromUser={favFromUser} />}
+          ></Route>
+          <Route
+            path="/wishlist"
+            element={<Wishlist wishFromUser={wishFromUser} />}
+          ></Route>
           <Route
             path="/last30days"
             element={<LastThirstyDays search={search} />}
@@ -200,7 +213,6 @@ function Container() {
           <Route path="/genres" element={<Genres />}></Route>
           <Route path="/developers" element={<Developers />}></Route>
           <Route path="/yourprofile" element={<MemberPage />}></Route>
-          <Route path="/wishlist" element={<Wishlist />}></Route>
         </Routes>
       </div>
     </>
