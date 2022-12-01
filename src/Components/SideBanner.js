@@ -22,7 +22,7 @@ const SideBanner = ({ setPlatform }) => {
         </div>
         <div className="side-section">
           <Link to="/yourprofile">
-            <div className="side-title">Account</div>
+            <div className="side-title">Your Page</div>
           </Link>
           <div className="nav-icon">
             <p className="icon-class">

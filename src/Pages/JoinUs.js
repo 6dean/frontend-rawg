@@ -10,9 +10,6 @@ import axios from "axios";
 
 const JoinUs = ({ transferToken, transferTokenUser }) => {
   const navigate = useNavigate();
-  const reDirection = () => {
-    navigate("/");
-  };
 
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -46,6 +43,9 @@ const JoinUs = ({ transferToken, transferTokenUser }) => {
   };
   transferToken(token);
   transferTokenUser(tokenUser);
+
+  token && navigate("/");
+
   return (
     <>
       <div className="join-us-section">
@@ -82,7 +82,6 @@ const JoinUs = ({ transferToken, transferTokenUser }) => {
                   className="signup-button"
                   onClick={() => {
                     validJoin();
-                    token && tokenUser && reDirection();
                   }}
                 >
                   Sign up

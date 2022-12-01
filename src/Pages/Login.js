@@ -5,9 +5,12 @@ import {
   faSteam,
 } from "@fortawesome/free-brands-svg-icons";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Login = ({ transferToken, transferTokenUser }) => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [alert, setAlert] = useState(false);
@@ -27,6 +30,7 @@ const Login = ({ transferToken, transferTokenUser }) => {
           const user = response.data.username;
           transferToken(token);
           transferTokenUser(user);
+          token && navigate("/");
         } catch (error) {
           console.log(error.message);
         }
