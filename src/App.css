@@ -115,6 +115,24 @@ p {
   -webkit-filter: blur(0.5px);
 }
 
+.options-header-user {
+  color: white;
+  font-family: "Anybody", sans-serif;
+  font-size: 16px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0);
+  filter: blur(1px);
+  -webkit-filter: blur(0.5px);
+}
+
+.options-header-user:hover {
+  color: white;
+  font-family: "Anybody", sans-serif;
+  font-size: 16px;
+  border-bottom: 2px solid rgb(228, 136, 44);
+  filter: blur(1px);
+  -webkit-filter: blur(0.5px);
+}
+
 .options-header-log {
   color: white;
   font-family: "Anybody", sans-serif;
@@ -273,6 +291,12 @@ p {
   height: 160px;
   object-fit: cover;
   image-rendering: auto;
+}
+
+/* -------------------- WISHLIST SECTION -------------------- */
+
+.wishlist-page {
+  margin-top: 50px;
 }
 
 /* -------------------- PLATFORMS SECTION -------------------- */

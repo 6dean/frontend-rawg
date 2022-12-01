@@ -1,12 +1,19 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
-const GameDetails = () => {
+const GameDetails = ({
+  token,
+  tokenUser,
+  SaveDataToLocalStorage,
+  SaveWishListToLocalStorage,
+}) => {
   const { id } = useParams();
   const [data, setData] = useState({});
   const [isLoading, setisLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   const fetchData = async () => {
     const response = await axios.get(
@@ -20,6 +27,22 @@ const GameDetails = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const addGame = () => {
+    if (token || tokenUser) {
+      SaveDataToLocalStorage(data);
+    } else {
+      navigate("/signin");
+    }
+  };
+
+  const wishGame = () => {
+    if (token || tokenUser) {
+      SaveWishListToLocalStorage(data);
+    } else {
+      navigate("/signin");
+    }
+  };
 
   return isLoading ? (
     <div className="loading">
@@ -88,7 +111,12 @@ const GameDetails = () => {
             </div>
           </div>
           <div className="community-button">
-            <div className="button-fav">
+            <div
+              className="button-fav"
+              onClick={() => {
+                addGame();
+              }}
+            >
               ADD FAVORITES
               <p>
                 <FontAwesomeIcon
@@ -98,7 +126,12 @@ const GameDetails = () => {
                 />
               </p>
             </div>
-            <div className="button-wish">
+            <div
+              className="button-wish"
+              onClick={() => {
+                wishGame();
+              }}
+            >
               ADD WISHLIST
               <p className="">
                 <FontAwesomeIcon

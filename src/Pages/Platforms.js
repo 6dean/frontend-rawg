@@ -22,9 +22,9 @@ const Platforms = ({ setPlatform, setPlatformName }) => {
 
   return isLoading ? (
     <div className="loading">
-      <div>
+      <>
         <span className="loader"></span>
-      </div>
+      </>
     </div>
   ) : (
     <div className="home-flex">

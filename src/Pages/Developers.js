@@ -23,9 +23,9 @@ const Developers = () => {
 
   return isLoading ? (
     <div className="loading">
-      <div>
+      <>
         <span className="loader"></span>
-      </div>
+      </>
     </div>
   ) : (
     <div className="home-flex">

@@ -24,12 +24,14 @@ const SideBanner = ({ setPlatform }) => {
           <Link to="/yourprofile">
             <div className="side-title">Your Page</div>
           </Link>
-          <div className="nav-icon">
-            <p className="icon-class">
-              <FontAwesomeIcon icon="fa-solid fa-gift" fontSize={18} />
-            </p>
-            <p>Wishlist</p>
-          </div>
+          <Link to="/wishlist">
+            <div className="nav-icon">
+              <p className="icon-class">
+                <FontAwesomeIcon icon="fa-solid fa-gift" fontSize={18} />
+              </p>
+              <p>Wishlist</p>
+            </div>{" "}
+          </Link>
           <Link to="/favorites">
             <div className="nav-icon">
               <p className="icon-class">
@@ -75,12 +77,6 @@ const SideBanner = ({ setPlatform }) => {
               <p>Next week</p>
             </div>
           </Link>
-          <div className="nav-icon">
-            <p className="icon-class">
-              <FontAwesomeIcon icon="fa-solid fa-calendar-days" />
-            </p>
-            <p>Release calendar</p>
-          </div>
         </div>
 
         <div className="side-section">

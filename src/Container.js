@@ -25,6 +25,7 @@ import Developers from "./Pages/Developers";
 import GameDetails from "./Pages/GameDetails.js";
 import Listing from "./Pages/Listing";
 import MemberPage from "./Pages/MemberPage.js";
+import Wishlist from "./Pages/Wishlist";
 
 // MES COMPONENTS
 import Header from "./Components/Header";
@@ -43,6 +44,8 @@ function Container() {
       setShowLeft(false);
     } else setShowLeft(true);
   }, [location.pathname]);
+
+  // MES COOKIES
 
   const [token, setToken] = useState(Cookies.get("RAWG-TOKEN") || null);
 
@@ -68,6 +71,33 @@ function Container() {
     }
   };
 
+  // LOCAL STORAGE
+
+  function SaveDataToLocalStorage(data) {
+    let favFromUser = [];
+    favFromUser = JSON.parse(localStorage.getItem("favorites")) || [];
+    if (favFromUser.find((elem) => elem.id === data.id)) {
+      return alert`This Game is already in your favorites !`;
+    } else {
+      favFromUser.push(data);
+      localStorage.setItem("favorites", JSON.stringify(favFromUser));
+      alert`Game added to fav !`;
+    }
+  }
+
+  function SaveWishListToLocalStorage(data) {
+    let wishFromUser = [];
+    wishFromUser = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    if (wishFromUser.find((elem) => elem.id === data.id)) {
+      return alert`This Game is already in your Wishlist !`;
+    } else {
+      wishFromUser.push(data);
+      localStorage.setItem("Wishlist", JSON.stringify(wishFromUser));
+      alert`Game added to Wishlist !`;
+    }
+  }
+
   return (
     <>
       <Header
@@ -92,7 +122,17 @@ function Container() {
               />
             }
           ></Route>
-          <Route path="/game-details/:id" element={<GameDetails />}></Route>
+          <Route
+            path="/game-details/:id"
+            element={
+              <GameDetails
+                transferToken={token}
+                tokenUser={tokenUser}
+                SaveDataToLocalStorage={SaveDataToLocalStorage}
+                SaveWishListToLocalStorage={SaveWishListToLocalStorage}
+              />
+            }
+          ></Route>
           <Route
             path="/platforms"
             element={
@@ -160,6 +200,7 @@ function Container() {
           <Route path="/genres" element={<Genres />}></Route>
           <Route path="/developers" element={<Developers />}></Route>
           <Route path="/yourprofile" element={<MemberPage />}></Route>
+          <Route path="/wishlist" element={<Wishlist />}></Route>
         </Routes>
       </div>
     </>
