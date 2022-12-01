@@ -43,6 +43,8 @@ const Header = ({
                       {tokenUser && tokenUser.toUpperCase()}
                     </Link>
                   </div>
+                  <div className="options-header">FAVORITES</div>
+                  <div className="options-header">REVIEWS</div>
                   <div
                     className="options-header-log"
                     onClick={() => {
@@ -61,10 +63,10 @@ const Header = ({
                   <Link to="/login">
                     <div className="options-header">LOGIN</div>
                   </Link>
+                  <div className="options-header">FAVORITES</div>
+                  <div className="options-header">REVIEWS</div>
                 </>
               )}
-              <div className="options-header">FAVORITES</div>
-              <div className="options-header">REVIEWS</div>
             </div>
           </div>
         </div>
