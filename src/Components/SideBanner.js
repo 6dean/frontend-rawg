@@ -30,7 +30,7 @@ const SideBanner = ({ setPlatform }) => {
                 <FontAwesomeIcon icon="fa-solid fa-gift" fontSize={18} />
               </p>
               <p>Wishlist</p>
-            </div>{" "}
+            </div>
           </Link>
           <Link to="/favorites">
             <div className="nav-icon">

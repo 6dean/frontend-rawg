@@ -43,7 +43,9 @@ const Header = ({
                       {tokenUser && tokenUser.toUpperCase()}
                     </Link>
                   </div>
-                  <div className="options-header">FAVORITES</div>
+                  <Link to="/favorites">
+                    <div className="options-header">FAVORITES</div>
+                  </Link>
                   <div className="options-header">REVIEWS</div>
                   <div
                     className="options-header-log"
@@ -63,7 +65,9 @@ const Header = ({
                   <Link to="/login">
                     <div className="options-header">LOGIN</div>
                   </Link>
-                  <div className="options-header">FAVORITES</div>
+                  <Link to="/favorites">
+                    <div className="options-header">FAVORITES</div>
+                  </Link>
                   <div className="options-header">REVIEWS</div>
                 </>
               )}

@@ -1,5 +1,5 @@
 const Favorites = ({ favFromUser }) => {
-  return <>hello</>;
+  return <>PAGE FAVORITE</>;
 };
 
 export default Favorites;

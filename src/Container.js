@@ -102,8 +102,6 @@ function Container() {
     setWishFromUser(wishFromUser);
   }
 
-  console.log(wishFromUser);
-
   return (
     <>
       <Header
@@ -132,7 +130,7 @@ function Container() {
             path="/game-details/:id"
             element={
               <GameDetails
-                transferToken={token}
+                token={token}
                 tokenUser={tokenUser}
                 SaveDataToLocalStorage={SaveDataToLocalStorage}
                 SaveWishListToLocalStorage={SaveWishListToLocalStorage}

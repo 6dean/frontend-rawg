@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -194,15 +195,34 @@ const GameDetails = ({
             />
           </p>
         </div>
-        <div className="comment-element">
-          <textarea
-            className="comment-zone"
-            placeholder="Be polite to and respectful of other commenters. No ad hominem attacks. Discuss or argue issues, do not argue about any topic excepted the game."
-          ></textarea>
-        </div>
-        <div className="post-button">
-          <button className="style-post-button">PUBLISH</button>
-        </div>
+        {tokenUser || token ? (
+          <>
+            <div className="comment-element">
+              <textarea
+                className="comment-zone"
+                placeholder="Be polite to and respectful of other commenters. No ad hominem attacks. Discuss or argue issues, do not argue about any topic excepted the game."
+              ></textarea>
+            </div>
+            <div className="post-button">
+              <button className="style-post-button">PUBLISH</button>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="comment-element">
+              <textarea
+                className="comment-zone"
+                placeholder="You need an account to write a comment."
+              ></textarea>
+            </div>
+            <div className="post-button">
+              <Link to="/signin">
+                <button className="style-post-button">REGISTER</button>
+              </Link>
+            </div>
+          </>
+        )}
+
         <div className="comment-zone-area">
           <div className="comments-users">
             <p>NO COMMENTS YET :/</p>
