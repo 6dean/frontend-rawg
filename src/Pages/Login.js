@@ -52,7 +52,7 @@ const Login = ({ transferToken, transferTokenUser }) => {
                   ></input>
                   <input
                     className={alert ? "input-join-alert" : "input-join"}
-                    type="text"
+                    type="password"
                     placeholder="Password"
                     onChange={(password) => setPassword(password.target.value)}
                   ></input>
