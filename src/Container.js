@@ -22,6 +22,7 @@ import Stores from "./Pages/Stores";
 import Genres from "./Pages/Genres";
 import Developers from "./Pages/Developers";
 import GameDetails from "./Pages/GameDetails.js";
+import Listing from "./Pages/Listing";
 
 // MES COMPONENTS
 import Header from "./Components/Header";
@@ -94,6 +95,17 @@ function Container() {
           <Route
             path="/alltimetop250"
             element={<AllTimeTop search={search} />}
+          ></Route>
+          <Route
+            path="/platforms/:name"
+            element={
+              <Listing
+                search={search}
+                platform={platform}
+                platformName={platformName}
+                setPlatformName={setPlatformName}
+              />
+            }
           ></Route>
           <Route path="/stores" element={<Stores />}></Route>
           <Route path="/genres" element={<Genres />}></Route>

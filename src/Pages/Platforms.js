@@ -36,13 +36,13 @@ const Platforms = ({ setPlatform, setPlatformName }) => {
         <div>
           <div className="listing-platform">
             {data.results.map((elem, index) => {
-              console.log(elem.name);
               return (
                 <div key={index} className="card-platform">
                   <div className="title-platform">
                     <Link
-                      to="/"
+                      to={`/platforms/${elem.slug}`}
                       onClick={() => {
+                        console.log(elem.name);
                         setPlatform(elem.id);
                         setPlatformName(elem.name);
                         window.scrollTo(0, 0);
