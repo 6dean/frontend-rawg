@@ -59,7 +59,7 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
                       <div className="game-title">
                         {elem.name.length < 30
                           ? elem.name
-                          : elem.name.slice(0, 30) + "..."}
+                          : elem.name.slice(0, 40) + "..."}
                       </div>
                     </div>
                   </Link>

@@ -2,7 +2,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { faStar } from "@fortawesome/free-regular-svg-icons";
 const Platforms = ({ setPlatform, setPlatformName }) => {
   const [data, setData] = useState({});
   const [isLoading, setisLoading] = useState(true);
@@ -70,12 +70,18 @@ const Platforms = ({ setPlatform, setPlatformName }) => {
                             </Link>
                           </div>
                           <div className="game-num">
-                            {games.added}
-                            {/* <FontAwesomeIcon
-                              icon="fa-regular fa-bookmark"
-                              width={10}
-                              color="white"
-                            /> */}
+                            <div>
+                              {games.added
+                                .toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                            </div>
+                            <div className="staring">
+                              <FontAwesomeIcon
+                                icon={faStar}
+                                width={10}
+                                color="grey"
+                              />
+                            </div>
                           </div>
                         </div>
                       );
