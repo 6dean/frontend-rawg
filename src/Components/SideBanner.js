@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const SideBanner = ({ setPlatform }) => {
+const SideBanner = ({ setPlatform, token }) => {
+  console.log(token);
   return (
     <div className="side-banner">
       <div className="side-banner-style">
@@ -18,10 +19,12 @@ const SideBanner = ({ setPlatform }) => {
           </Link>
         </div>
         <div className="side-section">
-          <div className="side-title">Reviews</div>
+          <Link to="/reviews">
+            <div className="side-title">Reviews</div>
+          </Link>
         </div>
         <div className="side-section">
-          <Link to="/yourprofile">
+          <Link to={token ? "/yourprofile" : "/signin"}>
             <div className="side-title">Your Page</div>
           </Link>
           <Link to="/wishlist">

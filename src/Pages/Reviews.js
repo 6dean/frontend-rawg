@@ -1,13 +1,13 @@
-const MemberPage = () => {
+const Reviews = () => {
   return (
     <div className="wishlist-page">
       <div className="navigation-home">
         <div className="title-home">
-          <p>Your profile</p>
+          <p>Reviews</p>
         </div>
       </div>
     </div>
   );
 };
 
-export default MemberPage;
+export default Reviews;

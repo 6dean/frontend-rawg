@@ -26,6 +26,7 @@ import GameDetails from "./Pages/GameDetails.js";
 import Listing from "./Pages/Listing";
 import MemberPage from "./Pages/MemberPage.js";
 import Wishlist from "./Pages/Wishlist";
+import Reviews from "./Pages/Reviews";
 
 // MES COMPONENTS
 import Header from "./Components/Header";
@@ -49,7 +50,8 @@ function Container() {
 
   // MES COOKIES
 
-  const [token, setToken] = useState(Cookies.get("RAWG-TOKEN") || null);
+  const [token, setToken] = useState(null);
+  const [tokenUser, setTokenUser] = useState(null);
 
   const transferToken = (token) => {
     if (token) {
@@ -60,8 +62,6 @@ function Container() {
       Cookies.remove("RAWG-TOKEN");
     }
   };
-
-  const [tokenUser, setTokenUser] = useState(Cookies.get("RAWG-USER") || null);
 
   const transferTokenUser = (tokenUser) => {
     if (tokenUser) {
@@ -113,7 +113,9 @@ function Container() {
         tokenUser={tokenUser}
       />
       <div style={{ display: "flex" }}>
-        {showLeft ? <SideBanner setPlatform={setPlatform} /> : null}
+        {showLeft ? (
+          <SideBanner setPlatform={setPlatform} token={token} />
+        ) : null}
         <Routes>
           <Route
             path="/"
@@ -211,6 +213,7 @@ function Container() {
           <Route path="/genres" element={<Genres />}></Route>
           <Route path="/developers" element={<Developers />}></Route>
           <Route path="/yourprofile" element={<MemberPage />}></Route>
+          <Route path="/reviews" element={<Reviews />}></Route>
         </Routes>
       </div>
     </>

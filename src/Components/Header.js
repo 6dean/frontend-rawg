@@ -47,15 +47,17 @@ const Header = ({
                     <div className="options-header">FAVORITES</div>
                   </Link>
                   <div className="options-header">REVIEWS</div>
-                  <div
-                    className="options-header-log"
-                    onClick={() => {
-                      transferToken(null);
-                      transferTokenUser(null);
-                    }}
-                  >
-                    LOG OUT
-                  </div>
+                  <Link to="/">
+                    <div
+                      className="options-header-log"
+                      onClick={() => {
+                        transferToken(null);
+                        transferTokenUser(null);
+                      }}
+                    >
+                      LOG OUT
+                    </div>
+                  </Link>
                 </>
               ) : (
                 <>
