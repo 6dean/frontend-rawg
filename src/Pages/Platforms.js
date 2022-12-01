@@ -42,7 +42,6 @@ const Platforms = ({ setPlatform, setPlatformName }) => {
                     <Link
                       to={`/platforms/${elem.slug}`}
                       onClick={() => {
-                        console.log(elem.name);
                         setPlatform(elem.id);
                         setPlatformName(elem.name);
                         window.scrollTo(0, 0);
