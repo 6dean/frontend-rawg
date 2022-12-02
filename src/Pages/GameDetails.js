@@ -7,7 +7,6 @@ import { useParams, useNavigate } from "react-router-dom";
 const GameDetails = ({ token, tokenUser }) => {
   const { id } = useParams();
   const [data, setData] = useState({});
-  const [game, setGame] = useState({});
   const [isLoading, setisLoading] = useState(true);
 
   const navigate = useNavigate();
@@ -21,25 +20,22 @@ const GameDetails = ({ token, tokenUser }) => {
     setisLoading(false);
   };
 
-  const favTabCreation = () => {
-    let fav = [];
-    let obj = { name: data.name, id: data.id, image: data.background_image };
-    fav.push(obj);
-    setGame(fav);
-  };
-
   useEffect(() => {
     fetchData();
-    favTabCreation();
   }, []);
 
   const addGame = () => {
     if (token || tokenUser) {
       const favGame = async () => {
         try {
+          const favorite = {
+            name: data.name,
+            id: data.id,
+            image: data.background_image,
+          };
           const response = await axios.put("http://localhost:3000/favorite", {
-            game,
             token,
+            favorite,
           });
         } catch (error) {}
       };
@@ -51,7 +47,20 @@ const GameDetails = ({ token, tokenUser }) => {
 
   const wishGame = () => {
     if (token || tokenUser) {
-      // NULL
+      const wishGame = async () => {
+        const wish = {
+          name: data.name,
+          id: data.id,
+          image: data.background_image,
+        };
+        try {
+          const response = await axios.put("http://localhost:3000/wish", {
+            wish,
+            token,
+          });
+        } catch (error) {}
+      };
+      wishGame();
     } else {
       navigate("/signin");
     }
@@ -127,7 +136,6 @@ const GameDetails = ({ token, tokenUser }) => {
             <div
               className="button-fav"
               onClick={() => {
-                favTabCreation();
                 addGame();
               }}
             >
