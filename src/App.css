@@ -230,6 +230,11 @@ p {
   justify-content: center;
 }
 
+.listing-games-wish-fav {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .card-game {
   position: relative;
   background-color: #272727;

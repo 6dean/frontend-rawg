@@ -128,8 +128,11 @@ function Container() {
               />
             }
           ></Route>
-          <Route path="/favorites" element={<Favorites />}></Route>
-          <Route path="/wishlist" element={<Wishlist />}></Route>
+          <Route
+            path="/favorites"
+            element={<Favorites token={token} />}
+          ></Route>
+          <Route path="/wishlist" element={<Wishlist token={token} />}></Route>
           <Route
             path="/last30days"
             element={<LastThirstyDays search={search} />}
