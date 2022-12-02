@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Carousel } from "react-responsive-carousel";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Favorites = ({ token }) => {
   const [data, setData] = useState({});
@@ -18,7 +20,16 @@ const Favorites = ({ token }) => {
 
   useEffect(() => {
     fetchData();
+    updateData();
   }, []);
+
+  const updateData = async () => {
+    const response = await axios.put(`http://localhost:3000/deletefavorite`, {
+      token,
+    });
+
+    setData(response.data);
+  };
 
   return isLoading ? (
     <div className="loading">
@@ -37,6 +48,14 @@ const Favorites = ({ token }) => {
         {data.map((elem, index) => {
           return (
             <div key={index} className="card-game">
+              <div
+                className="game-delete"
+                onClick={() => {
+                  updateData();
+                }}
+              >
+                <FontAwesomeIcon icon={faCircleXmark} size="xl" />
+              </div>
               <Link
                 to={`/game-details/${elem.id}`}
                 onClick={() => {

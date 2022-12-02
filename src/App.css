@@ -231,6 +231,7 @@ p {
 }
 
 .listing-games-wish-fav {
+  margin-left: 20px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -288,6 +289,25 @@ p {
   position: absolute;
   top: 178px;
   height: fit-content;
+}
+
+.game-delete {
+  color: rgb(0, 0, 0);
+  text-align: center;
+  width: 20px;
+  border-radius: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  height: fit-content;
+  z-index: 6;
+}
+
+.game-delete:hover {
+  color: red;
+  cursor: pointer;
 }
 
 .carousel-img {
@@ -995,7 +1015,8 @@ h1 {
   height: 90px;
   border-radius: 10px;
   padding: 10px;
-  outline-color: #323232;
+  outline-color: #32323200;
+  border: none;
   background-color: #6e6e6e;
   color: white;
   font-size: 18px;
@@ -1008,7 +1029,7 @@ h1 {
   padding-top: 8px;
   font-size: 1.5em;
   text-align: center;
-  opacity: 20%;
+  opacity: 15%;
   font-weight: 100;
 }
 

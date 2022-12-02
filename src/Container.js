@@ -171,7 +171,10 @@ function Container() {
           <Route path="/stores" element={<Stores />}></Route>
           <Route path="/genres" element={<Genres />}></Route>
           <Route path="/developers" element={<Developers />}></Route>
-          <Route path="/yourprofile" element={<MemberPage />}></Route>
+          <Route
+            path="/yourprofile"
+            element={<MemberPage token={token} />}
+          ></Route>
           <Route path="/reviews" element={<Reviews />}></Route>
         </Routes>
       </div>
