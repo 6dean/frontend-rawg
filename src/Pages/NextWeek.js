@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Link } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 
 const NextWeek = ({ search }) => {
@@ -8,16 +9,15 @@ const NextWeek = ({ search }) => {
   const [number, setNumber] = useState(21);
   const [isLoading, setisLoading] = useState(true);
 
-  const fetchData = async () => {
-    const response = await axios.get(
-      `https://api.rawg.io/api/games?key=19f566421f19451c81f113f84a69f091&dates=2022-12-05,2022-12-31&page_size=${number}&search=${search}`
-    );
-
-    setData(response.data);
-    setisLoading(false);
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(
+        `https://api.rawg.io/api/games?key=19f566421f19451c81f113f84a69f091&dates=2022-12-05,2022-12-31&page_size=${number}&search=${search}`
+      );
+
+      setData(response.data);
+      setisLoading(false);
+    };
     fetchData();
   }, [number, search]);
 
@@ -40,9 +40,16 @@ const NextWeek = ({ search }) => {
                 <div key={index} className="card-game">
                   <div className="card-info-box">
                     <div className="game-title">
-                      {elem.name.length < 30
-                        ? elem.name
-                        : elem.name.slice(0, 30) + "..."}
+                      <Link
+                        to={`/game-details/${elem.id}`}
+                        onClick={() => {
+                          window.scrollTo(0, 0);
+                        }}
+                      >
+                        {elem.name.length < 30
+                          ? elem.name
+                          : elem.name.slice(0, 30) + "..."}
+                      </Link>
                     </div>
                   </div>{" "}
                   <Carousel showThumbs={false} showStatus={false}>

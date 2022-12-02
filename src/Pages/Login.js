@@ -5,6 +5,7 @@ import {
   faSteam,
 } from "@fortawesome/free-brands-svg-icons";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -73,7 +74,7 @@ const Login = ({ transferToken, transferTokenUser }) => {
                   Log in
                 </button>
                 <div className="not-member">
-                  Don't have an account? Sign up.
+                  <Link to="/signin">Don't have an account? Sign up.</Link>
                 </div>
                 <div className="forgot-member">Forgot your password ?</div>
               </div>

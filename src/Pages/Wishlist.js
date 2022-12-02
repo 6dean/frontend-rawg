@@ -9,18 +9,26 @@ const Wishlist = ({ token }) => {
   const [data, setData] = useState({});
   const [isLoading, setisLoading] = useState(true);
 
-  const fetchData = async () => {
-    const response = await axios.post(`http://localhost:3000/wishlist`, {
-      token,
-    });
-
-    setData(response.data);
-    setisLoading(false);
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.post(`http://localhost:3000/wishlist`, {
+        token,
+      });
+
+      setData(response.data);
+      setisLoading(false);
+    };
     fetchData();
-  });
+  }, [token]);
+
+  const updateData = async (id) => {
+    const gameId = id;
+    const response = await axios.put(`http://localhost:3000/deletewish`, {
+      token,
+      gameId,
+    });
+    setData(response.data);
+  };
 
   return isLoading ? (
     <div className="loading">
@@ -39,7 +47,12 @@ const Wishlist = ({ token }) => {
         {data.map((elem, index) => {
           return (
             <div key={index} className="card-game">
-              <div className="game-delete" onClick={() => {}}>
+              <div
+                className="game-delete"
+                onClick={() => {
+                  updateData(elem.id);
+                }}
+              >
                 <FontAwesomeIcon icon={faCircleXmark} size="xl" />
               </div>
               <Link

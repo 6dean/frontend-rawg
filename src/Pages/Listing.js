@@ -30,6 +30,7 @@ const Listing = ({ search, platform, platformName, setPlatformName }) => {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [number, search, platform, platformName]);
 
   return isLoading ? (

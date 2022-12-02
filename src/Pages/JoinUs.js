@@ -5,6 +5,7 @@ import {
   faSteam,
 } from "@fortawesome/free-brands-svg-icons";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -87,7 +88,7 @@ const JoinUs = ({ transferToken, transferTokenUser }) => {
                   Sign up
                 </button>
                 <div className="already-member">
-                  Already have an account? Log in.
+                  <Link to="/login">Already have an account? Log in.</Link>
                 </div>
               </div>
             </div>

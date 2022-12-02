@@ -9,23 +9,23 @@ const Favorites = ({ token }) => {
   const [data, setData] = useState({});
   const [isLoading, setisLoading] = useState(true);
 
-  const fetchData = async () => {
-    const response = await axios.post(`http://localhost:3000/allfavorites`, {
-      token,
-    });
-
-    setData(response.data);
-    setisLoading(false);
-  };
-
   useEffect(() => {
-    fetchData();
-    updateData();
-  }, []);
+    const fetchData = async () => {
+      const response = await axios.post(`http://localhost:3000/allfavorites`, {
+        token,
+      });
 
-  const updateData = async () => {
+      setData(response.data);
+      setisLoading(false);
+    };
+    fetchData();
+  }, [token]);
+
+  const updateData = async (id) => {
+    const gameId = id;
     const response = await axios.put(`http://localhost:3000/deletefavorite`, {
       token,
+      gameId,
     });
 
     setData(response.data);
@@ -51,7 +51,7 @@ const Favorites = ({ token }) => {
               <div
                 className="game-delete"
                 onClick={() => {
-                  updateData();
+                  updateData(elem.id);
                 }}
               >
                 <FontAwesomeIcon icon={faCircleXmark} size="xl" />

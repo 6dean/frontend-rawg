@@ -11,18 +11,17 @@ const GameDetails = ({ token, tokenUser }) => {
 
   const navigate = useNavigate();
 
-  const fetchData = async () => {
-    const response = await axios.get(
-      `https://api.rawg.io/api/games/${id}?key=19f566421f19451c81f113f84a69f091`
-    );
-
-    setData(response.data);
-    setisLoading(false);
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(
+        `https://api.rawg.io/api/games/${id}?key=19f566421f19451c81f113f84a69f091`
+      );
+
+      setData(response.data);
+      setisLoading(false);
+    };
     fetchData();
-  }, []);
+  }, [id]);
 
   const addGame = () => {
     if (token || tokenUser) {
@@ -122,10 +121,12 @@ const GameDetails = ({ token, tokenUser }) => {
                   {" "}
                   <p
                     className={
-                      data.metacritic > 85
-                        ? "data-score"
-                        : "data-score-mid" ||
-                          (data.metacritic < 50 && "data-score-low")
+                      data.metacritic
+                        ? data.metacritic > 85
+                          ? "data-score"
+                          : "data-score-mid" ||
+                            (data.metacritic < 50 && "data-score-low")
+                        : null
                     }
                   >
                     {data.metacritic}

@@ -29,6 +29,24 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
   };
 
   useEffect(() => {
+    const fetchData = async () => {
+      if (platform) {
+        const response = await axios.get(
+          `https://api.rawg.io/api/games?key=19f566421f19451c81f113f84a69f091&page_size=${number}&search=${search}&platforms=${platform}`
+        );
+
+        setData(response.data);
+        setisLoading(false);
+      } else {
+        setPlatformName(null);
+        const response = await axios.get(
+          `https://api.rawg.io/api/games?key=19f566421f19451c81f113f84a69f091&page_size=${number}&search=${search}`
+        );
+
+        setData(response.data);
+        setisLoading(false);
+      }
+    };
     fetchData();
   }, [number, search, platform, platformName]);
 
