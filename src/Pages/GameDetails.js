@@ -58,7 +58,9 @@ const GameDetails = ({ token, tokenUser }) => {
             wish,
             token,
           });
-        } catch (error) {}
+        } catch (error) {
+          console.log(error.response);
+        }
       };
       wishGame();
     } else {
