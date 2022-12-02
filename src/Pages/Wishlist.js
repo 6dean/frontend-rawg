@@ -8,17 +8,22 @@ import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 const Wishlist = ({ token }) => {
   const [data, setData] = useState({});
   const [isLoading, setisLoading] = useState(true);
+  const [isMember, setIsMember] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.post(`http://localhost:3000/wishlist`, {
-        token,
-      });
+    if (token) {
+      const fetchData = async () => {
+        const response = await axios.post(`http://localhost:3000/wishlist`, {
+          token,
+        });
 
-      setData(response.data);
-      setisLoading(false);
-    };
-    fetchData();
+        setData(response.data);
+        setisLoading(false);
+      };
+      fetchData();
+    } else {
+      setIsMember(false);
+    }
   }, [token]);
 
   const updateData = async (id) => {
@@ -30,7 +35,15 @@ const Wishlist = ({ token }) => {
     setData(response.data);
   };
 
-  return isLoading ? (
+  return !isMember ? (
+    <div className="wishlist-page">
+      <div className="navigation-home">
+        <div className="title-home">
+          <p>Wishlist</p>
+        </div>
+      </div>
+    </div>
+  ) : isLoading ? (
     <div className="loading">
       <>
         <span className="loader"></span>
