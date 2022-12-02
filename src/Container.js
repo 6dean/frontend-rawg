@@ -37,8 +37,6 @@ function Container() {
   const [platform, setPlatform] = useState("");
   const [platformName, setPlatformName] = useState("");
   const [showLeft, setShowLeft] = useState(true);
-  const [favFromUser, setFavFromUser] = useState({});
-  const [wishFromUser, setWishFromUser] = useState({});
 
   const location = useLocation();
 

@@ -85,7 +85,6 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
               <p
                 className="load-more"
                 onClick={() => {
-                  console.log(number);
                   setNumber(number + 21);
                 }}
               >

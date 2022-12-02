@@ -65,7 +65,6 @@ const ThisWeek = ({ search }) => {
               <p
                 className="load-more"
                 onClick={() => {
-                  console.log(number);
                   setNumber(number + 21);
                 }}
               >

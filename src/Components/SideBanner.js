@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SideBanner = ({ setPlatform, token }) => {
-  console.log(token);
   return (
     <div className="side-banner">
       <div className="side-banner-style">
