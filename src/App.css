@@ -443,6 +443,48 @@ h1 {
   gap: 2px;
 }
 
+/* -------------------- PROFILE SECTION -------------------- */
+
+.your-profile-style {
+  margin-top: 30px;
+  margin-left: 20px;
+  max-width: 400px;
+  border-left: 1px solid rgba(128, 128, 128, 0.349);
+}
+
+.profile-element {
+  margin-bottom: 40px;
+  margin-left: 20px;
+}
+
+.style-info-user {
+  color: rgb(255, 255, 255);
+  font-size: 30px;
+  font-family: Tahoma, sans-serif;
+  margin-left: 10px;
+}
+
+.profile-title {
+  color: #b4b4b4;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.style-info-fwr {
+  display: flex;
+}
+
+.profile-number {
+  color: #ffffff;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-size: 25px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+
 /* -------------------- JOIN & LOGIN SECTION -------------------- */
 
 .join-us-section {

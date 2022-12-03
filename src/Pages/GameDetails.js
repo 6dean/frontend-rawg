@@ -7,6 +7,8 @@ import { useParams, useNavigate } from "react-router-dom";
 const GameDetails = ({ token, tokenUser }) => {
   const { id } = useParams();
   const [data, setData] = useState({});
+  const [isFav, setisFav] = useState({});
+  const [isWish, setisWish] = useState({});
   const [isLoading, setisLoading] = useState(true);
 
   const navigate = useNavigate();
@@ -17,9 +19,21 @@ const GameDetails = ({ token, tokenUser }) => {
         `https://api.rawg.io/api/games/${id}?key=19f566421f19451c81f113f84a69f091`
       );
 
+      const infoFav = await axios.post(`http://localhost:3000/allfavorites`, {
+        token,
+      });
+
+      const infoWish = await axios.post(`http://localhost:3000/wishlist`, {
+        token,
+      });
+
       setData(response.data);
+      setisFav(infoFav.data);
+      setisWish(infoWish.data);
+
       setisLoading(false);
     };
+
     fetchData();
   }, [id]);
 
@@ -151,6 +165,7 @@ const GameDetails = ({ token, tokenUser }) => {
                 />
               </p>
             </div>
+
             <div
               className="button-wish"
               onClick={() => {
@@ -183,7 +198,10 @@ const GameDetails = ({ token, tokenUser }) => {
         {data.description
           .replaceAll("<p>", "")
           .replaceAll("</p>", "")
-          .replaceAll("<br />", "")}
+          .replaceAll("<br />", "")
+          .replaceAll("<h3>", "")
+          .replaceAll("</h3>", "")
+          .replaceAll("&#39;", "'")}
       </div>
       <div className="separation"></div>
       <div className="similar-element">
