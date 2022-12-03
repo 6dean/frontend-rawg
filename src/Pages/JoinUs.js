@@ -26,8 +26,9 @@ const JoinUs = ({ transferToken, transferTokenUser }) => {
     if (!username || !email || !password) {
       setAlert(true);
     } else if (email) {
+      setAlert(false);
       email.match("@");
-      setError("Your mail is not correct.");
+      setError("Your email is not correct.");
     } else {
       setAlert(false);
       setError(null);

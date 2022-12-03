@@ -7,8 +7,8 @@ import { useParams, useNavigate } from "react-router-dom";
 const GameDetails = ({ token, tokenUser }) => {
   const { id } = useParams();
   const [data, setData] = useState({});
-  const [isFav, setisFav] = useState({});
-  const [isWish, setisWish] = useState({});
+  const [inFavorites, setInFavorites] = useState(false);
+  const [inWishlist, setInWishlist] = useState(false);
   const [isLoading, setisLoading] = useState(true);
 
   const navigate = useNavigate();
@@ -19,23 +19,34 @@ const GameDetails = ({ token, tokenUser }) => {
         `https://api.rawg.io/api/games/${id}?key=19f566421f19451c81f113f84a69f091`
       );
 
-      const infoFav = await axios.post(`http://localhost:3000/allfavorites`, {
-        token,
-      });
-
-      const infoWish = await axios.post(`http://localhost:3000/wishlist`, {
-        token,
-      });
-
       setData(response.data);
-      setisFav(infoFav.data);
-      setisWish(infoWish.data);
 
       setisLoading(false);
     };
 
     fetchData();
   }, [id]);
+
+  const favoritesList = async () => {
+    const response = await axios.post(`http://localhost:3000/allfavorites`, {
+      token,
+    });
+
+    response.data.some((element) => element.id === data.id) &&
+      setInFavorites(true);
+  };
+
+  favoritesList();
+
+  const wishList = async () => {
+    const response = await axios.post(`http://localhost:3000/wishlist`, {
+      token,
+    });
+    response.data.some((element) => element.id === data.id) &&
+      setInWishlist(true);
+  };
+
+  wishList();
 
   const addGame = () => {
     if (token || tokenUser) {
@@ -50,12 +61,29 @@ const GameDetails = ({ token, tokenUser }) => {
             token,
             favorite,
           });
+          setInFavorites(true);
         } catch (error) {}
       };
       favGame();
     } else {
       navigate("/signin");
     }
+  };
+
+  const deleteFav = async (id) => {
+    const gameId = id;
+    const response = await axios.put(`http://localhost:3000/deletefavorite`, {
+      token,
+      gameId,
+    });
+  };
+
+  const deleteWish = async (id) => {
+    const gameId = id;
+    const response = await axios.put(`http://localhost:3000/deletewish`, {
+      token,
+      gameId,
+    });
   };
 
   const wishGame = () => {
@@ -71,6 +99,7 @@ const GameDetails = ({ token, tokenUser }) => {
             wish,
             token,
           });
+          setInWishlist(true);
         } catch (error) {
           console.log(error.response);
         }
@@ -150,46 +179,81 @@ const GameDetails = ({ token, tokenUser }) => {
             </div>
           </div>
           <div className="community-button">
-            <div
-              className="button-fav"
-              onClick={() => {
-                addGame();
-              }}
-            >
-              ADD FAVORITES
-              <p>
-                <FontAwesomeIcon
-                  icon="fa-solid fa-heart"
-                  fontSize={16}
-                  color="red"
-                />
-              </p>
-            </div>
-
-            <div
-              className="button-wish"
-              onClick={() => {
-                wishGame();
-              }}
-            >
-              ADD WISHLIST
-              <p className="">
-                <FontAwesomeIcon
-                  icon="fa-solid fa-gift"
-                  fontSize={16}
-                  color="orange"
-                />
-              </p>
-            </div>
+            {inFavorites ? (
+              <div
+                className="button-fav"
+                onClick={() => {
+                  deleteFav(data.id);
+                  setInFavorites(false);
+                }}
+              >
+                ADDED
+                <p>
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-heart-circle-check"
+                    fontSize={16}
+                    color="red"
+                  />
+                </p>
+              </div>
+            ) : (
+              <div
+                className="button-fav"
+                onClick={() => {
+                  addGame();
+                  setInFavorites(true);
+                }}
+              >
+                ADD FAVORITES
+                <p>
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-heart"
+                    fontSize={16}
+                    color="grey"
+                  />
+                </p>
+              </div>
+            )}
+            {inWishlist ? (
+              <div
+                className="button-wish"
+                onClick={() => {
+                  deleteWish(data.id);
+                  setInWishlist(false);
+                }}
+              >
+                ADDED
+                <p>
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-gift"
+                    fontSize={16}
+                    color="orange"
+                  />
+                </p>
+              </div>
+            ) : (
+              <div
+                className="button-wish"
+                onClick={() => {
+                  wishGame();
+                  setInWishlist(true);
+                }}
+              >
+                ADD WISHLIST
+                <p className="">
+                  <FontAwesomeIcon
+                    icon="fa-solid fa-gift"
+                    fontSize={16}
+                    color="grey"
+                  />
+                </p>
+              </div>
+            )}
           </div>
         </div>
-        <div>
+        <div className="box-img">
           <div className="game-img">
-            <img
-              src={data.background_image}
-              alt="game-background"
-              width="400"
-            />
+            <img src={data.background_image} alt="game-background" />
           </div>
         </div>
       </div>
