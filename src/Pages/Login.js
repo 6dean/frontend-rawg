@@ -17,6 +17,7 @@ const Login = ({ transferToken, transferTokenUser }) => {
   const [password, setPassword] = useState("");
   const [seePass, setSeePass] = useState(true);
   const [alert, setAlert] = useState(false);
+  const [error, setError] = useState("");
 
   const validLog = () => {
     if (!email || !password) {
@@ -35,7 +36,7 @@ const Login = ({ transferToken, transferTokenUser }) => {
           transferTokenUser(user);
           token && navigate("/");
         } catch (error) {
-          console.log(error.message);
+          setError(error.response.data.message);
         }
       };
       data();
@@ -89,6 +90,13 @@ const Login = ({ transferToken, transferTokenUser }) => {
                   </div>
                   <div className={alert ? "alert-text" : "alert-none"}>
                     <p>Fields need to be completed !</p>
+                  </div>
+                  <div
+                    className={
+                      alert ? "alert-none" : error ? "alert-text" : "alert-none"
+                    }
+                  >
+                    {error}
                   </div>
                 </div>
                 <button

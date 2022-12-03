@@ -20,12 +20,17 @@ const JoinUs = ({ transferToken, transferTokenUser }) => {
   const [token, setToken] = useState(null);
   const [tokenUser, setTokenUser] = useState(null);
   const [alert, setAlert] = useState(false);
+  const [error, setError] = useState("");
 
   const validJoin = () => {
     if (!username || !email || !password) {
       setAlert(true);
+    } else if (email) {
+      email.match("@");
+      setError("Your mail is not correct.");
     } else {
       setAlert(false);
+      setError(null);
       const data = async () => {
         try {
           const response = await axios.post("http://localhost:3000/joinus", {
@@ -38,7 +43,7 @@ const JoinUs = ({ transferToken, transferTokenUser }) => {
           setToken(token);
           setTokenUser(user);
         } catch (error) {
-          console.log(error.message);
+          setError(error.response.data.message);
         }
       };
       data();
@@ -102,6 +107,13 @@ const JoinUs = ({ transferToken, transferTokenUser }) => {
                   </div>
                   <div className={alert ? "alert-text" : "alert-none"}>
                     <p>Fields need to be completed !</p>
+                  </div>
+                  <div
+                    className={
+                      alert ? "alert-none" : error ? "alert-text" : "alert-none"
+                    }
+                  >
+                    {error}
                   </div>
                 </div>
 
