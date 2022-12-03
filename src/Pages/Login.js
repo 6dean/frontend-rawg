@@ -4,6 +4,7 @@ import {
   faTwitter,
   faSteam,
 } from "@fortawesome/free-brands-svg-icons";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -14,6 +15,7 @@ const Login = ({ transferToken, transferTokenUser }) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [seePass, setSeePass] = useState(true);
   const [alert, setAlert] = useState(false);
 
   const validLog = () => {
@@ -55,12 +57,36 @@ const Login = ({ transferToken, transferTokenUser }) => {
                     placeholder="Email"
                     onChange={(email) => setEmail(email.target.value)}
                   ></input>
-                  <input
-                    className={alert ? "input-join-alert" : "input-join"}
-                    type="password"
-                    placeholder="Password"
-                    onChange={(password) => setPassword(password.target.value)}
-                  ></input>
+                  <div className="password-style">
+                    <input
+                      className={alert ? "input-join-alert" : "input-join"}
+                      type={seePass ? "password" : "text"}
+                      placeholder="Password"
+                      onChange={(password) =>
+                        setPassword(password.target.value)
+                      }
+                    ></input>
+                    <div
+                      className={
+                        seePass ? "button-unsee-pass" : "button-see-pass"
+                      }
+                      onClick={() => {
+                        setSeePass(true);
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faEyeSlash} size="xl" />
+                    </div>
+                    <div
+                      className={
+                        seePass ? "button-see-pass" : "button-unsee-pass"
+                      }
+                      onClick={() => {
+                        setSeePass(false);
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faEye} size="xl" />
+                    </div>
+                  </div>
                   <div className={alert ? "alert-text" : "alert-none"}>
                     <p>Fields need to be completed !</p>
                   </div>

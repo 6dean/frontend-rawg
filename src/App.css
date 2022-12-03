@@ -470,6 +470,27 @@ h1 {
   background-position: center;
 }
 
+.password-style {
+  position: relative;
+  display: flex;
+}
+.button-see-pass {
+  color: rgba(178, 178, 178, 0.616);
+  font-size: 14px;
+  position: absolute;
+  right: 15px;
+  top: 16px;
+}
+
+.button-see-pass:hover {
+  cursor: pointer;
+}
+
+.button-unsee-pass {
+  display: none;
+  position: absolute;
+}
+
 .joinin-rule {
   color: white;
   font-family: "Noto Sans Thai", sans-serif;
