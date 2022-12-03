@@ -57,7 +57,7 @@ const GameDetails = ({ token, tokenUser }) => {
             id: data.id,
             image: data.background_image,
           };
-          const response = await axios.put("http://localhost:3000/favorite", {
+          await axios.put("http://localhost:3000/favorite", {
             token,
             favorite,
           });
@@ -72,18 +72,20 @@ const GameDetails = ({ token, tokenUser }) => {
 
   const deleteFav = async (id) => {
     const gameId = id;
-    const response = await axios.put(`http://localhost:3000/deletefavorite`, {
+    await axios.put(`http://localhost:3000/deletefavorite`, {
       token,
       gameId,
     });
+    setInFavorites(false);
   };
 
   const deleteWish = async (id) => {
     const gameId = id;
-    const response = await axios.put(`http://localhost:3000/deletewish`, {
+    await axios.put(`http://localhost:3000/deletewish`, {
       token,
       gameId,
     });
+    setInWishlist(false);
   };
 
   const wishGame = () => {
@@ -95,7 +97,7 @@ const GameDetails = ({ token, tokenUser }) => {
           image: data.background_image,
         };
         try {
-          const response = await axios.put("http://localhost:3000/wish", {
+          await axios.put("http://localhost:3000/wish", {
             wish,
             token,
           });
@@ -234,7 +236,7 @@ const GameDetails = ({ token, tokenUser }) => {
             ) : (
               <div
                 className="button-wish"
-                onClick={() => {
+                onClick={async () => {
                   wishGame();
                   setInWishlist(true);
                 }}
