@@ -13,7 +13,7 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
   const fetchData = async () => {
     if (platform) {
       const response = await axios.get(
-        `https://api.rawg.io/api/games?key=19f566421f19451c81f113f84a69f091&page_size=${number}&search=${search}&platforms=${platform}`
+        `http://localhost:3000/home?page_size=${number}&search=${search}&platforms=${platform}`
       );
 
       setData(response.data);
@@ -21,7 +21,7 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
     } else {
       setPlatformName(null);
       const response = await axios.get(
-        `https://api.rawg.io/api/games?key=19f566421f19451c81f113f84a69f091&page_size=${number}&search=${search}`
+        `http://localhost:3000/home?page_size=${number}&search=${search}`
       );
 
       setData(response.data);
@@ -64,7 +64,11 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
                       </div>
                     </div>
                   </Link>
-                  <Carousel showThumbs={false} showStatus={false}>
+                  <Carousel
+                    showThumbs={false}
+                    showStatus={false}
+                    infiniteLoop={true}
+                  >
                     {elem.short_screenshots
                       ? elem.short_screenshots.map((screenshot, key) => {
                           return (

@@ -38,7 +38,16 @@ const Developers = () => {
             {data.results.map((elem, index) => {
               return (
                 <div key={index} className="card-platform">
-                  <div className="title-platform">{elem.name}</div>
+                  <div className="title-platform">
+                    <Link
+                      to="/"
+                      onClick={() => {
+                        window.scrollTo(0, 0);
+                      }}
+                    >
+                      {elem.name}
+                    </Link>
+                  </div>
                   <div className="trending-platforms">
                     {elem.games.slice(0, 3).map((games, index) => {
                       return (

@@ -9,10 +9,14 @@ const NextWeek = ({ search }) => {
   const [number, setNumber] = useState(21);
   const [isLoading, setisLoading] = useState(true);
 
+  console.log(
+    `http://localhost:3000/nextweek?page_size=${number}&search=${search}`
+  );
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `https://api.rawg.io/api/games?key=19f566421f19451c81f113f84a69f091&dates=2022-12-05,2022-12-31&page_size=${number}&search=${search}`
+        `http://localhost:3000/nextweek?page_size=${number}&search=${search}`
       );
 
       setData(response.data);
@@ -52,7 +56,11 @@ const NextWeek = ({ search }) => {
                       </Link>
                     </div>
                   </div>{" "}
-                  <Carousel showThumbs={false} showStatus={false}>
+                  <Carousel
+                    showThumbs={false}
+                    showStatus={false}
+                    infiniteLoop={true}
+                  >
                     {elem.short_screenshots.map((screenshot, key) => {
                       return (
                         <div key={key}>

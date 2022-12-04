@@ -12,7 +12,7 @@ const LastThirstyDays = ({ search }) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `https://api.rawg.io/api/games?key=19f566421f19451c81f113f84a69f091&dates=2022-09-01,2022-12-01&page_size=${number}&search=${search}`
+        `http://localhost:3000/last30?page_size=${number}&search=${search}`
       );
 
       setData(response.data);
@@ -52,7 +52,11 @@ const LastThirstyDays = ({ search }) => {
                       </Link>
                     </div>
                   </div>
-                  <Carousel showThumbs={false} showStatus={false}>
+                  <Carousel
+                    showThumbs={false}
+                    showStatus={false}
+                    infiniteLoop={true}
+                  >
                     {elem.short_screenshots.map((screenshot, key) => {
                       return (
                         <div key={key}>

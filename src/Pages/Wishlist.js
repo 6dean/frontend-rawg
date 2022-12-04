@@ -41,6 +41,14 @@ const Wishlist = ({ token }) => {
         <div className="title-home">
           <p>Wishlist</p>
         </div>
+        <div className="box-info-null">
+          <div className="info-null">You don't have any games yet !</div>
+          <img
+            src="https://res.cloudinary.com/dlfp2xvis/image/upload/v1670147535/my-content/Pngtree_video_game_controller_5392581_kmp8gz.png"
+            alt="gamepad"
+            width="200"
+          />
+        </div>
       </div>
     </div>
   ) : isLoading ? (
@@ -56,52 +64,63 @@ const Wishlist = ({ token }) => {
           <p>Wishlist</p>
         </div>
       </div>
-      <div className="listing-games-wish-fav">
-        {data.map((elem, index) => {
-          return (
-            <div key={index} className="card-game">
-              <div
-                className="game-delete"
-                onClick={() => {
-                  updateData(elem.id);
-                }}
-              >
-                <FontAwesomeIcon icon={faCircleXmark} size="xl" />
-              </div>
-              <Link
-                to={`/game-details/${elem.id}`}
-                onClick={() => {
-                  window.scrollTo(0, 0);
-                }}
-              >
-                <div className="card-info-box">
-                  <div className="game-title">
-                    {elem.name.length < 30
-                      ? elem.name
-                      : elem.name.slice(0, 40) + "..."}
-                  </div>
+      {data.length < 1 ? (
+        <div className="box-info-null">
+          <div className="info-null">You don't have any games yet !</div>
+          <img
+            src="https://res.cloudinary.com/dlfp2xvis/image/upload/v1670147535/my-content/Pngtree_video_game_controller_5392581_kmp8gz.png"
+            alt="gamepad"
+            width="200"
+          />
+        </div>
+      ) : (
+        <div className="listing-games-wish-fav">
+          {data.map((elem, index) => {
+            return (
+              <div key={index} className="card-game">
+                <div
+                  className="game-delete"
+                  onClick={() => {
+                    updateData(elem.id);
+                  }}
+                >
+                  <FontAwesomeIcon icon={faCircleXmark} size="xl" />
                 </div>
-              </Link>
-              <Carousel
-                showThumbs={false}
-                showStatus={false}
-                showIndicators={false}
-              >
                 <Link
                   to={`/game-details/${elem.id}`}
                   onClick={() => {
                     window.scrollTo(0, 0);
                   }}
                 >
-                  <div>
-                    <img className="carousel-img" src={elem.image} alt="" />
+                  <div className="card-info-box">
+                    <div className="game-title">
+                      {elem.name.length < 30
+                        ? elem.name
+                        : elem.name.slice(0, 40) + "..."}
+                    </div>
                   </div>
                 </Link>
-              </Carousel>
-            </div>
-          );
-        })}
-      </div>
+                <Carousel
+                  showThumbs={false}
+                  showStatus={false}
+                  showIndicators={false}
+                >
+                  <Link
+                    to={`/game-details/${elem.id}`}
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                    }}
+                  >
+                    <div>
+                      <img className="carousel-img" src={elem.image} alt="" />
+                    </div>
+                  </Link>
+                </Carousel>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

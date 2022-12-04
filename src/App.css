@@ -324,6 +324,19 @@ p {
   margin-top: 50px;
 }
 
+.box-info-null {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.info-null {
+  color: rgb(192, 192, 192);
+  font-family: Tahoma, sans-serif;
+  font-size: 40px;
+  letter-spacing: 1px;
+}
+
 /* -------------------- PLATFORMS SECTION -------------------- */
 
 .navigation-home {

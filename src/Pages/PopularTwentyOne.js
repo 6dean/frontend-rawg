@@ -12,7 +12,7 @@ const PopularTwentyOne = ({ search }) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `https://api.rawg.io/api/games?key=19f566421f19451c81f113f84a69f091&dates=2021-01-01,2021-12-31&metacritic=80,100&page_size=${number}&search=${search}`
+        `http://localhost:3000/popular?page_size=${number}&search=${search}`
       );
 
       setData(response.data);
@@ -52,7 +52,11 @@ const PopularTwentyOne = ({ search }) => {
                       </Link>
                     </div>
                   </div>{" "}
-                  <Carousel showThumbs={false} showStatus={false}>
+                  <Carousel
+                    showThumbs={false}
+                    showStatus={false}
+                    infiniteLoop={true}
+                  >
                     {elem.short_screenshots.map((screenshot, key) => {
                       return (
                         <div key={key}>

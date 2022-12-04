@@ -12,7 +12,7 @@ const AllTimeTop = ({ search }) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `https://api.rawg.io/api/games?metacritic=90,100&key=19f566421f19451c81f113f84a69f091&page_size=${number}&search=${search}`
+        `http://localhost:3000/alltimetop?page_size=${number}&search=${search}`
       );
 
       setData(response.data);
@@ -52,7 +52,11 @@ const AllTimeTop = ({ search }) => {
                       </Link>
                     </div>
                   </div>
-                  <Carousel showThumbs={false} showStatus={false}>
+                  <Carousel
+                    showThumbs={false}
+                    showStatus={false}
+                    infiniteLoop={true}
+                  >
                     {elem.short_screenshots.map((screenshot, key) => {
                       return (
                         <div key={key}>

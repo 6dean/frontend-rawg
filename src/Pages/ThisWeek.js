@@ -12,7 +12,7 @@ const ThisWeek = ({ search }) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `https://api.rawg.io/api/games?key=19f566421f19451c81f113f84a69f091&dates=2022-11-15,2022-12-01&search=${search}`
+        `http://localhost:3000/thisweek?page_size=${number}&search=${search}`
       );
 
       setData(response.data);
@@ -52,7 +52,11 @@ const ThisWeek = ({ search }) => {
                       </Link>
                     </div>
                   </div>
-                  <Carousel showThumbs={false} showStatus={false}>
+                  <Carousel
+                    showThumbs={false}
+                    showStatus={false}
+                    infiniteLoop={true}
+                  >
                     {elem.short_screenshots.map((screenshot, key) => {
                       return (
                         <div key={key}>
@@ -68,7 +72,7 @@ const ThisWeek = ({ search }) => {
                 </div>
               );
             })}
-            <div className={data.count < 20 ? "display" : "card-more"}>
+            <div className={data.count <= 21 ? "display" : "card-more"}>
               <p
                 className="load-more"
                 onClick={() => {
