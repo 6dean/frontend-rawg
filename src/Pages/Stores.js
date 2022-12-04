@@ -9,9 +9,7 @@ const Stores = () => {
   const [isLoading, setisLoading] = useState(true);
 
   const fetchData = async () => {
-    const response = await axios.get(
-      `https://api.rawg.io/api/stores?key=19f566421f19451c81f113f84a69f091`
-    );
+    const response = await axios.get(`http://localhost:3000/stores`);
 
     setData(response.data);
     setisLoading(false);

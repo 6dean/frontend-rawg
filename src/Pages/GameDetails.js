@@ -16,7 +16,7 @@ const GameDetails = ({ token, tokenUser }) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `https://api.rawg.io/api/games/${id}?key=19f566421f19451c81f113f84a69f091`
+        `http://localhost:3000/gamedetails?id=${id}`
       );
 
       setData(response.data);

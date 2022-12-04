@@ -83,7 +83,12 @@ const SideBanner = ({ setPlatform, token }) => {
 
         <div className="side-section">
           <div className="side-title">Top</div>
-          <Link to="/bestoftheyear">
+          <Link
+            to="/bestoftheyear"
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
+          >
             <div className="nav-icon">
               <p className="icon-class">
                 <FontAwesomeIcon icon="fa-solid fa-trophy" />
@@ -91,7 +96,12 @@ const SideBanner = ({ setPlatform, token }) => {
               <p>Best of the year</p>
             </div>
           </Link>
-          <Link to="/popular2021">
+          <Link
+            to="/popular2021"
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
+          >
             <div className="nav-icon">
               <p className="icon-class">
                 <FontAwesomeIcon icon="fa-solid fa-ranking-star" />
@@ -99,7 +109,12 @@ const SideBanner = ({ setPlatform, token }) => {
               <p>Popular in 2021</p>
             </div>
           </Link>
-          <Link to="/alltimetop250">
+          <Link
+            to="/alltimetop250"
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
+          >
             <div className="nav-icon">
               <p className="icon-class">
                 <FontAwesomeIcon icon="fa-solid fa-crown" />
@@ -111,7 +126,12 @@ const SideBanner = ({ setPlatform, token }) => {
 
         <div className="side-section">
           <div className="side-title">Browse</div>
-          <Link to="/platforms">
+          <Link
+            to="/platforms"
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
+          >
             <div className="nav-icon">
               <p className="icon-class">
                 <FontAwesomeIcon icon="fa-solid fa-gamepad" fontSize={18} />
@@ -119,7 +139,12 @@ const SideBanner = ({ setPlatform, token }) => {
               <p>Platforms</p>
             </div>
           </Link>
-          <Link to="/stores">
+          <Link
+            to="/stores"
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
+          >
             <div className="nav-icon">
               <p className="icon-class">
                 <FontAwesomeIcon icon="fa-solid fa-shop" />
@@ -127,7 +152,12 @@ const SideBanner = ({ setPlatform, token }) => {
               <p>stores</p>
             </div>
           </Link>
-          <Link to="/genres">
+          <Link
+            to="/genres"
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
+          >
             <div className="nav-icon">
               <p className="icon-class">
                 <FontAwesomeIcon icon="fa-solid fa-ghost" />{" "}
@@ -135,7 +165,12 @@ const SideBanner = ({ setPlatform, token }) => {
               <p>Genres</p>
             </div>
           </Link>
-          <Link to="/developers">
+          <Link
+            to="/developers"
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
+          >
             <div className="nav-icon">
               <p className="icon-class">
                 <FontAwesomeIcon icon="fa-solid fa-code" />
