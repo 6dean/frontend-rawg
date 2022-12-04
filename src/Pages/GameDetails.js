@@ -276,18 +276,20 @@ const GameDetails = ({ token, tokenUser }) => {
       <div className="similar-elements">
         {data.tags.slice(0, 12).map((similar, index) => {
           return (
-            <div key={index} className="card-similar">
-              <div className="similar-title">
-                <div>{similar.name}</div>
+            <Link to="/">
+              <div key={index} className="card-similar">
+                <div className="similar-title">
+                  <div>{similar.name}</div>
+                </div>
+                <div>
+                  <img
+                    className="img-similar"
+                    src={similar.image_background}
+                    alt="illustrations"
+                  />
+                </div>
               </div>
-              <div>
-                <img
-                  className="img-similar"
-                  src={similar.image_background}
-                  alt="illustrations"
-                />
-              </div>
-            </div>
+            </Link>
           );
         })}
       </div>
