@@ -9,9 +9,19 @@ const GameDetails = ({ token, tokenUser }) => {
   const [data, setData] = useState({});
   const [inFavorites, setInFavorites] = useState(false);
   const [inWishlist, setInWishlist] = useState(false);
+  const [comment, setComment] = useState("");
+  const [listcomments, setListcomments] = useState({});
   const [isLoading, setisLoading] = useState(true);
 
   const navigate = useNavigate();
+
+  const allReviews = async () => {
+    const response = await axios.post(`http://localhost:3000/allcomments`, {
+      game_id: data.id,
+    });
+
+    setListcomments(response.data);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,10 +30,9 @@ const GameDetails = ({ token, tokenUser }) => {
       );
 
       setData(response.data);
-
       setisLoading(false);
     };
-
+    allReviews();
     fetchData();
   }, [id]);
 
@@ -112,6 +121,22 @@ const GameDetails = ({ token, tokenUser }) => {
     }
   };
 
+  const postComment = async () => {
+    var time = new Date().getTime();
+    var date = new Date(time);
+    try {
+      await axios.post("http://localhost:3000/commentary", {
+        game_id: data.id,
+        username: tokenUser,
+        token: token,
+        date: date.toString(),
+        review: comment,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return isLoading ? (
     <div className="loading">
       <>
@@ -186,7 +211,6 @@ const GameDetails = ({ token, tokenUser }) => {
                 className="button-fav"
                 onClick={() => {
                   deleteFav(data.id);
-                  setInFavorites(false);
                 }}
               >
                 ADDED
@@ -221,7 +245,6 @@ const GameDetails = ({ token, tokenUser }) => {
                 className="button-wish"
                 onClick={() => {
                   deleteWish(data.id);
-                  setInWishlist(false);
                 }}
               >
                 ADDED
@@ -311,10 +334,19 @@ const GameDetails = ({ token, tokenUser }) => {
               <textarea
                 className="comment-zone"
                 placeholder="Be polite to and respectful of other commenters. No ad hominem attacks. Discuss or argue issues, do not argue about any topic excepted the game."
+                onChange={(comment) => setComment(comment.target.value)}
               ></textarea>
             </div>
             <div className="post-button">
-              <button className="style-post-button">PUBLISH</button>
+              <button
+                className="style-post-button"
+                onClick={() => {
+                  postComment();
+                  allReviews();
+                }}
+              >
+                PUBLISH
+              </button>
             </div>
           </>
         ) : (
@@ -333,11 +365,39 @@ const GameDetails = ({ token, tokenUser }) => {
           </>
         )}
 
-        <div className="comment-zone-area">
-          <div className="comments-users">
-            <p>NO COMMENTS YET :/</p>
+        {listcomments.length > 0 ? (
+          <>
+            {listcomments.map((elem, index) => {
+              return (
+                <div className="pres-comment-zone-area">
+                  <div className="first-elem-review">
+                    <>
+                      <div className="username-review">
+                        {elem.username.toUpperCase()}
+                      </div>
+                    </>
+                    <>
+                      <div className="review-date">
+                        {elem.date.slice(0, 25)}
+                      </div>
+                    </>
+                  </div>
+                  <div className="second-elem-review">
+                    <div className="review-style">
+                      <>{elem.text}</>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </>
+        ) : (
+          <div className="comment-zone-area">
+            <div className="comments-users">
+              <p>NO COMMENTS YET :/</p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
