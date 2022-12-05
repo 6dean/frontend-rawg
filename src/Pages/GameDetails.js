@@ -15,14 +15,6 @@ const GameDetails = ({ token, tokenUser }) => {
 
   const navigate = useNavigate();
 
-  const allReviews = async () => {
-    const response = await axios.post(`http://localhost:3000/allcomments`, {
-      game_id: data.id,
-    });
-
-    setListcomments(response.data);
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
@@ -32,8 +24,19 @@ const GameDetails = ({ token, tokenUser }) => {
       setData(response.data);
       setisLoading(false);
     };
-    allReviews();
     fetchData();
+  }, [id]);
+
+  const allReviews = async () => {
+    const response = await axios.post(`http://localhost:3000/allcomments`, {
+      game_id: data.id,
+    });
+
+    setListcomments(response.data);
+  };
+
+  useEffect(() => {
+    allReviews();
   }, [id]);
 
   const favoritesList = async () => {
@@ -124,16 +127,20 @@ const GameDetails = ({ token, tokenUser }) => {
   const postComment = async () => {
     var time = new Date().getTime();
     var date = new Date(time);
-    try {
-      await axios.post("http://localhost:3000/commentary", {
-        game_id: data.id,
-        username: tokenUser,
-        token: token,
-        date: date.toString(),
-        review: comment,
-      });
-    } catch (error) {
-      console.log(error);
+    if (comment.length < 20) {
+      alert`Your comment must contain at least 20 characters`;
+    } else {
+      try {
+        await axios.post("http://localhost:3000/commentary", {
+          game_id: data.id,
+          username: tokenUser,
+          token: token,
+          date: date.toString(),
+          review: comment,
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
