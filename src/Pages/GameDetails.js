@@ -37,7 +37,7 @@ const GameDetails = ({ token, tokenUser }) => {
 
   useEffect(() => {
     allReviews();
-  }, [id]);
+  }, [data.id]);
 
   const favoritesList = async () => {
     const response = await axios.post(`http://localhost:3000/allfavorites`, {
@@ -376,7 +376,7 @@ const GameDetails = ({ token, tokenUser }) => {
           <>
             {listcomments.map((elem, index) => {
               return (
-                <div className="pres-comment-zone-area">
+                <div key={index} className="pres-comment-zone-area">
                   <div className="first-elem-review">
                     <>
                       <div className="username-review">
