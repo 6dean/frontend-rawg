@@ -300,6 +300,10 @@ const GameDetails = ({ token, tokenUser }) => {
           .replaceAll("<p>", "")
           .replaceAll("</p>", "")
           .replaceAll("<br />", "")
+          .replaceAll("<ul>", "")
+          .replaceAll("</ul>", "")
+          .replaceAll("<li>", "")
+          .replaceAll("</li>", "")
           .replaceAll("<h3>", "")
           .replaceAll("</h3>", "")
           .replaceAll("&#39;", "'")}

@@ -98,7 +98,11 @@ const Reviews = ({ token }) => {
                     Date : {elem.date.slice(0, 25)}
                   </div>
                   <div className="review-comment">
-                    <div className="review-comment-style">{elem.text}</div>
+                    <div className="review-comment-style">
+                      {elem.text.length < 120
+                        ? elem.text
+                        : elem.text.slice(0, 120) + "..."}
+                    </div>
                   </div>
                 </div>
               </div>
