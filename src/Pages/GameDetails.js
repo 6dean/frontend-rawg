@@ -27,17 +27,7 @@ const GameDetails = ({ token, tokenUser }) => {
     fetchData();
   }, [id]);
 
-  const allReviews = async () => {
-    const response = await axios.post(`http://localhost:3000/allcomments`, {
-      game_id: data.id,
-    });
-
-    setListcomments(response.data);
-  };
-
-  useEffect(() => {
-    allReviews();
-  }, [data.id]);
+  useEffect(() => {}, [listcomments]);
 
   const favoritesList = async () => {
     const response = await axios.post(`http://localhost:3000/allfavorites`, {
@@ -47,9 +37,6 @@ const GameDetails = ({ token, tokenUser }) => {
     response.data.some((element) => element.id === data.id) &&
       setInFavorites(true);
   };
-
-  favoritesList();
-
   const wishList = async () => {
     const response = await axios.post(`http://localhost:3000/wishlist`, {
       token,
@@ -58,7 +45,8 @@ const GameDetails = ({ token, tokenUser }) => {
       setInWishlist(true);
   };
 
-  wishList();
+  token && favoritesList();
+  token && wishList();
 
   const addGame = () => {
     if (token || tokenUser) {
@@ -133,6 +121,8 @@ const GameDetails = ({ token, tokenUser }) => {
       try {
         await axios.post("http://localhost:3000/commentary", {
           game_id: data.id,
+          game_name: data.name,
+          game_img: data.background_image_additional,
           username: tokenUser,
           token: token,
           date: date.toString(),
@@ -143,6 +133,21 @@ const GameDetails = ({ token, tokenUser }) => {
       }
     }
   };
+
+  const allReviews = async () => {
+    try {
+      const response = await axios.post(`http://localhost:3000/allcomments`, {
+        game_id: id,
+      });
+      setListcomments(response.data.reverse());
+    } catch (error) {
+      console.log("something wrong happened :S");
+    }
+  };
+
+  useEffect(() => {
+    allReviews();
+  }, [data.id]);
 
   return isLoading ? (
     <div className="loading">
@@ -195,7 +200,6 @@ const GameDetails = ({ token, tokenUser }) => {
                   <p className="style-details">Score</p>
                 </div>
                 <div>
-                  {" "}
                   <p
                     className={
                       data.metacritic

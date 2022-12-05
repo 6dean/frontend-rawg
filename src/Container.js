@@ -175,7 +175,7 @@ function Container() {
             path="/yourprofile"
             element={<MemberPage token={token} />}
           ></Route>
-          <Route path="/reviews" element={<Reviews />}></Route>
+          <Route path="/reviews" element={<Reviews token={token} />}></Route>
         </Routes>
       </div>
     </>
