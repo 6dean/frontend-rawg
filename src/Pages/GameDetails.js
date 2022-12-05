@@ -147,6 +147,7 @@ const GameDetails = ({ token, tokenUser }) => {
 
   useEffect(() => {
     allReviews();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data.id]);
 
   return isLoading ? (

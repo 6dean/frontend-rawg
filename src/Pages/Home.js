@@ -2,7 +2,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { Carousel } from "react-responsive-carousel";
 
 const Home = ({ search, platform, platformName, setPlatformName }) => {
@@ -31,6 +30,7 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [number, search, platform, platformName]);
 
   return isLoading ? (
