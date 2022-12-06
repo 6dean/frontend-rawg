@@ -800,19 +800,12 @@ h1 {
 
 .listing-platforms {
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  color: white;
 }
 
 .platform-style {
-  font-family: "Khula", sans-serif;
-  padding-left: 5px;
-  padding-right: 5px;
-  font-size: 13px;
-  background-color: #cccccc;
-  border-radius: 4px;
-  color: #323232;
+  display: flex;
+  align-items: center;
+  padding-right: 7px;
 }
 
 .game-title-top {

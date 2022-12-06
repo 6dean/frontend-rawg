@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useParams, useNavigate } from "react-router-dom";
-import { Platforms } from "../PlatformsIcons";
+import { PlatformLogo } from "../PlatformsIcons";
 
 const GameDetails = ({ token, tokenUser }) => {
   const { id } = useParams();
@@ -162,9 +162,20 @@ const GameDetails = ({ token, tokenUser }) => {
       <div className="flex-game-top">
         <div className="game-left-element">
           <div className="listing-platforms">
-            {data.platforms.map((platform, index) => {
-              console.log(Platforms);
-              return null;
+            {data.platforms.map((nameplatform, index) => {
+              console.log(nameplatform.platform.name);
+              return (
+                <div className="platform-style" key={index}>
+                  {PlatformLogo[nameplatform.platform.name] ? (
+                    <img
+                      src={PlatformLogo[nameplatform.platform.name]}
+                      alt="logo"
+                    />
+                  ) : (
+                    <>hello</>
+                  )}
+                </div>
+              );
             })}
           </div>
           <div className="game-title-top">{data.name}</div>
