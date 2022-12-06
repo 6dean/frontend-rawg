@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useParams, useNavigate } from "react-router-dom";
 import { PlatformLogo } from "../PlatformsIcons";
 
-const GameDetails = ({ token, tokenUser }) => {
+const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
   const { id } = useParams();
   const [data, setData] = useState({});
   const [inFavorites, setInFavorites] = useState(false);
@@ -163,14 +163,22 @@ const GameDetails = ({ token, tokenUser }) => {
         <div className="game-left-element">
           <div className="listing-platforms">
             {data.platforms.map((nameplatform, index) => {
-              console.log(nameplatform.platform.name);
               return (
                 <div className="platform-style" key={index}>
                   {PlatformLogo[nameplatform.platform.name] ? (
-                    <img
-                      src={PlatformLogo[nameplatform.platform.name]}
-                      alt="logo"
-                    />
+                    <Link
+                      to={`/platforms/${nameplatform.platform.slug}`}
+                      onClick={() => {
+                        setPlatform(nameplatform.platform.id);
+                        setPlatformName(nameplatform.platform.name);
+                        window.scrollTo(0, 0);
+                      }}
+                    >
+                      <img
+                        src={PlatformLogo[nameplatform.platform.name]}
+                        alt="logo"
+                      />
+                    </Link>
                   ) : (
                     <>hello</>
                   )}

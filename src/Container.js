@@ -94,7 +94,14 @@ function Container() {
           ></Route>
           <Route
             path="/game-details/:id"
-            element={<GameDetails token={token} tokenUser={tokenUser} />}
+            element={
+              <GameDetails
+                token={token}
+                tokenUser={tokenUser}
+                setPlatform={setPlatform}
+                setPlatformName={setPlatformName}
+              />
+            }
           ></Route>
           <Route
             path="/platforms"
