@@ -922,6 +922,8 @@ h1 {
   font-size: 22px;
   border: 1px solid rgb(18, 219, 18);
   border-radius: 4px;
+  min-width: 30px;
+  padding: 3px;
   text-align: center;
   color: rgb(18, 219, 18);
 }
@@ -931,6 +933,8 @@ h1 {
   font-size: 22px;
   border: 1px solid rgb(255, 153, 0);
   border-radius: 4px;
+  min-width: 30px;
+  padding: 3px;
   text-align: center;
   color: rgb(255, 153, 0);
 }
@@ -940,6 +944,8 @@ h1 {
   font-size: 22px;
   border: 1px solid rgb(219, 48, 22);
   border-radius: 4px;
+  min-width: 30px;
+  padding: 3px;
   text-align: center;
   color: rgb(219, 48, 22);
 }

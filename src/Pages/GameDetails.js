@@ -13,10 +13,38 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
   const [comment, setComment] = useState("");
   const [listcomments, setListcomments] = useState({});
   const [isLoading, setisLoading] = useState(true);
+  const [alert, setAlert] = useState("");
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    const favoritesList = async () => {
+      if (token) {
+        const response = await axios.post(
+          `http://localhost:3000/allfavorites`,
+          {
+            token,
+          }
+        );
+
+        response.data.some((element) => element.id === data.id) &&
+          setInFavorites(true);
+      } else {
+        return null;
+      }
+    };
+    const wishList = async () => {
+      if (token) {
+        const response = await axios.post(`http://localhost:3000/wishlist`, {
+          token,
+        });
+        response.data.some((element) => element.id === data.id) &&
+          setInWishlist(true);
+      } else {
+        return null;
+      }
+    };
+
     const fetchData = async () => {
       const response = await axios.get(
         `http://localhost:3000/gamedetails?id=${id}`
@@ -26,28 +54,11 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
       setisLoading(false);
     };
     fetchData();
-  }, [id]);
+    favoritesList();
+    wishList();
+  }, [data.id, token, id]);
 
   useEffect(() => {}, [listcomments]);
-
-  const favoritesList = async () => {
-    const response = await axios.post(`http://localhost:3000/allfavorites`, {
-      token,
-    });
-
-    response.data.some((element) => element.id === data.id) &&
-      setInFavorites(true);
-  };
-  const wishList = async () => {
-    const response = await axios.post(`http://localhost:3000/wishlist`, {
-      token,
-    });
-    response.data.some((element) => element.id === data.id) &&
-      setInWishlist(true);
-  };
-
-  token && favoritesList();
-  token && wishList();
 
   const addGame = () => {
     if (token || tokenUser) {
@@ -129,8 +140,10 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
           date: date.toString(),
           review: comment,
         });
+        window.scrollTo(0, 0);
+        window.location.reload();
       } catch (error) {
-        console.log(error);
+        setAlert(error.response.data.message);
       }
     }
   };
@@ -145,11 +158,9 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
       console.log("something wrong happened :S");
     }
   };
-
   useEffect(() => {
     allReviews();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data.id]);
+  }, []);
 
   return isLoading ? (
     <div className="loading">
@@ -332,8 +343,8 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
       <div className="similar-elements">
         {data.tags.slice(0, 12).map((similar, index) => {
           return (
-            <Link to="/">
-              <div key={index} className="card-similar">
+            <Link key={index} to="/">
+              <div className="card-similar">
                 <div className="similar-title">
                   <div>{similar.name}</div>
                 </div>
@@ -375,12 +386,13 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
                 className="style-post-button"
                 onClick={() => {
                   postComment();
-                  allReviews();
+                  setAlert(null);
                 }}
               >
                 PUBLISH
               </button>
             </div>
+            <div className="alert-text">{alert}</div>
           </>
         ) : (
           <>

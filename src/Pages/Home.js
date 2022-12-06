@@ -38,14 +38,13 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
   useEffect(() => {
     const handleScroll = () => {
       if (
-        window.innerHeight + document.documentElement.scrollTop + 30 >=
+        window.innerHeight + document.documentElement.scrollTop + 10 >=
         document.documentElement.scrollHeight
       ) {
-        setPage(page + 1);
+        // setPage(page + 1);
         setNumber(number + 21);
-
         // setData(infiniteGames);
-        console.log("page :", page);
+        // console.log("page :", page);
       }
     };
 
@@ -107,16 +106,6 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
                 </div>
               );
             })}
-            {/* <div className={data.count < 20 ? "display" : "card-more"}>
-              <p
-                className="load-more"
-                onClick={() => {
-                  setNumber(number + 21);
-                }}
-              >
-                LOAD MORE
-              </p>
-            </div> */}
           </div>
         </div>
       </div>

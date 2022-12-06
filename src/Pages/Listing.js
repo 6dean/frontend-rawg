@@ -27,6 +27,18 @@ const Listing = ({ search, platform, platformName, setPlatformName }) => {
       setisLoading(false);
     }
   };
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 30 >=
+      document.documentElement.scrollHeight
+    ) {
+      // setPage(page + 1);
+      setNumber(number + 21);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll());
+  });
 
   useEffect(() => {
     fetchData();
