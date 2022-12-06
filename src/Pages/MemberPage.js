@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 const MemberPage = ({ token }) => {
   const [data, setData] = useState({});
   const [isLoading, setisLoading] = useState(true);
-  console.log(data);
 
   useEffect(() => {
     const fetchData = async () => {

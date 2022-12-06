@@ -27,7 +27,6 @@ const Reviews = ({ token }) => {
 
   const updateData = async (id) => {
     const game_id = id;
-    console.log(id);
     const response = await axios.put(`http://localhost:3000/deletecomment`, {
       token,
       game_id,
