@@ -1,4 +1,3 @@
-import React from "react";
 import Amiga from "./logos/Amiga.png";
 import Android from "./logos/Android.png";
 import Arcade from "./logos/Arcade.png";
@@ -28,7 +27,7 @@ import XboxOne from "./logos/Xbox One.png";
 import XboxXS from "./logos/Xbox XS.png";
 import Xbox from "./logos/Xbox.png";
 
-const platforms = {
+export const Platforms = {
   Amiga: Amiga,
   Android: Android,
   Arcade: Arcade,
@@ -59,7 +58,4 @@ const platforms = {
   Xbox: Xbox,
 };
 
-export default function Platform(props) {
-  const PlatformLogo = platforms[props.platform];
-  return <PlatformLogo width={20} height={20} />;
-}
+export default Platforms;

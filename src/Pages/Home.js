@@ -2,11 +2,12 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import InfiniteScroll from "react-infinite-scroll-component";
+// import InfiniteScroll from "react-infinite-scroll-component";
 import { Carousel } from "react-responsive-carousel";
 
 const Home = ({ search, platform, platformName, setPlatformName }) => {
   const [data, setData] = useState({});
+  // const [datas, setDatas] = useState([]);
   const [number, setNumber] = useState(21);
   const [page, setPage] = useState(1);
   const [isLoading, setisLoading] = useState(true);
@@ -26,24 +27,28 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
       );
 
       setData(response.data);
+      // const copy = [...data];
+      // setDatas(copy);
+      // console.log(datas);
+
       setisLoading(false);
     }
   };
 
-  const handleScroll = () => {
-    console.log("heigth:", document.documentElement.scrollHeight);
-    console.log("Top:", document.documentElement.scrollTop);
-    console.log("Window:", window.innerHeight);
-
-    if (
-      window.innerHeight + document.documentElement.scrollTop + 1 >=
-      document.documentElement.scrollHeight
-    ) {
-      setPage(+1);
-    }
-  };
-
   useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop + 30 >=
+        document.documentElement.scrollHeight
+      ) {
+        setPage(page + 1);
+        setNumber(number + 21);
+
+        // setData(infiniteGames);
+        console.log("page :", page);
+      }
+    };
+
     fetchData();
     window.addEventListener("scroll", handleScroll);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -102,7 +107,7 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
                 </div>
               );
             })}
-            <div className={data.count < 20 ? "display" : "card-more"}>
+            {/* <div className={data.count < 20 ? "display" : "card-more"}>
               <p
                 className="load-more"
                 onClick={() => {
@@ -111,7 +116,7 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
               >
                 LOAD MORE
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
