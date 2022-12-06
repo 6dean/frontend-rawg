@@ -2,11 +2,13 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { Carousel } from "react-responsive-carousel";
 
 const Home = ({ search, platform, platformName, setPlatformName }) => {
   const [data, setData] = useState({});
   const [number, setNumber] = useState(21);
+  const [page, setPage] = useState(1);
   const [isLoading, setisLoading] = useState(true);
 
   const fetchData = async () => {
@@ -28,8 +30,22 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
     }
   };
 
+  const handleScroll = () => {
+    console.log("heigth:", document.documentElement.scrollHeight);
+    console.log("Top:", document.documentElement.scrollTop);
+    console.log("Window:", window.innerHeight);
+
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 1 >=
+      document.documentElement.scrollHeight
+    ) {
+      setPage(+1);
+    }
+  };
+
   useEffect(() => {
     fetchData();
+    window.addEventListener("scroll", handleScroll);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [number, search, platform, platformName]);
 

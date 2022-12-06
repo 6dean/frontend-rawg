@@ -9,10 +9,6 @@ const NextWeek = ({ search }) => {
   const [number, setNumber] = useState(21);
   const [isLoading, setisLoading] = useState(true);
 
-  console.log(
-    `http://localhost:3000/nextweek?page_size=${number}&search=${search}`
-  );
-
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
