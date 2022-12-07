@@ -5,22 +5,47 @@ import { Link } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 
 const BestoftheYear = ({ search }) => {
-  const [data, setData] = useState({});
-  const [number, setNumber] = useState(21);
+  const [data, setData] = useState([]);
+  const [infinite, setInfinite] = useState([]);
+  const [number, setNumber] = useState(40);
+  const [page, setPage] = useState(1);
   const [isLoading, setisLoading] = useState(true);
 
-  const fetchData = async () => {
-    const response = await axios.get(
-      `http://localhost:3000/bestoftheyear?page_size=${number}&search=${search}`
-    );
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(
+        `http://localhost:3000/bestoftheyear?page_size=${number}&search=${search}&page=${page}`
+      );
 
-    setData(response.data);
-    setisLoading(false);
-  };
+      setData(JSON.parse(JSON.stringify(response.data.results)));
+      setisLoading(false);
+    };
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop + 10 >=
+        document.documentElement.scrollHeight
+      ) {
+        setNumber(number + 40);
+        setPage(page + 1);
+      }
+    };
+
+    fetchData();
+    window.addEventListener("scroll", handleScroll);
+  }, [number, search, page]);
 
   useEffect(() => {
-    fetchData();
-  }, [number, search]);
+    if (page < 2) {
+      const newInfinite = [...data];
+      setInfinite(newInfinite);
+    } else {
+      const newInfinite = [...infinite];
+      for (let i = 0; i < data.length; i++) {
+        newInfinite.push(data[i]);
+        setInfinite(newInfinite);
+      }
+    }
+  }, [data]);
 
   return isLoading ? (
     <div className="loading">
@@ -36,7 +61,7 @@ const BestoftheYear = ({ search }) => {
         </div>
         <div>
           <div className="listing-games">
-            {data.results.map((elem, index) => {
+            {infinite.map((elem, index) => {
               return (
                 <div key={index} className="card-game">
                   <div className="card-info-box">
@@ -73,16 +98,6 @@ const BestoftheYear = ({ search }) => {
                 </div>
               );
             })}
-            <div className={data.count < 20 ? "display" : "card-more"}>
-              <p
-                className="load-more"
-                onClick={() => {
-                  setNumber(number + 21);
-                }}
-              >
-                LOAD MORE
-              </p>
-            </div>
           </div>
         </div>
       </div>

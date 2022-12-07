@@ -5,45 +5,67 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
 const Listing = ({ search, platform, platformName, setPlatformName }) => {
-  const [data, setData] = useState({});
-  const [number, setNumber] = useState(21);
+  const [data, setData] = useState([]);
+  const [infinite, setInfinite] = useState([]);
+  const [number, setNumber] = useState("");
+  const [page, setPage] = useState(1);
+  const [count, setCount] = useState(0);
   const [isLoading, setisLoading] = useState(true);
 
-  const fetchData = async () => {
-    if (platform) {
-      const response = await axios.get(
-        `http://localhost:3000/listingplatform?page_size=${number}&search=${search}&platforms=${platform}`
-      );
-
-      setData(response.data);
-      setisLoading(false);
-    } else {
-      setPlatformName(null);
-      const response = await axios.get(
-        `http://localhost:3000/home?&page_size=${number}&search=${search}`
-      );
-
-      setData(response.data);
-      setisLoading(false);
-    }
-  };
-  const handleScroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop + 30 >=
-      document.documentElement.scrollHeight
-    ) {
-      // setPage(page + 1);
-      setNumber(number + 21);
-    }
-  };
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll());
-  });
+    const fetchData = async () => {
+      if (platform) {
+        const response = await axios.get(
+          `http://localhost:3000/listingplatform?page_size=${number}&search=${search}&platforms=${platform}&page=${page}`
+        );
 
-  useEffect(() => {
+        setData(JSON.parse(JSON.stringify(response.data.results)));
+        setisLoading(false);
+        setCount(response.data.count);
+      } else {
+        setPlatformName(null);
+        const response = await axios.get(
+          `http://localhost:3000/home?&page_size=${number}&search=${search}&page=${page}`
+        );
+
+        setData(JSON.parse(JSON.stringify(response.data.results)));
+        setCount(response.data.count);
+        setisLoading(false);
+      }
+    };
+
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop + 10 >=
+        document.documentElement.scrollHeight
+      ) {
+        setPage(page + 1);
+        if (count) {
+          return null;
+        } else {
+          setPage(page + 1);
+        }
+      }
+    };
+
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [number, search, platform, platformName]);
+    window.addEventListener("scroll", handleScroll);
+  }, [number, search, page, count, platformName, setPlatformName, platform]);
+
+  useEffect(() => {
+    if (count > infinite.length) {
+      if (page === 1) {
+        const newInfinite = [...data];
+        setInfinite(newInfinite);
+      } else {
+        const newInfinite = [...infinite];
+        for (let i = 0; i < data.length; i++) {
+          newInfinite.push(data[i]);
+        }
+        setInfinite(newInfinite);
+      }
+    }
+  }, [data]);
 
   return isLoading ? (
     <div className="loading">
@@ -59,7 +81,7 @@ const Listing = ({ search, platform, platformName, setPlatformName }) => {
         </div>
         <div>
           <div className="listing-games">
-            {data.results.map((elem, index) => {
+            {infinite.map((elem, index) => {
               return (
                 <div key={index} className="card-game">
                   <Link
@@ -98,16 +120,6 @@ const Listing = ({ search, platform, platformName, setPlatformName }) => {
                 </div>
               );
             })}
-            <div className={data.count < 20 ? "display" : "card-more"}>
-              <p
-                className="load-more"
-                onClick={() => {
-                  setNumber(number + 21);
-                }}
-              >
-                LOAD MORE
-              </p>
-            </div>
           </div>
         </div>
       </div>

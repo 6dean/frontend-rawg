@@ -5,21 +5,48 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
 const LastThirstyDays = ({ search }) => {
-  const [data, setData] = useState({});
-  const [number, setNumber] = useState(21);
+  const [data, setData] = useState([]);
+  const [infinite, setInfinite] = useState([]);
+  const [number, setNumber] = useState(20);
+  const [page, setPage] = useState(1);
   const [isLoading, setisLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `http://localhost:3000/last30?page_size=${number}&search=${search}`
+        `http://localhost:3000/last30?page_size=${number}&search=${search}&page=${page}`
       );
 
       setData(JSON.parse(JSON.stringify(response.data.results)));
       setisLoading(false);
     };
+
+    const handleScroll = () => {
+      if (
+        window.innerHeight + document.documentElement.scrollTop + 10 >=
+        document.documentElement.scrollHeight
+      ) {
+        setNumber(number + 20);
+        setPage(page + 1);
+      }
+    };
+
     fetchData();
-  }, [number, search]);
+    window.addEventListener("scroll", handleScroll);
+  }, [number, search, page]);
+
+  useEffect(() => {
+    if (page < 2) {
+      const newInfinite = [...data];
+      setInfinite(newInfinite);
+    } else {
+      const newInfinite = [...infinite];
+      for (let i = 0; i < data.length; i++) {
+        newInfinite.push(data[i]);
+        setInfinite(newInfinite);
+      }
+    }
+  }, [data]);
 
   return isLoading ? (
     <div className="loading">
@@ -35,7 +62,7 @@ const LastThirstyDays = ({ search }) => {
         </div>
         <div>
           <div className="listing-games">
-            {data.map((elem, index) => {
+            {infinite.map((elem, index) => {
               return (
                 <div key={index} className="card-game">
                   <div className="card-info-box">
@@ -57,31 +84,31 @@ const LastThirstyDays = ({ search }) => {
                     showStatus={false}
                     infiniteLoop={true}
                   >
-                    {elem.short_screenshots.map((screenshot, key) => {
-                      return (
-                        <div key={key}>
-                          <img
-                            className="carousel-img"
-                            src={screenshot.image}
-                            alt=""
-                          />
-                        </div>
-                      );
-                    })}
+                    {elem.short_screenshots ? (
+                      elem.short_screenshots.map((screenshot, key) => {
+                        return (
+                          <div key={key}>
+                            <img
+                              className="carousel-img"
+                              src={screenshot.image}
+                              alt="illustrations"
+                            />
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <div>
+                        <img
+                          className="carousel-img"
+                          src="https://rawg.io/assets/en/share-vk.png"
+                          alt="RAWG"
+                        />
+                      </div>
+                    )}
                   </Carousel>
                 </div>
               );
             })}
-            <div className={data.count < 20 ? "display" : "card-more"}>
-              <p
-                className="load-more"
-                onClick={() => {
-                  setNumber(number + 21);
-                }}
-              >
-                LOAD MORE
-              </p>
-            </div>
           </div>
         </div>
       </div>
