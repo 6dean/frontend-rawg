@@ -160,6 +160,7 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
   };
   useEffect(() => {
     allReviews();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return isLoading ? (

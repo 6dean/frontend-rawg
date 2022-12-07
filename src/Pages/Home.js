@@ -6,52 +6,64 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
 const Home = ({ search, platform, platformName, setPlatformName }) => {
-  const [data, setData] = useState({});
-  // const [datas, setDatas] = useState([]);
-  const [number, setNumber] = useState(21);
+  const [data, setData] = useState([]);
+  const [infinite, setInfinite] = useState([]);
+  const [number, setNumber] = useState(40);
   const [page, setPage] = useState(1);
   const [isLoading, setisLoading] = useState(true);
 
-  const fetchData = async () => {
-    if (platform) {
-      const response = await axios.get(
-        `http://localhost:3000/home?page_size=${number}&search=${search}&platforms=${platform}`
-      );
-
-      setData(response.data);
-      setisLoading(false);
-    } else {
-      setPlatformName(null);
-      const response = await axios.get(
-        `http://localhost:3000/home?page_size=${number}&search=${search}`
-      );
-
-      setData(response.data);
-      // const copy = [...data];
-      // setDatas(copy);
-      // console.log(datas);
-
-      setisLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      if (platform) {
+        const response = await axios.get(
+          `http://localhost:3000/home?page_size=${number}&search=${search}&platforms=${platform}&page=${page}`
+        );
+
+        setData(response.data);
+        setisLoading(false);
+      } else {
+        setPlatformName(null);
+        const response = await axios.get(
+          `http://localhost:3000/home?page_size=${number}&search=${search}&page=${page}`
+        );
+
+        setData(response.data);
+        if (page === 1) {
+          setInfinite(JSON.parse(JSON.stringify(response.data.results)));
+        } else {
+          return null;
+        }
+        setisLoading(false);
+      }
+    };
+
+    console.log(
+      window.innerHeight + document.documentElement.scrollTop,
+      document.documentElement.scrollHeight
+    );
+
     const handleScroll = () => {
       if (
         window.innerHeight + document.documentElement.scrollTop + 10 >=
         document.documentElement.scrollHeight
       ) {
-        // setPage(page + 1);
-        setNumber(number + 21);
-        // setData(infiniteGames);
-        // console.log("page :", page);
+        setPage(page + 1);
       }
     };
 
     fetchData();
     window.addEventListener("scroll", handleScroll);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [number, search, platform, platformName]);
+  }, [number, search, platform, platformName, page, setPlatformName]);
+
+  useEffect(() => {
+    if (data !== undefined && infinite !== undefined) {
+      const newInfinite = [...infinite];
+      newInfinite.push(data.results);
+      setInfinite(newInfinite);
+      console.log("TAB NewInfinite ==>", newInfinite);
+      console.log("TAB State Infinite ==>", infinite);
+    }
+  }, [data]);
 
   return isLoading ? (
     <div className="loading">
