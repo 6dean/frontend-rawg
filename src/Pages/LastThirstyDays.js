@@ -15,7 +15,7 @@ const LastThirstyDays = ({ search }) => {
         `http://localhost:3000/last30?page_size=${number}&search=${search}`
       );
 
-      setData(response.data);
+      setData(JSON.parse(JSON.stringify(response.data.results)));
       setisLoading(false);
     };
     fetchData();
@@ -35,7 +35,7 @@ const LastThirstyDays = ({ search }) => {
         </div>
         <div>
           <div className="listing-games">
-            {data.results.map((elem, index) => {
+            {data.map((elem, index) => {
               return (
                 <div key={index} className="card-game">
                   <div className="card-info-box">

@@ -2,13 +2,12 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-// import InfiniteScroll from "react-infinite-scroll-component";
 import { Carousel } from "react-responsive-carousel";
 
 const Home = ({ search, platform, platformName, setPlatformName }) => {
   const [data, setData] = useState([]);
   const [infinite, setInfinite] = useState([]);
-  const [number, setNumber] = useState(40);
+  const [number, setNumber] = useState(20);
   const [page, setPage] = useState(1);
   const [isLoading, setisLoading] = useState(true);
 
@@ -27,26 +26,17 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
           `http://localhost:3000/home?page_size=${number}&search=${search}&page=${page}`
         );
 
-        setData(response.data);
-        if (page === 1) {
-          setInfinite(JSON.parse(JSON.stringify(response.data.results)));
-        } else {
-          return null;
-        }
+        setData(JSON.parse(JSON.stringify(response.data.results)));
         setisLoading(false);
       }
     };
-
-    console.log(
-      window.innerHeight + document.documentElement.scrollTop,
-      document.documentElement.scrollHeight
-    );
 
     const handleScroll = () => {
       if (
         window.innerHeight + document.documentElement.scrollTop + 10 >=
         document.documentElement.scrollHeight
       ) {
+        setNumber(number + 20);
         setPage(page + 1);
       }
     };
@@ -56,12 +46,15 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
   }, [number, search, platform, platformName, page, setPlatformName]);
 
   useEffect(() => {
-    if (data !== undefined && infinite !== undefined) {
-      const newInfinite = [...infinite];
-      newInfinite.push(data.results);
+    if (page < 2) {
+      const newInfinite = [...data];
       setInfinite(newInfinite);
-      console.log("TAB NewInfinite ==>", newInfinite);
-      console.log("TAB State Infinite ==>", infinite);
+    } else {
+      const newInfinite = [...infinite];
+      for (let i = 0; i < data.length; i++) {
+        newInfinite.push(data[i]);
+        setInfinite(newInfinite);
+      }
     }
   }, [data]);
 
@@ -79,7 +72,7 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
         </div>
         <div>
           <div className="listing-games">
-            {data.results.map((elem, index) => {
+            {infinite.map((elem, index) => {
               return (
                 <div key={index} className="card-game">
                   <Link
