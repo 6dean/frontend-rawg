@@ -163,6 +163,8 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  console.log(data);
+
   return isLoading ? (
     <div className="loading">
       <>
@@ -216,9 +218,19 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
                 </div>
               </div>
               <div className="genres">
-                <p className="style-details-web">Website</p>
+                <p className="style-details-web">Publisher</p>
                 <div className="genres-style-web">
-                  <a href={data.website}>{data.website}</a>
+                  {data.publishers[0].name}
+                </div>
+                <div className="genres">
+                  <p className="style-details-web">Website</p>
+                  <div className="genres-style-web">
+                    <a href={data.website}>
+                      {data.website.length > 40
+                        ? data.website.slice(0, 45) + "..."
+                        : data.website}
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -326,18 +338,8 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
         </div>
       </div>
       <div className="game-description">
-        <div className="style-details">About</div>
-        {data.description
-          .replaceAll("<p>", "")
-          .replaceAll("</p>", "")
-          .replaceAll("<br />", "")
-          .replaceAll("<ul>", "")
-          .replaceAll("</ul>", "")
-          .replaceAll("<li>", "")
-          .replaceAll("</li>", "")
-          .replaceAll("<h3>", "")
-          .replaceAll("</h3>", "")
-          .replaceAll("&#39;", "'")}
+        <div className="style-details-about">About</div>
+        {data.description_raw}
       </div>
       <div className="separation"></div>
       <div className="similar-element">
@@ -366,7 +368,7 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
       <div className="separation"></div>
       <div className="commentaries">
         <div className="reviews-style">
-          Reviews
+          Write a review
           <p>
             <FontAwesomeIcon
               icon="fa-solid fa-keyboard"
