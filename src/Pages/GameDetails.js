@@ -13,7 +13,7 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
   const [comment, setComment] = useState("");
   const [listcomments, setListcomments] = useState({});
   const [isLoading, setisLoading] = useState(true);
-  const [alert, setAlert] = useState("");
+  const [alerte, setAlert] = useState("");
 
   const navigate = useNavigate();
 
@@ -128,7 +128,7 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
     var time = new Date().getTime();
     var date = new Date(time);
     if (comment.length < 20) {
-      alert`Your comment must contain at least 20 characters`;
+      alert("Your comment must contain at least 20 characters");
     } else {
       try {
         await axios.post("http://localhost:3000/commentary", {
@@ -162,8 +162,6 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
     allReviews();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  console.log(data);
 
   return isLoading ? (
     <div className="loading">
@@ -397,7 +395,7 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
                 PUBLISH
               </button>
             </div>
-            <div className="alert-text">{alert}</div>
+            <div className="alert-text">{alerte}</div>
           </>
         ) : (
           <>
