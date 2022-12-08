@@ -48,6 +48,16 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
   }, [number, search, platform, platformName, page, setPlatformName]);
 
   useEffect(() => {
+    /** 
+     * ! AUTO-SUGGEST-SEARCH-
+     * ! const listNames = [];
+     * ! infinite.map((games) => {
+     * ! return listNames.push(games.name);
+     * ! });
+
+    * ! suggestArray(listNames);
+*/
+
     if (page < 2) {
       const newInfinite = [...data];
       setInfinite(newInfinite);
@@ -58,6 +68,7 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
         setInfinite(newInfinite);
       }
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 

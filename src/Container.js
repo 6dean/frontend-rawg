@@ -32,6 +32,7 @@ function Container() {
   const [platform, setPlatform] = useState("");
   const [platformName, setPlatformName] = useState("");
   const [showLeft, setShowLeft] = useState(true);
+  // const [autoSuggest, setAutosuggest] = useState([]);
 
   const location = useLocation();
 
@@ -65,6 +66,15 @@ function Container() {
       Cookies.remove("RAWG-USER");
     }
   };
+
+  /**
+   * ! AUTO SUGGEST SEARCH
+   */
+  // const suggestArray = (games) => {
+  //   const suggest = [];
+  //   suggest.push(games);
+  //   setAutosuggest(suggest);
+  // };
 
   return (
     <>
