@@ -11,6 +11,7 @@ const SideBanner = ({ setPlatform, token }) => {
               className="side-title"
               onClick={() => {
                 setPlatform(null);
+                window.scrollTo(0, 0);
               }}
             >
               Home

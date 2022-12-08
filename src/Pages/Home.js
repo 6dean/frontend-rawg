@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Home = ({ search, platform, platformName, setPlatformName }) => {
   const [data, setData] = useState([]);
   const [infinite, setInfinite] = useState([]);
   const [number, setNumber] = useState(20);
   const [page, setPage] = useState(1);
+  const [display, setDisplay] = useState(true);
   const [isLoading, setisLoading] = useState(true);
 
   useEffect(() => {
@@ -101,6 +102,19 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
           <p>All Games {platformName && " - " + platformName}</p>
         </div>
         <div>
+          <div className={display ? "parent-box-info" : "display"}>
+            <div className="box-info">
+              <p>
+                This website is a replica of{" "}
+                <span className="p-rawg">RAWG.io</span> ! Tell me what you think
+                about my work. I would like to improve my skills. 💻
+              </p>
+            </div>
+            <div className="box-info-circle" onClick={() => setDisplay(false)}>
+              <FontAwesomeIcon icon={faCircleXmark} />
+            </div>
+          </div>
+
           <div className="listing-games">
             {infinite.map((elem, index) => {
               return (
