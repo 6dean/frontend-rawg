@@ -41,10 +41,10 @@ const Favorites = ({ token }) => {
 
   return !isMember ? (
     <div className="wishlist-page">
-      <div className="navigation-home">
-        <div className="title-home">
-          <p>Favorites</p>
-        </div>
+      <div className="title-home">
+        <p>Favorites</p>
+      </div>
+      <div className="navigation-fav">
         <div className="box-info-null">
           <div className="info-null">You don't have any games yet !</div>
           <img
@@ -78,7 +78,7 @@ const Favorites = ({ token }) => {
           />
         </div>
       ) : (
-        <div className="listing-games-wish-fav">
+        <div className="listing-games">
           {data.map((elem, index) => {
             return (
               <div key={index} className="card-game">
@@ -90,20 +90,6 @@ const Favorites = ({ token }) => {
                 >
                   <FontAwesomeIcon icon={faCircleXmark} size="xl" />
                 </div>
-                <Link
-                  to={`/game-details/${elem.id}`}
-                  onClick={() => {
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  <div className="card-info-box">
-                    <div className="game-title">
-                      {elem.name.length < 30
-                        ? elem.name
-                        : elem.name.slice(0, 40) + "..."}
-                    </div>
-                  </div>
-                </Link>
                 <Carousel
                   showThumbs={false}
                   showStatus={false}
@@ -120,6 +106,26 @@ const Favorites = ({ token }) => {
                     </div>
                   </Link>
                 </Carousel>
+                <Link
+                  to={`/game-details/${elem.id}`}
+                  onClick={() => {
+                    window.scrollTo(0, 0);
+                  }}
+                >
+                  <div className="card-info-box">
+                    <div
+                      className={
+                        elem.name.length < 28
+                          ? "game-title"
+                          : "game-title-lower"
+                      }
+                    >
+                      {elem.name.length < 35
+                        ? elem.name
+                        : elem.name.slice(0, 35) + "..."}
+                    </div>
+                  </div>
+                </Link>
               </div>
             );
           })}

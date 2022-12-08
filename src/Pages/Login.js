@@ -16,7 +16,7 @@ const Login = ({ transferToken, transferTokenUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [seePass, setSeePass] = useState(true);
-  const [alert, setAlert] = useState(false);
+  const [alerte, setAlert] = useState(false);
   const [error, setError] = useState("");
 
   const validLog = () => {
@@ -53,14 +53,14 @@ const Login = ({ transferToken, transferTokenUser }) => {
                 <div className="signup">Login</div>
                 <div className="signup-input">
                   <input
-                    className={alert ? "input-join-alert" : "input-join"}
+                    className={alerte ? "input-join-alert" : "input-join"}
                     type="text"
                     placeholder="Email"
                     onChange={(email) => setEmail(email.target.value)}
                   ></input>
                   <div className="password-style">
                     <input
-                      className={alert ? "input-join-alert" : "input-join"}
+                      className={alerte ? "input-join-alert" : "input-join"}
                       type={seePass ? "password" : "text"}
                       placeholder="Password"
                       onChange={(password) =>
@@ -88,12 +88,16 @@ const Login = ({ transferToken, transferTokenUser }) => {
                       <FontAwesomeIcon icon={faEye} size="xl" />
                     </div>
                   </div>
-                  <div className={alert ? "alert-text" : "alert-none"}>
+                  <div className={alerte ? "alert-text" : "alert-none"}>
                     <p>Fields need to be completed !</p>
                   </div>
                   <div
                     className={
-                      alert ? "alert-none" : error ? "alert-text" : "alert-none"
+                      alerte
+                        ? "alert-none"
+                        : error
+                        ? "alert-text"
+                        : "alert-none"
                     }
                   >
                     {error}
@@ -115,15 +119,36 @@ const Login = ({ transferToken, transferTokenUser }) => {
             </div>
             <div className="RIGHT-join">
               <div className="signup">You can use social account to log in</div>
-              <div className="button-facebook">
+              <div
+                className="button-facebook"
+                onClick={() => {
+                  alert(
+                    "Tu pensais vraiment pouvoir te connecter avec Facebook ?"
+                  );
+                }}
+              >
                 <FontAwesomeIcon icon={faFacebook} fontSize={18} /> Continue
                 with Facebook
               </div>
-              <div className="button-twitter">
+              <div
+                className="button-twitter"
+                onClick={() => {
+                  alert(
+                    "Tu pensais vraiment pouvoir te connecter avec Twitter ?"
+                  );
+                }}
+              >
                 <FontAwesomeIcon icon={faTwitter} fontSize={18} /> Continue with
                 Twitter
               </div>
-              <div className="button-steam">
+              <div
+                className="button-steam"
+                onClick={() => {
+                  alert(
+                    "Tu pensais vraiment pouvoir te connecter avec Steam ?"
+                  );
+                }}
+              >
                 <FontAwesomeIcon icon={faSteam} fontSize={18} />
                 Continue with Steam
               </div>

@@ -218,7 +218,7 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
               <div className="genres">
                 <p className="style-details-web">Publisher</p>
                 <div className="genres-style-web">
-                  {data.publishers[0].name}
+                  {data.publishers[0] ? data.publishers[0].name : null}
                 </div>
                 <div className="genres">
                   <p className="style-details-web">Website</p>

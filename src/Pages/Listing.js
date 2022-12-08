@@ -49,6 +49,7 @@ const Listing = ({ search, platform, platformName, setPlatformName }) => {
       }
     };
 
+    search && setPage(1);
     fetchData();
     window.addEventListener("scroll", handleScroll);
   }, [search, page, count, platformName, setPlatformName, platform]);

@@ -12,6 +12,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Anybody:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Commissioner:wght@600&display=swap");
 
+:root {
+  --gap: 15px;
+}
+
 * {
   margin: 0;
 }
@@ -102,6 +106,10 @@ p {
   font-weight: bold;
 }
 
+.menu-icon-header {
+  display: none;
+}
+
 .list-option-header {
   display: flex;
   gap: 15px;
@@ -112,8 +120,6 @@ p {
   font-family: "Anybody", sans-serif;
   font-size: 16px;
   border-bottom: 2px solid rgba(255, 255, 255, 0);
-  filter: blur(1px);
-  -webkit-filter: blur(0.5px);
 }
 
 .options-header-user {
@@ -121,8 +127,6 @@ p {
   font-family: "Anybody", sans-serif;
   font-size: 16px;
   border-bottom: 2px solid rgba(255, 255, 255, 0);
-  filter: blur(1px);
-  -webkit-filter: blur(0.5px);
 }
 
 .options-header-user:hover {
@@ -130,8 +134,6 @@ p {
   font-family: "Anybody", sans-serif;
   font-size: 16px;
   border-bottom: 2px solid rgb(228, 136, 44);
-  filter: blur(1px);
-  -webkit-filter: blur(0.5px);
 }
 
 .options-header-log {
@@ -139,8 +141,6 @@ p {
   font-family: "Anybody", sans-serif;
   font-size: 16px;
   border-bottom: 2px solid rgba(255, 255, 255, 0);
-  filter: blur(1px);
-  -webkit-filter: blur(0.5px);
 }
 
 .options-header-log:hover {
@@ -148,8 +148,6 @@ p {
   font-family: "Anybody", sans-serif;
   font-size: 16px;
   border-bottom: 2px solid rgba(255, 0, 0, 0.715);
-  filter: blur(1px);
-  -webkit-filter: blur(0.5px);
   cursor: pointer;
 }
 
@@ -163,7 +161,6 @@ p {
   display: flex;
   gap: 10px;
   margin-top: 50px;
-  background-color: #151515;
 }
 
 /* -------------------- SIDE BANNER SECTION -------------------- */
@@ -172,6 +169,10 @@ p {
   margin-top: 20px;
   margin-left: 30px;
   min-width: 192px;
+}
+
+.side-banner-resp {
+  display: none;
 }
 
 .side-banner-style {
@@ -244,10 +245,8 @@ p {
     rgba(185, 255, 9, 1) 0%,
     rgba(8, 148, 255, 1) 100%
   );
-  margin-left: 40px;
-  margin-right: 30px;
-  margin-top: 30px;
-  margin-bottom: 40px;
+  width: auto;
+  margin: 20px 30px;
 }
 
 .box-info {
@@ -287,14 +286,14 @@ p {
 .listing-games {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   margin-bottom: 100px;
+  padding: 0 0 0 15px;
 }
 
 .listing-games-wish-fav {
   margin-left: 20px;
   display: flex;
-  flex-wrap: wrap;
+  flex: 1;
 }
 
 .card-game {
@@ -304,7 +303,8 @@ p {
   margin-left: 15px;
   margin-bottom: 20px;
   height: 260px;
-  width: 260px;
+  width: calc(100% / 6 - 20px);
+  box-sizing: border-box;
 }
 
 .card-more {
@@ -334,28 +334,53 @@ p {
 }
 
 .card-info-box {
-  position: absolute;
-  display: flex;
+  /* position: absolute; */
+  /* display: flex;
   justify-content: center;
-  text-align: center;
-  bottom: 20px;
-  height: 240px;
-  width: 260px;
+  text-align: center; */
+  /* height: 240px; */
+  /* width: 260px; */
 }
 
 .game-title {
   color: white;
   font-family: "Alexandria", sans-serif;
   font-size: 22px;
-  position: absolute;
-  top: 173px;
-  height: fit-content;
-  z-index: 20;
+  height: 65px;
+  box-sizing: border-box;
+  padding: 6px 10px 0 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-title-lower {
+  color: white;
+  font-family: "Alexandria", sans-serif;
+  font-size: 20px;
+  height: 65px;
+  box-sizing: border-box;
+  padding: 6px 10px 0 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reduce-font-size {
+  font-size: 1.2rem;
 }
 
 .game-title:hover {
   opacity: 50%;
   transition: ease-out 0.2s;
+}
+
+.card-like-infos {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
 }
 
 .game-infos-home {
@@ -364,29 +389,15 @@ p {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: 400;
   font-size: 11px;
-  position: absolute;
   word-spacing: 3px;
   background-color: #3d3d3d;
   border-radius: 5px;
   padding: 6px;
-  bottom: -10px;
-  left: 10px;
-  height: fit-content;
+  height: 14px;
 }
 
 .game-infos-2-home {
-  color: rgb(255, 255, 255);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  font-weight: 400;
   font-size: 23px;
-  position: absolute;
-  word-spacing: 3px;
-  border-radius: 2px;
-  padding: 6px;
-  bottom: -18px;
-  right: 6px;
-  height: fit-content;
 }
 
 .game-infos-home:hover,
@@ -427,7 +438,13 @@ p {
   margin-top: 50px;
 }
 
+.navigation-fav {
+  display: flex;
+  width: 85vw;
+}
+
 .box-info-null {
+  min-width: 100%;
   display: flex;
   justify-content: center;
   margin-top: 100px;
@@ -442,8 +459,10 @@ p {
 
 /* -------------------- PLATFORMS SECTION -------------------- */
 
-.navigation-home {
-  width: 88vw;
+.platform-page {
+  display: flex;
+  gap: 10px;
+  margin-top: 50px;
 }
 
 .title-home {
@@ -482,7 +501,7 @@ h1 {
 }
 
 .card-platform img {
-  width: 260px;
+  width: 270px;
   height: 280px;
   border-radius: 6px;
   object-fit: cover;
@@ -604,7 +623,7 @@ h1 {
 /* -------------------- JOIN & LOGIN SECTION -------------------- */
 
 .join-us-section {
-  height: calc(100% - 65px);
+  height: calc(100% - 70px);
   background-image: linear-gradient(
       180deg,
       rgba(21, 21, 21, 1) 1%,
@@ -615,7 +634,7 @@ h1 {
 }
 
 .login-section {
-  height: calc(100% - 65px);
+  height: calc(100% - 70px);
   background-image: linear-gradient(
       180deg,
       rgba(21, 21, 21, 1) 1%,
@@ -1475,11 +1494,67 @@ h1 {
 
 /* -------------------- RESPONSIVE -------------------- */
 
-@media (max-width: 1350px) {
+@media (max-width: 1800px) {
+  .card-game {
+    width: calc(100% / 6 - var(--gap));
+  }
+  .listing-games {
+    padding: 0 30px 0 15px;
+  }
+}
+
+@media (max-width: 1600px) {
+  .card-game {
+    width: calc(100% / 4 - var(--gap));
+  }
+}
+
+@media (max-width: 1270px) {
+  .card-game {
+    width: calc(100% / 3 - var(--gap));
+  }
+}
+
+@media (max-width: 1090px) {
   .side-banner {
     display: none;
   }
   .parent-box-info {
     display: none;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .flex1 {
+    width: 80px;
+  }
+
+  .menu-icon-header {
+    display: flex;
+    justify-content: center;
+  }
+  .menu-icon-header:hover {
+    opacity: 80%;
+    cursor: pointer;
+  }
+
+  .side-banner-resp {
+    display: block;
+    top: 80px;
+    position: absolute;
+    z-index: 100;
+    background-color: #151515;
+    color: white;
+    font-family: "Rajdhani", sans-serif;
+    font-size: 17px;
+    margin-left: 4px;
+    padding: 3px;
+    letter-spacing: 1px;
+  }
+
+  .card-game {
+    width: calc(100% / 4 - var(--gap));
   }
 }

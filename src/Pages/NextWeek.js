@@ -38,6 +38,7 @@ const NextWeek = ({ search }) => {
       }
     };
 
+    search && setPage(1);
     fetchData();
     window.addEventListener("scroll", handleScroll);
   }, [search, page, count]);
@@ -91,47 +92,50 @@ const NextWeek = ({ search }) => {
             {infinite.map((elem, index) => {
               return (
                 <div key={index} className="card-game">
-                  <div className="card-info-box">
-                    <div className="game-title">
-                      <Link
-                        to={`/game-details/${elem.id}`}
-                        onClick={() => {
-                          window.scrollTo(0, 0);
-                        }}
-                      >
-                        {elem.name.length < 30
-                          ? elem.name
-                          : elem.name.slice(0, 30) + "..."}
-                      </Link>
-                    </div>
-                    <div>
-                      {elem.reviews_count !== 0 ? (
-                        <div className="game-infos-home">
-                          <FontAwesomeIcon icon={faPlus} /> {elem.reviews_count}
-                        </div>
-                      ) : null}
-                    </div>
-                    <div className="game-infos-2-home">
-                      {ratingEmoji(elem.rating)}
-                    </div>
-                  </div>
                   <Carousel
                     showThumbs={false}
                     showStatus={false}
                     infiniteLoop={true}
                   >
-                    {elem.short_screenshots.map((screenshot, key) => {
-                      return (
-                        <div key={key}>
-                          <img
-                            className="carousel-img"
-                            src={screenshot.image}
-                            alt=""
-                          />
-                        </div>
-                      );
-                    })}
+                    {elem.short_screenshots
+                      ? elem.short_screenshots.map((screenshot, key) => {
+                          return (
+                            <div key={key}>
+                              <img
+                                className="carousel-img"
+                                src={screenshot.image}
+                                alt=""
+                              />
+                            </div>
+                          );
+                        })
+                      : null}
                   </Carousel>
+                  <Link
+                    to={`/game-details/${elem.id}`}
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                    }}
+                  >
+                    <div className="card-info-box">
+                      <div className="game-title reduce-font-size">
+                        {/* 
+                         {elem.name.length < 24
+                          ? elem.name
+                          : elem.name.slice(0, 24) + "..."}
+                        */}
+                        {elem.name}
+                      </div>
+                      <div className="card-like-infos">
+                        <div className="game-infos-home">
+                          <FontAwesomeIcon icon={faPlus} /> {elem.reviews_count}
+                        </div>
+                        <div className="game-infos-2-home">
+                          {ratingEmoji(elem.rating)}
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
                 </div>
               );
             })}

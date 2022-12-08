@@ -43,7 +43,7 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
         setPage(page + 1);
       }
     };
-
+    search && setPage(1);
     fetchData();
     window.addEventListener("scroll", handleScroll);
   }, [number, search, platform, platformName, page, setPlatformName]);
@@ -119,26 +119,6 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
             {infinite.map((elem, index) => {
               return (
                 <div key={index} className="card-game">
-                  <Link
-                    to={`/game-details/${elem.id}`}
-                    onClick={() => {
-                      window.scrollTo(0, 0);
-                    }}
-                  >
-                    <div className="card-info-box">
-                      <div className="game-title">
-                        {elem.name.length < 30
-                          ? elem.name
-                          : elem.name.slice(0, 40) + "..."}
-                      </div>
-                      <div className="game-infos-home">
-                        <FontAwesomeIcon icon={faPlus} /> {elem.reviews_count}
-                      </div>
-                      <div className="game-infos-2-home">
-                        {ratingEmoji(elem.rating)}
-                      </div>
-                    </div>
-                  </Link>
                   <Carousel
                     showThumbs={false}
                     showStatus={false}
@@ -158,6 +138,34 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
                         })
                       : null}
                   </Carousel>
+                  <Link
+                    to={`/game-details/${elem.id}`}
+                    onClick={() => {
+                      window.scrollTo(0, 0);
+                    }}
+                  >
+                    <div className="card-info-box">
+                      <div
+                        className={
+                          elem.name.length < 28
+                            ? "game-title"
+                            : "game-title-lower"
+                        }
+                      >
+                        {elem.name.length < 35
+                          ? elem.name
+                          : elem.name.slice(0, 35) + "..."}
+                      </div>
+                      <div className="card-like-infos">
+                        <div className="game-infos-home">
+                          <FontAwesomeIcon icon={faPlus} /> {elem.reviews_count}
+                        </div>
+                        <div className="game-infos-2-home">
+                          {ratingEmoji(elem.rating)}
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
                 </div>
               );
             })}

@@ -41,13 +41,15 @@ const Reviews = ({ token }) => {
         <div className="title-home">
           <p>Reviews</p>
         </div>
-        <div className="box-info-null">
-          <div className="info-null">You don't have any reviews yet !</div>
-          <img
-            src="https://res.cloudinary.com/dlfp2xvis/image/upload/v1670147535/my-content/Pngtree_video_game_controller_5392581_kmp8gz.png"
-            alt="gamepad"
-            width="200"
-          />
+        <div className="navigation-fav">
+          <div className="box-info-null">
+            <div className="info-null">You don't have any reviews yet !</div>
+            <img
+              src="https://res.cloudinary.com/dlfp2xvis/image/upload/v1670147535/my-content/Pngtree_video_game_controller_5392581_kmp8gz.png"
+              alt="gamepad"
+              width="200"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -92,7 +94,9 @@ const Reviews = ({ token }) => {
                   </Link>
                 </div>
                 <div>
-                  <div className="review-title">{elem.game_name}</div>
+                  <Link to={`/game-details/${elem.game_id}`}>
+                    <div className="review-title">{elem.game_name}</div>
+                  </Link>
                   <div className="review-date-2">
                     Date : {elem.date.slice(0, 25)}
                   </div>

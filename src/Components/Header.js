@@ -1,4 +1,8 @@
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
+import SideBanner from "./SideBannerResponsive";
 
 const Header = ({
   search,
@@ -9,6 +13,14 @@ const Header = ({
   transferToken,
   transferTokenUser,
 }) => {
+  const [displayMenu, setDisplayMenu] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth > 1349) {
+      setDisplayMenu(false);
+    }
+  }, []);
+
   return (
     <header>
       <div className="top-header">
@@ -22,6 +34,15 @@ const Header = ({
             >
               <div className="logo">RAWG</div>
             </Link>
+
+            <div
+              className="menu-icon-header"
+              onClick={() => {
+                displayMenu ? setDisplayMenu(false) : setDisplayMenu(true);
+              }}
+            >
+              <FontAwesomeIcon icon={faBars} fontSize={30} color="white" />
+            </div>
           </div>
           <div className="flex2">
             <input
@@ -81,6 +102,7 @@ const Header = ({
           </div>
         </div>
       </div>
+      <div>{displayMenu && <SideBanner />}</div>
     </header>
   );
 };

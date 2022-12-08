@@ -26,9 +26,8 @@ const Platforms = ({ setPlatform, setPlatformName }) => {
       </>
     </div>
   ) : (
-    <div className="home-flex">
-      {/* SIDE BANNER A VIRER */}
-      <div className="navigation-home">
+    <div className="platform-page">
+      <div className="navigation-platform">
         <div className="title-home">
           <p>Platforms</p>
         </div>
