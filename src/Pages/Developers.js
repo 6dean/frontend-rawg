@@ -29,7 +29,7 @@ const Developers = () => {
     <div className="home-flex">
       <div className="navigation-home">
         <div className="title-home">
-          <p>DEVELOPERS</p>
+          <p>Developers</p>
         </div>
         <div>
           <div className="listing-platform">

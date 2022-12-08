@@ -191,9 +191,7 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
                         alt="logo"
                       />
                     </Link>
-                  ) : (
-                    <>hello</>
-                  )}
+                  ) : null}
                 </div>
               );
             })}
@@ -224,97 +222,101 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
                 </div>
               </div>
             </div>
-            <div className="scoring-box">
-              <div className="style-metascore">
-                <div>
-                  <p className="style-details">Score</p>
+            <div className="right-elem-game-info">
+              <div className="scoring-box">
+                <div className="style-metascore">
+                  <div>
+                    <p className="style-details">Score</p>
+                  </div>
+                  <div>
+                    <p
+                      className={
+                        data.metacritic
+                          ? data.metacritic > 85
+                            ? "data-score"
+                            : "data-score-mid" ||
+                              (data.metacritic < 50 && "data-score-low")
+                          : null
+                      }
+                    >
+                      {data.metacritic}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p
-                    className={
-                      data.metacritic
-                        ? data.metacritic > 85
-                          ? "data-score"
-                          : "data-score-mid" ||
-                            (data.metacritic < 50 && "data-score-low")
-                        : null
-                    }
+              </div>
+              <div className="community-button-2">
+                {inFavorites ? (
+                  <div
+                    className="button-fav-2"
+                    onClick={() => {
+                      deleteFav(data.id);
+                    }}
                   >
-                    {data.metacritic}
-                  </p>
+                    FAVORITE
+                    <p>
+                      <FontAwesomeIcon
+                        icon="fa-solid fa-heart-circle-check"
+                        fontSize={16}
+                        color="red"
+                      />
+                    </p>
+                  </div>
+                ) : (
+                  <div
+                    className="button-fav"
+                    onClick={() => {
+                      addGame();
+                      setInFavorites(true);
+                    }}
+                  >
+                    FAVORITE
+                    <p>
+                      <FontAwesomeIcon
+                        icon="fa-solid fa-heart"
+                        fontSize={16}
+                        color="grey"
+                      />
+                    </p>
+                  </div>
+                )}
+                <div className="community-button">
+                  {inWishlist ? (
+                    <div
+                      className="button-wish-2"
+                      onClick={() => {
+                        deleteWish(data.id);
+                      }}
+                    >
+                      WISHLIST
+                      <p>
+                        <FontAwesomeIcon
+                          icon="fa-solid fa-gift"
+                          fontSize={16}
+                          color="orange"
+                        />
+                      </p>
+                    </div>
+                  ) : (
+                    <div
+                      className="button-wish"
+                      onClick={async () => {
+                        wishGame();
+                        setInWishlist(true);
+                      }}
+                    >
+                      WISHLIST
+                      <p className="">
+                        <FontAwesomeIcon
+                          icon="fa-solid fa-gift"
+                          fontSize={16}
+                          color="grey"
+                        />
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-          </div>
-          <div className="community-button">
-            {inFavorites ? (
-              <div
-                className="button-fav"
-                onClick={() => {
-                  deleteFav(data.id);
-                }}
-              >
-                ADDED
-                <p>
-                  <FontAwesomeIcon
-                    icon="fa-solid fa-heart-circle-check"
-                    fontSize={16}
-                    color="red"
-                  />
-                </p>
-              </div>
-            ) : (
-              <div
-                className="button-fav"
-                onClick={() => {
-                  addGame();
-                  setInFavorites(true);
-                }}
-              >
-                ADD FAVORITES
-                <p>
-                  <FontAwesomeIcon
-                    icon="fa-solid fa-heart"
-                    fontSize={16}
-                    color="grey"
-                  />
-                </p>
-              </div>
-            )}
-            {inWishlist ? (
-              <div
-                className="button-wish"
-                onClick={() => {
-                  deleteWish(data.id);
-                }}
-              >
-                ADDED
-                <p>
-                  <FontAwesomeIcon
-                    icon="fa-solid fa-gift"
-                    fontSize={16}
-                    color="orange"
-                  />
-                </p>
-              </div>
-            ) : (
-              <div
-                className="button-wish"
-                onClick={async () => {
-                  wishGame();
-                  setInWishlist(true);
-                }}
-              >
-                ADD WISHLIST
-                <p className="">
-                  <FontAwesomeIcon
-                    icon="fa-solid fa-gift"
-                    fontSize={16}
-                    color="grey"
-                  />
-                </p>
-              </div>
-            )}
           </div>
         </div>
         <div className="box-img">

@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const LastThirstyDays = ({ search }) => {
   const [data, setData] = useState([]);
@@ -46,7 +48,24 @@ const LastThirstyDays = ({ search }) => {
         setInfinite(newInfinite);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
+
+  const ratingEmoji = (value) => {
+    let ratingArray = [];
+    for (let index = 0; index < 1; index++) {
+      if (value < 3.9) {
+        return null;
+      }
+      if (value < 4.1) {
+        ratingArray.push("👍");
+      }
+      if (value > 4.3) {
+        ratingArray.push("🎯");
+      }
+    }
+    return ratingArray;
+  };
 
   return isLoading ? (
     <div className="loading">
@@ -58,7 +77,7 @@ const LastThirstyDays = ({ search }) => {
     <div className="home-flex">
       <div className="navigation-home">
         <div className="title-home">
-          <p>LAST 30 DAYS</p>
+          <p>Last 30 Days</p>
         </div>
         <div>
           <div className="listing-games">
@@ -77,6 +96,16 @@ const LastThirstyDays = ({ search }) => {
                           ? elem.name
                           : elem.name.slice(0, 30) + "..."}
                       </Link>
+                    </div>
+                    <div>
+                      {elem.reviews_count !== 0 ? (
+                        <div className="game-infos-home">
+                          <FontAwesomeIcon icon={faPlus} /> {elem.reviews_count}
+                        </div>
+                      ) : null}
+                    </div>
+                    <div className="game-infos-2-home">
+                      {ratingEmoji(elem.rating)}
                     </div>
                   </div>
                   <Carousel

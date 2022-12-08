@@ -20,7 +20,7 @@ const MemberPage = ({ token }) => {
     <div className="wishlist-page">
       <div className="navigation-home">
         <div className="title-home">
-          <p>Your profile</p>
+          <p>Your Profile</p>
         </div>
       </div>
       {isLoading ? (

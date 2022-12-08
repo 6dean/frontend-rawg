@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Link } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const NextWeek = ({ search }) => {
   const [data, setData] = useState([]);
   const [infinite, setInfinite] = useState([]);
-  const [number, setNumber] = useState(40);
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(1);
   const [isLoading, setisLoading] = useState(true);
@@ -15,7 +16,7 @@ const NextWeek = ({ search }) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `http://localhost:3000/nextweek?page_size=${number}&search=${search}&page=${page}`
+        `http://localhost:3000/nextweek?search=${search}&page=${page}`
       );
 
       setData(JSON.parse(JSON.stringify(response.data.results)));
@@ -39,7 +40,7 @@ const NextWeek = ({ search }) => {
 
     fetchData();
     window.addEventListener("scroll", handleScroll);
-  }, [number, search, page, count]);
+  }, [search, page, count]);
 
   useEffect(() => {
     if (count > infinite.length) {
@@ -54,7 +55,24 @@ const NextWeek = ({ search }) => {
         setInfinite(newInfinite);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
+
+  const ratingEmoji = (value) => {
+    let ratingArray = [];
+    for (let index = 0; index < 1; index++) {
+      if (value < 3.9) {
+        return null;
+      }
+      if (value < 4.1) {
+        ratingArray.push("👍");
+      }
+      if (value > 4.3) {
+        ratingArray.push("🎯");
+      }
+    }
+    return ratingArray;
+  };
 
   return isLoading ? (
     <div className="loading">
@@ -66,7 +84,7 @@ const NextWeek = ({ search }) => {
     <div className="home-flex">
       <div className="navigation-home">
         <div className="title-home">
-          <p>NEXT WEEK</p>
+          <p>Next Week</p>
         </div>
         <div>
           <div className="listing-games">
@@ -86,7 +104,17 @@ const NextWeek = ({ search }) => {
                           : elem.name.slice(0, 30) + "..."}
                       </Link>
                     </div>
-                  </div>{" "}
+                    <div>
+                      {elem.reviews_count !== 0 ? (
+                        <div className="game-infos-home">
+                          <FontAwesomeIcon icon={faPlus} /> {elem.reviews_count}
+                        </div>
+                      ) : null}
+                    </div>
+                    <div className="game-infos-2-home">
+                      {ratingEmoji(elem.rating)}
+                    </div>
+                  </div>
                   <Carousel
                     showThumbs={false}
                     showStatus={false}

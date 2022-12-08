@@ -29,7 +29,7 @@ const Genres = () => {
     <div className="home-flex">
       <div className="navigation-home">
         <div className="title-home">
-          <p>GENRES</p>
+          <p>Genres</p>
         </div>
         <div>
           <div className="listing-platform">
