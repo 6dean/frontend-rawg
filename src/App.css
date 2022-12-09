@@ -242,11 +242,11 @@ p {
   background: rgb(185, 255, 9);
   background: linear-gradient(
     0deg,
-    rgba(185, 255, 9, 1) 0%,
+    rgb(255, 214, 9) 0%,
     rgba(8, 148, 255, 1) 100%
   );
   width: auto;
-  margin: 20px 30px;
+  margin: 40px 30px;
 }
 
 .box-info {
@@ -307,6 +307,17 @@ p {
   box-sizing: border-box;
 }
 
+.card-game-fav-wish {
+  position: relative;
+  background-color: #272727;
+  border-radius: 10px;
+  margin-left: 15px;
+  margin-bottom: 20px;
+  height: 260px;
+  width: 250px;
+  box-sizing: border-box;
+}
+
 .card-more {
   position: relative;
   margin-left: 15px;
@@ -358,7 +369,7 @@ p {
 .game-title-lower {
   color: white;
   font-family: "Alexandria", sans-serif;
-  font-size: 20px;
+  font-size: 19px;
   height: 65px;
   box-sizing: border-box;
   padding: 6px 10px 0 10px;
@@ -1503,7 +1514,13 @@ h1 {
   }
 }
 
-@media (max-width: 1600px) {
+@media (max-width: 1700px) {
+  .card-game {
+    width: calc(100% / 5 - var(--gap));
+  }
+}
+
+@media (max-width: 1520px) {
   .card-game {
     width: calc(100% / 4 - var(--gap));
   }
@@ -1543,6 +1560,7 @@ h1 {
   .side-banner-resp {
     display: block;
     top: 80px;
+    width: 210px;
     position: absolute;
     z-index: 100;
     background-color: #151515;
@@ -1554,7 +1572,60 @@ h1 {
     letter-spacing: 1px;
   }
 
+  .nav-icon {
+    display: flex;
+    padding: 4px;
+    gap: 6px;
+    align-items: center;
+  }
+
+  .nav-icon:hover {
+    text-shadow: rgba(255, 255, 255, 0.73) 1px 0 5px;
+  }
+
+  .nav-icon:hover .icon-class {
+    background-color: #fff;
+    color: #151515;
+  }
+
+  .icon-class {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #262626;
+    border-radius: 5px;
+    width: 26px;
+    height: 26px;
+  }
+
+  .side-banner p {
+    color: white;
+    font-family: "Rajdhani", sans-serif;
+    font-size: 17px;
+    margin-left: 4px;
+    padding: 3px;
+    letter-spacing: 1px;
+  }
+
+  .side-section {
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+
+  .side-title {
+    color: white;
+    font-family: "Anybody", sans-serif;
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+
   .card-game {
     width: calc(100% / 4 - var(--gap));
+  }
+}
+
+@media (max-width: 1090px) {
+  .card-game {
+    width: calc(100% / 3 - var(--gap));
   }
 }

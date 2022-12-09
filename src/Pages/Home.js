@@ -131,7 +131,7 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
                               <img
                                 className="carousel-img"
                                 src={screenshot.image}
-                                alt=""
+                                alt="illustration"
                               />
                             </div>
                           );
@@ -152,9 +152,9 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
                             : "game-title-lower"
                         }
                       >
-                        {elem.name.length < 35
+                        {elem.name.length < 30
                           ? elem.name
-                          : elem.name.slice(0, 35) + "..."}
+                          : elem.name.slice(0, 33) + "..."}
                       </div>
                       <div className="card-like-infos">
                         <div className="game-infos-home">

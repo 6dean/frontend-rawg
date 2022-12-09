@@ -69,19 +69,21 @@ const Favorites = ({ token }) => {
         </div>
       </div>
       {data.length < 1 ? (
-        <div className="box-info-null">
-          <div className="info-null">You don't have any games yet !</div>
-          <img
-            src="https://res.cloudinary.com/dlfp2xvis/image/upload/v1670147535/my-content/Pngtree_video_game_controller_5392581_kmp8gz.png"
-            alt="gamepad"
-            width="200"
-          />
+        <div className="navigation-fav">
+          <div className="box-info-null">
+            <div className="info-null">You don't have any games yet !</div>
+            <img
+              src="https://res.cloudinary.com/dlfp2xvis/image/upload/v1670147535/my-content/Pngtree_video_game_controller_5392581_kmp8gz.png"
+              alt="gamepad"
+              width="200"
+            />
+          </div>
         </div>
       ) : (
         <div className="listing-games">
           {data.map((elem, index) => {
             return (
-              <div key={index} className="card-game">
+              <div key={index} className="card-game-fav-wish">
                 <div
                   className="game-delete"
                   onClick={() => {

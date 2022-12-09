@@ -37,19 +37,17 @@ const Wishlist = ({ token }) => {
 
   return !isMember ? (
     <div className="wishlist-page">
-      <div className="navigation-home">
-        <div className="title-home">
-          <p>Wishlist</p>
-        </div>
-        <div className="navigation-fav">
-          <div className="box-info-null">
-            <div className="info-null">You don't have any games yet !</div>
-            <img
-              src="https://res.cloudinary.com/dlfp2xvis/image/upload/v1670147535/my-content/Pngtree_video_game_controller_5392581_kmp8gz.png"
-              alt="gamepad"
-              width="200"
-            />
-          </div>
+      <div className="title-home">
+        <p>Wishlist</p>
+      </div>
+      <div className="navigation-fav">
+        <div className="box-info-null">
+          <div className="info-null">You don't have any games yet !</div>
+          <img
+            src="https://res.cloudinary.com/dlfp2xvis/image/upload/v1670147535/my-content/Pngtree_video_game_controller_5392581_kmp8gz.png"
+            alt="gamepad"
+            width="200"
+          />
         </div>
       </div>
     </div>
@@ -67,66 +65,70 @@ const Wishlist = ({ token }) => {
         </div>
       </div>
       {data.length < 1 ? (
-        <div className="box-info-null">
-          <div className="info-null">You don't have any games yet !</div>
-          <img
-            src="https://res.cloudinary.com/dlfp2xvis/image/upload/v1670147535/my-content/Pngtree_video_game_controller_5392581_kmp8gz.png"
-            alt="gamepad"
-            width="200"
-          />
+        <div className="navigation-fav">
+          <div className="box-info-null">
+            <div className="info-null">You don't have any games yet !</div>
+            <img
+              src="https://res.cloudinary.com/dlfp2xvis/image/upload/v1670147535/my-content/Pngtree_video_game_controller_5392581_kmp8gz.png"
+              alt="gamepad"
+              width="200"
+            />
+          </div>
         </div>
       ) : (
-        <div className="listing-games">
-          {data.map((elem, index) => {
-            return (
-              <div key={index} className="card-game">
-                <div
-                  className="game-delete"
-                  onClick={() => {
-                    updateData(elem.id);
-                  }}
-                >
-                  <FontAwesomeIcon icon={faCircleXmark} size="xl" />
-                </div>
-                <Carousel
-                  showThumbs={false}
-                  showStatus={false}
-                  showIndicators={false}
-                >
+        <div className="navigation-fav">
+          <div className="listing-games">
+            {data.map((elem, index) => {
+              return (
+                <div key={index} className="card-game-fav-wish">
+                  <div
+                    className="game-delete"
+                    onClick={() => {
+                      updateData(elem.id);
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faCircleXmark} size="xl" />
+                  </div>
+                  <Carousel
+                    showThumbs={false}
+                    showStatus={false}
+                    showIndicators={false}
+                  >
+                    <Link
+                      to={`/game-details/${elem.id}`}
+                      onClick={() => {
+                        window.scrollTo(0, 0);
+                      }}
+                    >
+                      <div>
+                        <img className="carousel-img" src={elem.image} alt="" />
+                      </div>
+                    </Link>
+                  </Carousel>
                   <Link
                     to={`/game-details/${elem.id}`}
                     onClick={() => {
                       window.scrollTo(0, 0);
                     }}
                   >
-                    <div>
-                      <img className="carousel-img" src={elem.image} alt="" />
+                    <div className="card-info-box">
+                      <div
+                        className={
+                          elem.name.length < 28
+                            ? "game-title"
+                            : "game-title-lower"
+                        }
+                      >
+                        {elem.name.length < 35
+                          ? elem.name
+                          : elem.name.slice(0, 34) + "..."}
+                      </div>
                     </div>
                   </Link>
-                </Carousel>
-                <Link
-                  to={`/game-details/${elem.id}`}
-                  onClick={() => {
-                    window.scrollTo(0, 0);
-                  }}
-                >
-                  <div className="card-info-box">
-                    <div
-                      className={
-                        elem.name.length < 28
-                          ? "game-title"
-                          : "game-title-lower"
-                      }
-                    >
-                      {elem.name.length < 35
-                        ? elem.name
-                        : elem.name.slice(0, 35) + "..."}
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            );
-          })}
+                </div>
+              );
+            })}
+          </div>
         </div>
       )}
     </div>
