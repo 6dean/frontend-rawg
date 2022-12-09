@@ -7,9 +7,12 @@ const MemberPage = ({ token }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.put(`http://localhost:3000/profile`, {
-        token,
-      });
+      const response = await axios.put(
+        `https://site--backend-rawg--6qn7tv96v7tt.code.run/profile`,
+        {
+          token,
+        }
+      );
 
       setData(response.data);
       setisLoading(false);

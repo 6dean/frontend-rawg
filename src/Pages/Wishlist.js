@@ -13,9 +13,12 @@ const Wishlist = ({ token }) => {
   useEffect(() => {
     if (token) {
       const fetchData = async () => {
-        const response = await axios.post(`http://localhost:3000/wishlist`, {
-          token,
-        });
+        const response = await axios.post(
+          `https://site--backend-rawg--6qn7tv96v7tt.code.run/wishlist`,
+          {
+            token,
+          }
+        );
 
         setData(response.data);
         setisLoading(false);
@@ -28,10 +31,13 @@ const Wishlist = ({ token }) => {
 
   const updateData = async (id) => {
     const gameId = id;
-    const response = await axios.put(`http://localhost:3000/deletewish`, {
-      token,
-      gameId,
-    });
+    const response = await axios.put(
+      `https://site--backend-rawg--6qn7tv96v7tt.code.run/deletewish`,
+      {
+        token,
+        gameId,
+      }
+    );
     setData(response.data);
   };
 

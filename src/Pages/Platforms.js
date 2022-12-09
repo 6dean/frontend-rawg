@@ -9,7 +9,9 @@ const Platforms = ({ setPlatform, setPlatformName }) => {
   const [isLoading, setisLoading] = useState(true);
 
   const fetchData = async () => {
-    const response = await axios.get(`http://localhost:3000/platforms`);
+    const response = await axios.get(
+      `https://site--backend-rawg--6qn7tv96v7tt.code.run/platforms`
+    );
 
     setData(response.data);
     setisLoading(false);

@@ -21,7 +21,7 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
     const favoritesList = async () => {
       if (token) {
         const response = await axios.post(
-          `http://localhost:3000/allfavorites`,
+          `https://site--backend-rawg--6qn7tv96v7tt.code.run/allfavorites`,
           {
             token,
           }
@@ -35,9 +35,12 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
     };
     const wishList = async () => {
       if (token) {
-        const response = await axios.post(`http://localhost:3000/wishlist`, {
-          token,
-        });
+        const response = await axios.post(
+          `https://site--backend-rawg--6qn7tv96v7tt.code.run/wishlist`,
+          {
+            token,
+          }
+        );
         response.data.some((element) => element.id === data.id) &&
           setInWishlist(true);
       } else {
@@ -47,7 +50,7 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
 
     const fetchData = async () => {
       const response = await axios.get(
-        `http://localhost:3000/gamedetails?id=${id}`
+        `https://site--backend-rawg--6qn7tv96v7tt.code.run/gamedetails?id=${id}`
       );
 
       setData(response.data);
@@ -69,10 +72,13 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
             id: data.id,
             image: data.background_image,
           };
-          await axios.put("http://localhost:3000/favorite", {
-            token,
-            favorite,
-          });
+          await axios.put(
+            "https://site--backend-rawg--6qn7tv96v7tt.code.run/favorite",
+            {
+              token,
+              favorite,
+            }
+          );
           setInFavorites(true);
         } catch (error) {}
       };
@@ -84,19 +90,25 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
 
   const deleteFav = async (id) => {
     const gameId = id;
-    await axios.put(`http://localhost:3000/deletefavorite`, {
-      token,
-      gameId,
-    });
+    await axios.put(
+      `https://site--backend-rawg--6qn7tv96v7tt.code.run/deletefavorite`,
+      {
+        token,
+        gameId,
+      }
+    );
     setInFavorites(false);
   };
 
   const deleteWish = async (id) => {
     const gameId = id;
-    await axios.put(`http://localhost:3000/deletewish`, {
-      token,
-      gameId,
-    });
+    await axios.put(
+      `https://site--backend-rawg--6qn7tv96v7tt.code.run/deletewish`,
+      {
+        token,
+        gameId,
+      }
+    );
     setInWishlist(false);
   };
 
@@ -109,10 +121,13 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
           image: data.background_image,
         };
         try {
-          await axios.put("http://localhost:3000/wish", {
-            wish,
-            token,
-          });
+          await axios.put(
+            "https://site--backend-rawg--6qn7tv96v7tt.code.run/wish",
+            {
+              wish,
+              token,
+            }
+          );
           setInWishlist(true);
         } catch (error) {
           console.log(error.response);
@@ -131,15 +146,18 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
       alert("Your comment must contain at least 20 characters");
     } else {
       try {
-        await axios.post("http://localhost:3000/commentary", {
-          game_id: data.id,
-          game_name: data.name,
-          game_img: data.background_image_additional,
-          username: tokenUser,
-          token: token,
-          date: date.toString(),
-          review: comment,
-        });
+        await axios.post(
+          "https://site--backend-rawg--6qn7tv96v7tt.code.run/commentary",
+          {
+            game_id: data.id,
+            game_name: data.name,
+            game_img: data.background_image_additional,
+            username: tokenUser,
+            token: token,
+            date: date.toString(),
+            review: comment,
+          }
+        );
         window.scrollTo(0, 0);
         window.location.reload();
       } catch (error) {
@@ -150,9 +168,12 @@ const GameDetails = ({ token, tokenUser, setPlatform, setPlatformName }) => {
 
   const allReviews = async () => {
     try {
-      const response = await axios.post(`http://localhost:3000/allcomments`, {
-        game_id: id,
-      });
+      const response = await axios.post(
+        `https://site--backend-rawg--6qn7tv96v7tt.code.run/allcomments`,
+        {
+          game_id: id,
+        }
+      );
       setListcomments(response.data.reverse());
     } catch (error) {
       console.log("something wrong happened :S");

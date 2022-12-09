@@ -12,9 +12,12 @@ const Reviews = ({ token }) => {
   useEffect(() => {
     if (token) {
       const fetchData = async () => {
-        const response = await axios.post(`http://localhost:3000/allreviews`, {
-          token,
-        });
+        const response = await axios.post(
+          `https://site--backend-rawg--6qn7tv96v7tt.code.run/allreviews`,
+          {
+            token,
+          }
+        );
 
         setData(response.data);
         setisLoading(false);
@@ -27,10 +30,13 @@ const Reviews = ({ token }) => {
 
   const updateData = async (id) => {
     const game_id = id;
-    const response = await axios.put(`http://localhost:3000/deletecomment`, {
-      token,
-      game_id,
-    });
+    const response = await axios.put(
+      `https://site--backend-rawg--6qn7tv96v7tt.code.run/deletecomment`,
+      {
+        token,
+        game_id,
+      }
+    );
 
     setData(response.data);
   };

@@ -9,7 +9,9 @@ const Genres = () => {
   const [isLoading, setisLoading] = useState(true);
 
   const fetchData = async () => {
-    const response = await axios.get(`http://localhost:3000/genres`);
+    const response = await axios.get(
+      `https://site--backend-rawg--6qn7tv96v7tt.code.run/genres`
+    );
 
     setData(response.data);
     setisLoading(false);

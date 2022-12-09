@@ -17,7 +17,7 @@ const Listing = ({ search, platform, platformName, setPlatformName }) => {
     const fetchData = async () => {
       if (platform) {
         const response = await axios.get(
-          `http://localhost:3000/listingplatform?search=${search}&platforms=${platform}&page=${page}`
+          `https://site--backend-rawg--6qn7tv96v7tt.code.run/listingplatform?search=${search}&platforms=${platform}&page=${page}`
         );
 
         setData(JSON.parse(JSON.stringify(response.data.results)));
@@ -26,7 +26,7 @@ const Listing = ({ search, platform, platformName, setPlatformName }) => {
       } else {
         setPlatformName(null);
         const response = await axios.get(
-          `http://localhost:3000/home?&search=${search}&page=${page}`
+          `https://site--backend-rawg--6qn7tv96v7tt.code.run/home?&search=${search}&page=${page}`
         );
 
         setData(JSON.parse(JSON.stringify(response.data.results)));

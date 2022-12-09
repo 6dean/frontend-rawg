@@ -14,7 +14,7 @@ const Favorites = ({ token }) => {
     if (token) {
       const fetchData = async () => {
         const response = await axios.post(
-          `http://localhost:3000/allfavorites`,
+          `https://site--backend-rawg--6qn7tv96v7tt.code.run/allfavorites`,
           {
             token,
           }
@@ -31,10 +31,13 @@ const Favorites = ({ token }) => {
 
   const updateData = async (id) => {
     const gameId = id;
-    const response = await axios.put(`http://localhost:3000/deletefavorite`, {
-      token,
-      gameId,
-    });
+    const response = await axios.put(
+      `https://site--backend-rawg--6qn7tv96v7tt.code.run/deletefavorite`,
+      {
+        token,
+        gameId,
+      }
+    );
 
     setData(response.data);
   };

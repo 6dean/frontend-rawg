@@ -16,7 +16,7 @@ const ThisWeek = ({ search }) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `http://localhost:3000/thisweek?search=${search}&page${page}`
+        `https://site--backend-rawg--6qn7tv96v7tt.code.run/thisweek?search=${search}&page${page}`
       );
 
       setData(JSON.parse(JSON.stringify(response.data.results)));
