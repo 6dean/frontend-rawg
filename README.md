@@ -5,4 +5,31 @@ It offers interesting features such as creating an account, searching games or e
 
 # MY RAWG FEATURES
 
-On my replica, you can
+* Search a game
+* Infinite scroll (no pagination)
+* Create an account
+* Log in (if you have an account)
+* Add a game in your Favorites
+* Delete a game from your Favorites
+* Add a game in your Wishlist
+* Delete a game from your Wishlist
+* Write a comment in a game page
+* View all your comments in your Review page
+* Delete a comment
+
+# IN PROGRESS
+
+I need to improve few things at the moment
+- Responsive mobile 
+- Creation safety (No space allowed in username and confirm mail)
+- Autoupdate for pages following a chronology (THIS WEEK, NEXT WEEK, LAST 30 DAYS, etc)
+
+# TOOLS
+
+I create this website with React.js
+NPM Packages : 
+- Axios 
+- JS-Cookie
+- Bottom Scroll listener
+- Responsive Carousel
+- fontawesome
