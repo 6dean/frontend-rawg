@@ -1,3 +1,6 @@
+<img src="https://www.startuplithuania.com/wp-content/uploads/2018/10/Rawg-promo-cover.png" alt="header" width=400 />
+
+
 # REPLICA PROJECT
 
 To close the end of my two months of training at Le Reacteur, I had to create replica of the site of my choice. My choice was the videogames website: RAWG.io
