@@ -1,10 +1,10 @@
-<img src="https://www.startuplithuania.com/wp-content/uploads/2018/10/Rawg-promo-cover.png" alt="header" width=400 />
+<img src="https://user-images.githubusercontent.com/114014511/210276209-8488de38-6b7c-4c91-85f4-6fa01b4ff927.png" alt="header" width=400 />
 
 
 # REPLICA PROJECT
 
 To close the end of my two months of training at Le Reacteur, I had to create replica of the site of my choice. My choice was the videogames website: RAWG.io
-It offers interesting features such as creating an account, searching games or even writing comments.
+It offers interesting features such as creating an account, searching games, writing comments and more.
 
 # MY RAWG FEATURES
 
