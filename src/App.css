@@ -69,6 +69,13 @@ p {
   display: flex;
   justify-content: center;
 }
+
+.flex1-bis-responsive {
+  padding-left: 15px;
+  display: flex;
+  justify-content: center;
+}
+
 .flex2 {
   flex: 3;
 }
@@ -627,8 +634,6 @@ h1 {
 /* -------------------- JOIN & LOGIN SECTION -------------------- */
 
 .join-us-section {
-  /* height: calc(100% - 70px); */
-  height: 100vh;
   background-image: linear-gradient(
       180deg,
       rgba(21, 21, 21, 1) 1%,
@@ -636,6 +641,7 @@ h1 {
     ),
     url("./img/akuma.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .login-section {
@@ -1527,6 +1533,12 @@ h1 {
   }
 }
 
+@media (min-width: 1090px) {
+  .flex1-bis-responsive {
+    display: none;
+  }
+}
+
 @media (max-width: 1090px) {
   .side-banner {
     display: none;
@@ -1541,6 +1553,18 @@ h1 {
 
   .flex1 {
     width: 80px;
+  }
+
+  .signup-join-element {
+    flex-direction: column;
+  }
+
+  .RIGHT-join {
+    display: none;
+  }
+
+  .flex1-bis {
+    display: none;
   }
 
   .menu-icon-header {
@@ -1622,5 +1646,11 @@ h1 {
 @media (max-width: 1090px) {
   .card-game {
     width: calc(100% / 3 - var(--gap));
+  }
+}
+
+@media (max-width: 710px) {
+  .card-game {
+    width: calc(100% / 2 - var(--gap));
   }
 }

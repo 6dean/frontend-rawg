@@ -100,6 +100,40 @@ const Header = ({
               )}
             </div>
           </div>
+
+          <div className="flex1-bis-responsive">
+            <div className="list-option-header">
+              {token ? (
+                <>
+                  <div className="options-header-user">
+                    <Link to="/yourprofile">
+                      {tokenUser && tokenUser.toUpperCase()}
+                    </Link>
+                  </div>
+                  <Link to="/">
+                    <div
+                      className="options-header-log"
+                      onClick={() => {
+                        transferToken(null);
+                        transferTokenUser(null);
+                      }}
+                    >
+                      LOG OUT
+                    </div>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/signin">
+                    <div className="options-header">JOIN US</div>
+                  </Link>
+                  <Link to="/login">
+                    <div className="options-header">LOGIN</div>
+                  </Link>
+                </>
+              )}
+            </div>
+          </div>
         </div>
       </div>
       <div>{displayMenu && <SideBanner />}</div>
