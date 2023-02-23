@@ -6,7 +6,13 @@ import { Carousel } from "react-responsive-carousel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
-const Home = ({ search, platform, platformName, setPlatformName }) => {
+const Home = ({
+  search,
+  platform,
+  platformName,
+  setPlatformName,
+  validLog,
+}) => {
   const [data, setData] = useState([]);
   const [infinite, setInfinite] = useState([]);
   const [number, setNumber] = useState(20);
@@ -49,16 +55,6 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
   }, [number, search, platform, platformName, page, setPlatformName]);
 
   useEffect(() => {
-    /** 
-     * ! AUTO-SUGGEST-SEARCH-
-     * ! const listNames = [];
-     * ! infinite.map((games) => {
-     * ! return listNames.push(games.name);
-     * ! });
-
-    * ! suggestArray(listNames);
-*/
-
     if (page < 2) {
       const newInfinite = [...data];
       setInfinite(newInfinite);
@@ -105,13 +101,15 @@ const Home = ({ search, platform, platformName, setPlatformName }) => {
           <div className={display ? "parent-box-info" : "display"}>
             <div className="box-info">
               <p>
-                This website is a replica of{" "}
-                <span className="p-rawg">RAWG.io</span> ! Tell me what you think
-                about my work. I would like to improve my skills. 💻
+                This is a replica of <span className="p-rawg">RAWG.io</span> !
+                Try my features : Wishlist, Favorites, write or delete a
+                comment...
               </p>
             </div>
             <div className="box-info-circle" onClick={() => setDisplay(false)}>
-              <FontAwesomeIcon icon={faCircleXmark} />
+              <span className="demo" onClick={() => validLog()}>
+                DEMO
+              </span>{" "}
             </div>
           </div>
 

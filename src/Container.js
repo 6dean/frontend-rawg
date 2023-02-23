@@ -1,6 +1,7 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import axios from "axios";
 
 // MES PAGES
 import Home from "./Pages/Home";
@@ -67,14 +68,26 @@ function Container() {
     }
   };
 
-  /**
-   * ! AUTO SUGGEST SEARCH
-   */
-  // const suggestArray = (games) => {
-  //   const suggest = [];
-  //   suggest.push(games);
-  //   setAutosuggest(suggest);
-  // };
+  const validLog = () => {
+    const data = async () => {
+      try {
+        const response = await axios.post(
+          "https://site--backend-rawg--6qn7tv96v7tt.code.run/login",
+          {
+            email: "test@test",
+            password: "test",
+          }
+        );
+        const token = response.data.token;
+        const user = response.data.username;
+        transferToken(token);
+        transferTokenUser(user);
+      } catch (error) {
+        return null;
+      }
+    };
+    data();
+  };
 
   return (
     <>
@@ -99,6 +112,7 @@ function Container() {
                 platform={platform}
                 platformName={platformName}
                 setPlatformName={setPlatformName}
+                validLog={validLog}
               />
             }
           ></Route>

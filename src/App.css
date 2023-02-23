@@ -244,6 +244,7 @@ p {
 
 .parent-box-info {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   border-radius: 5px;
   background: rgb(185, 255, 9);
@@ -254,6 +255,21 @@ p {
   );
   width: auto;
   margin: 40px 30px;
+}
+
+.demo {
+  background-color: rgb(62, 62, 208);
+  color: white;
+  font-family: "Anybody", sans-serif;
+  font-size: 20px;
+  padding: 5px 10px 3px 10px;
+  border-radius: 10px;
+}
+
+.demo:hover {
+  cursor: pointer;
+  opacity: 60%;
+  background-color: rgb(46, 46, 231);
 }
 
 .box-info {
